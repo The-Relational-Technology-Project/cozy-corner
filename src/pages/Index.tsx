@@ -157,7 +157,7 @@ const Index = () => {
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                    <span>Mutual aid request board</span>
+                    <span>Your idea!</span>
                   </div>
                 </div>
               </CardContent>
@@ -169,10 +169,7 @@ const Index = () => {
                 <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
               </CardHeader>
               <CardContent className="p-6">
-                <p className="text-slate-600 leading-relaxed mb-4">
-                  Cozy Corner is a tiny mutual aid and connection hub built by neighbors for neighbors. 
-                  We believe in keeping things simple, respecting privacy, and fostering real community connections.
-                </p>
+                <p className="text-slate-600 leading-relaxed mb-4">Cozy Corner is a tiny mutual aid and connection hub built by neighbors for neighbors. We will things simple, respect privacy, and aim to support real community connections.</p>
                 
                 <div className="space-y-2 text-sm text-slate-500">
                   <div className="flex items-center gap-2">
@@ -185,7 +182,7 @@ const Index = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-green-500">✓</span>
-                    <span>Zero monetization, built with love</span>
+                    <span>Built with love as a gift to the community</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-green-500">✓</span>
