@@ -218,7 +218,7 @@ const Index = () => {
           <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 max-w-2xl mx-auto">
             <p className="text-amber-700 text-sm leading-relaxed">
               Made with 💛 by neighbors on 48th Ave. Questions or ideas? 
-              Stop by and say hello — we're the ones with the overgrown succulents and the surfboard in the window.
+              Reach out in our group chat or stop by and say hello!
             </p>
           </div>
         </div>
