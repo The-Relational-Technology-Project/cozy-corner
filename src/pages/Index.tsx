@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,30 +5,31 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-
 const Index = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [reminderType, setReminderType] = useState("both");
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!email) {
       toast({
         title: "Email required",
         description: "Please enter your email address to sign up for reminders.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
-    console.log("Street cleaning signup:", { email, name, reminderType });
-    
+    console.log("Street cleaning signup:", {
+      email,
+      name,
+      reminderType
+    });
     toast({
       title: "Welcome to the neighborhood! 🏄‍♀️",
-      description: "You're all set for street cleaning reminders. We'll send you a friendly heads up so you never get caught off guard!",
+      description: "You're all set for street cleaning reminders. We'll send you a friendly heads up so you never get caught off guard!"
     });
 
     // Reset form
@@ -37,17 +37,12 @@ const Index = () => {
     setName("");
     setReminderType("both");
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50">
+  return <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-10 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
-          }}
-        />
+        <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{
+        backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
+      }} />
         <div className="relative px-4 py-16 mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-slate-700 via-blue-600 to-orange-500 bg-clip-text text-transparent mb-4">
@@ -64,11 +59,7 @@ const Index = () => {
           {/* Welcome Message */}
           <div className="max-w-4xl mx-auto text-center mb-16">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-              <p className="text-lg text-slate-700 leading-relaxed">
-                Welcome to Cozy Corner! We're neighbors on 48th Ave between Lincoln & Irving, 
-                building small digital tools to make life on the block a little easier — starting 
-                with street cleaning reminders. More tools coming soon, all designed with care for our little corner. 🌊
-              </p>
+              <p className="text-lg text-slate-700 leading-relaxed">Welcome! We're neighbors on 48th Ave between Lincoln & Irving. This site is meant to help bring care and joy to our little corner of San Francisco. 🌊</p>
             </div>
           </div>
         </div>
@@ -95,29 +86,14 @@ const Index = () => {
                     <Label htmlFor="email" className="text-slate-700 font-medium">
                       Email Address *
                     </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="neighbor@example.com"
-                      className="mt-1 border-slate-200 focus:border-blue-400 focus:ring-blue-400 rounded-xl"
-                      required
-                    />
+                    <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="neighbor@example.com" className="mt-1 border-slate-200 focus:border-blue-400 focus:ring-blue-400 rounded-xl" required />
                   </div>
                   
                   <div>
                     <Label htmlFor="name" className="text-slate-700 font-medium">
                       Name or Nickname (optional)
                     </Label>
-                    <Input
-                      id="name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="How should we greet you?"
-                      className="mt-1 border-slate-200 focus:border-blue-400 focus:ring-blue-400 rounded-xl"
-                    />
+                    <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="How should we greet you?" className="mt-1 border-slate-200 focus:border-blue-400 focus:ring-blue-400 rounded-xl" />
                   </div>
 
                   <div>
@@ -148,10 +124,7 @@ const Index = () => {
                   </p>
                 </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-3 rounded-xl transition-all duration-200 transform hover:scale-105"
-                >
+                <Button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-3 rounded-xl transition-all duration-200 transform hover:scale-105">
                   Sign Me Up! 🌊
                 </Button>
               </form>
@@ -234,8 +207,6 @@ const Index = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
