@@ -1,17 +1,19 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Calendar } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+
 const Index = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [reminderType, setReminderType] = useState("both");
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
@@ -22,11 +24,7 @@ const Index = () => {
       });
       return;
     }
-    console.log("Street cleaning signup:", {
-      email,
-      name,
-      reminderType
-    });
+    console.log("Street cleaning signup:", { email, name, reminderType });
     toast({
       title: "Welcome to the neighborhood! 🏄‍♀️",
       description: "You're all set for street cleaning reminders. We'll send you a friendly heads up so you never get caught off guard!"
@@ -37,12 +35,14 @@ const Index = () => {
     setName("");
     setReminderType("both");
   };
-  return <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{
-        backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
-      }} />
+          backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
+        }} />
         <div className="relative px-4 py-16 mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4">
@@ -64,10 +64,10 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="px-4 pb-16 mx-auto max-w-6xl">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           
           {/* Street Cleaning Widget */}
-          <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+          <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden lg:col-span-2">
             <CardHeader className="bg-gradient-to-r from-amber-600 to-orange-600 text-white pb-6">
               <CardTitle className="text-2xl flex items-center gap-2">
                 🧹 Street Cleaning Reminders
@@ -83,14 +83,29 @@ const Index = () => {
                     <Label htmlFor="email" className="text-amber-900 font-medium">
                       Email Address *
                     </Label>
-                    <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="neighbor@example.com" className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" required />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      value={email} 
+                      onChange={e => setEmail(e.target.value)} 
+                      placeholder="neighbor@example.com" 
+                      className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
+                      required 
+                    />
                   </div>
                   
                   <div>
                     <Label htmlFor="name" className="text-amber-900 font-medium">
                       Name or Nickname (optional)
                     </Label>
-                    <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="How should we greet you?" className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" />
+                    <Input 
+                      id="name" 
+                      type="text" 
+                      value={name} 
+                      onChange={e => setName(e.target.value)} 
+                      placeholder="How should we greet you?" 
+                      className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
+                    />
                   </div>
 
                   <div>
@@ -128,67 +143,96 @@ const Index = () => {
             </CardContent>
           </Card>
 
-          {/* Coming Soon */}
-          <div className="space-y-6">
-            <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
-                <CardTitle className="text-xl">🔮 Coming Soon</CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-3 text-amber-800">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                    <span>Neighborhood events calendar</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                    <span>Tool library sign-ups</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                    <span>Block party announcements</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                    <span>Lost & found board</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                    <span>Your idea!</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Events Calendar Widget */}
+          <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+              <CardTitle className="text-xl flex items-center gap-2">
+                <Calendar className="h-5 w-5" />
+                Upcoming Events
+              </CardTitle>
+              <CardDescription className="text-amber-100">
+                Next four weeks on 48th Ave
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="text-center py-8">
+                <Calendar className="h-12 w-12 mx-auto text-amber-400 mb-4" />
+                <p className="text-amber-700 mb-4">No events scheduled yet</p>
+                <Button 
+                  variant="outline" 
+                  className="border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl"
+                >
+                  Suggest an event!
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
-            {/* About Section */}
-            <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-amber-700 to-amber-800 text-white">
-                <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <p className="text-amber-800 leading-relaxed mb-4">Cozy Corner is a tiny mutual aid and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
-                
-                <div className="space-y-2 text-sm text-amber-700">
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span>
-                    <span>Hyperlocal & community-focused</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span>
-                    <span>Privacy-respecting, no data sharing</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span>
-                    <span>Built with love as a gift to the community</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-600">✓</span>
-                    <span>Neighbor-built & neighbor-run</span>
-                  </div>
+        {/* Coming Soon & About Section */}
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
+          <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+              <CardTitle className="text-xl">🔮 Coming Soon</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="space-y-3 text-amber-800">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <span>Movie nights</span>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <span>Book clubs</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <span>Tool library sign-ups</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <span>Block party announcements</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <span>Lost & found board</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <span>Your idea!</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* About Section */}
+          <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-amber-700 to-amber-800 text-white">
+              <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <p className="text-amber-800 leading-relaxed mb-4">Cozy Corner is a tiny mutual aid and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
+              
+              <div className="space-y-2 text-sm text-amber-700">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-600">✓</span>
+                  <span>Hyperlocal & community-focused</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-600">✓</span>
+                  <span>Privacy-respecting, no data sharing</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-600">✓</span>
+                  <span>Built with love as a gift to the community</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-600">✓</span>
+                  <span>Neighbor-built & neighbor-run</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Footer */}
@@ -201,6 +245,8 @@ const Index = () => {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
