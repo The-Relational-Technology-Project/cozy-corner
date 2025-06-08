@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -211,7 +210,7 @@ const Index = () => {
               <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-amber-800 leading-relaxed mb-4">Cozy Corner is a tiny mutual aid and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
+              <p className="text-amber-800 leading-relaxed mb-4">This site is a tiny mutual support and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
               
               <div className="space-y-2 text-sm text-amber-700">
                 <div className="flex items-center gap-2">
