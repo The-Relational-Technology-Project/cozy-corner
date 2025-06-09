@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,15 +7,17 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const [email, setEmail] = useState("");
   const [eastSide, setEastSide] = useState(false);
   const [westSide, setWestSide] = useState(false);
   const [unsubscribeEmail, setUnsubscribeEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
       toast({
@@ -33,23 +36,49 @@ const Index = () => {
       return;
     }
     
-    const sides = [];
-    if (eastSide) sides.push("East Side (City Side)");
-    if (westSide) sides.push("West Side (Beach Side)");
+    setIsSubmitting(true);
     
-    console.log("Street cleaning signup:", { email, sides });
-    toast({
-      title: "Welcome to the neighborhood! 🏄‍♀️",
-      description: `You're signed up for ${sides.join(" and ")} reminders. We'll send you a friendly heads up at 8am on cleaning days!`
-    });
+    try {
+      const { error } = await supabase
+        .from('street_cleaning_subscriptions')
+        .upsert({
+          email,
+          east_side: eastSide,
+          west_side: westSide,
+          updated_at: new Date().toISOString()
+        }, {
+          onConflict: 'email'
+        });
 
-    // Reset form
-    setEmail("");
-    setEastSide(false);
-    setWestSide(false);
+      if (error) throw error;
+
+      const sides = [];
+      if (eastSide) sides.push("East Side (City Side)");
+      if (westSide) sides.push("West Side (Beach Side)");
+      
+      console.log("Street cleaning signup:", { email, sides });
+      toast({
+        title: "Welcome to the neighborhood! 🏄‍♀️",
+        description: `You're signed up for ${sides.join(" and ")} reminders. We'll send you a friendly heads up at 8am on cleaning days!`
+      });
+
+      // Reset form
+      setEmail("");
+      setEastSide(false);
+      setWestSide(false);
+    } catch (error) {
+      console.error("Error signing up:", error);
+      toast({
+        title: "Signup failed",
+        description: "There was an error signing you up. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleUnsubscribe = (e: React.FormEvent) => {
+  const handleUnsubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!unsubscribeEmail) {
       toast({
@@ -59,12 +88,51 @@ const Index = () => {
       });
       return;
     }
-    console.log("Unsubscribe request:", { email: unsubscribeEmail });
+
+    setIsSubmitting(true);
+
+    try {
+      // First record the unsubscribe request
+      const { error: unsubscribeError } = await supabase
+        .from('street_cleaning_unsubscribes')
+        .insert({
+          email: unsubscribeEmail
+        });
+
+      if (unsubscribeError) throw unsubscribeError;
+
+      // Then delete the subscription
+      const { error: deleteError } = await supabase
+        .from('street_cleaning_subscriptions')
+        .delete()
+        .eq('email', unsubscribeEmail);
+
+      if (deleteError) throw deleteError;
+
+      console.log("Unsubscribe request:", { email: unsubscribeEmail });
+      toast({
+        title: "Unsubscribed",
+        description: "You've been removed from all street cleaning reminders."
+      });
+      setUnsubscribeEmail("");
+    } catch (error) {
+      console.error("Error unsubscribing:", error);
+      toast({
+        title: "Unsubscribe failed",
+        description: "There was an error processing your request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleEventSuggestion = async () => {
+    // This will be implemented when we create the event suggestion form
     toast({
-      title: "Unsubscribed",
-      description: "You've been removed from all street cleaning reminders."
+      title: "Coming Soon!",
+      description: "Event suggestion form will be available soon."
     });
-    setUnsubscribeEmail("");
   };
 
   const upcomingEvents = [
@@ -161,6 +229,7 @@ const Index = () => {
                     placeholder="neighbor@example.com" 
                     className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
                     required 
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -174,6 +243,7 @@ const Index = () => {
                         id="eastSide" 
                         checked={eastSide}
                         onCheckedChange={(checked) => setEastSide(checked as boolean)}
+                        disabled={isSubmitting}
                       />
                       <Label htmlFor="eastSide" className="text-amber-800">East Side (City Side) - 1st & 3rd Friday</Label>
                     </div>
@@ -182,14 +252,19 @@ const Index = () => {
                         id="westSide" 
                         checked={westSide}
                         onCheckedChange={(checked) => setWestSide(checked as boolean)}
+                        disabled={isSubmitting}
                       />
                       <Label htmlFor="westSide" className="text-amber-800">West Side (Beach Side) - 1st & 3rd Tuesday</Label>
                     </div>
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium py-3 rounded-xl transition-all duration-200 transform hover:scale-105">
-                  Sign Me Up! 🌊
+                <Button 
+                  type="submit" 
+                  className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium py-3 rounded-xl transition-all duration-200 transform hover:scale-105"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Signing Up..." : "Sign Me Up! 🌊"}
                 </Button>
               </form>
 
@@ -202,10 +277,16 @@ const Index = () => {
                     value={unsubscribeEmail} 
                     onChange={e => setUnsubscribeEmail(e.target.value)} 
                     placeholder="your@email.com" 
-                    className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
+                    className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
+                    disabled={isSubmitting}
                   />
-                  <Button type="submit" variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl whitespace-nowrap">
-                    Unsubscribe
+                  <Button 
+                    type="submit" 
+                    variant="outline" 
+                    className="border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl whitespace-nowrap"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Processing..." : "Unsubscribe"}
                   </Button>
                 </form>
               </div>
@@ -259,6 +340,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 className="w-full mt-4 border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl"
+                onClick={handleEventSuggestion}
               >
                 Suggest an event!
               </Button>
