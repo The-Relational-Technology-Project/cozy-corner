@@ -1,16 +1,18 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Calendar } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Calendar, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [reminderType, setReminderType] = useState("both");
+  const [eastSide, setEastSide] = useState(false);
+  const [westSide, setWestSide] = useState(false);
+  const [unsubscribeEmail, setUnsubscribeEmail] = useState("");
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,17 +25,69 @@ const Index = () => {
       });
       return;
     }
-    console.log("Street cleaning signup:", { email, name, reminderType });
+    if (!eastSide && !westSide) {
+      toast({
+        title: "Select a side",
+        description: "Please select at least one side for street cleaning reminders.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    const sides = [];
+    if (eastSide) sides.push("East Side (City Side)");
+    if (westSide) sides.push("West Side (Beach Side)");
+    
+    console.log("Street cleaning signup:", { email, sides });
     toast({
       title: "Welcome to the neighborhood! 🏄‍♀️",
-      description: "You're all set for street cleaning reminders. We'll send you a friendly heads up so you never get caught off guard!"
+      description: `You're signed up for ${sides.join(" and ")} reminders. We'll send you a friendly heads up at 8am on cleaning days!`
     });
 
     // Reset form
     setEmail("");
-    setName("");
-    setReminderType("both");
+    setEastSide(false);
+    setWestSide(false);
   };
+
+  const handleUnsubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!unsubscribeEmail) {
+      toast({
+        title: "Email required",
+        description: "Please enter your email address to unsubscribe.",
+        variant: "destructive"
+      });
+      return;
+    }
+    console.log("Unsubscribe request:", { email: unsubscribeEmail });
+    toast({
+      title: "Unsubscribed",
+      description: "You've been removed from all street cleaning reminders."
+    });
+    setUnsubscribeEmail("");
+  };
+
+  const upcomingEvents = [
+    {
+      id: 1,
+      name: "Block Party",
+      date: "Saturday, June 14th",
+      time: "",
+      location: "47th Ave and Kirkham",
+      contact: "Community",
+      description: "Join neighbors for a fun block party celebration!"
+    },
+    {
+      id: 2,
+      name: "Block Party", 
+      date: "Saturday, August 16th",
+      time: "10:00 AM",
+      location: "45th Ave",
+      contact: "Community",
+      description: "Another great block party to bring neighbors together!"
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
@@ -72,73 +126,97 @@ const Index = () => {
                 🧹 Street Cleaning Reminders
               </CardTitle>
               <CardDescription className="text-amber-100 text-base">
-                Never get caught by surprise! Sign up for free email reminders before street cleaning on 48th Ave.
+                Get 8am email reminders on street cleaning days for your side of 48th Ave.
               </CardDescription>
             </CardHeader>
-            <CardContent className="p-6">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="email" className="text-amber-900 font-medium">
-                      Email Address *
-                    </Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      value={email} 
-                      onChange={e => setEmail(e.target.value)} 
-                      placeholder="neighbor@example.com" 
-                      className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
-                      required 
-                    />
+            <CardContent className="p-6 space-y-6">
+              {/* Street Cleaning Schedule */}
+              <div className="bg-amber-50 rounded-xl p-4">
+                <h3 className="font-semibold text-amber-900 mb-3 flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  Street Cleaning Schedule
+                </h3>
+                <div className="space-y-2 text-sm text-amber-800">
+                  <div className="flex justify-between">
+                    <span className="font-medium">East Side (City Side):</span>
+                    <span>12pm - 2pm, 1st & 3rd Friday</span>
                   </div>
-                  
-                  <div>
-                    <Label htmlFor="name" className="text-amber-900 font-medium">
-                      Name or Nickname (optional)
-                    </Label>
-                    <Input 
-                      id="name" 
-                      type="text" 
-                      value={name} 
-                      onChange={e => setName(e.target.value)} 
-                      placeholder="How should we greet you?" 
-                      className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
-                    />
-                  </div>
-
-                  <div>
-                    <Label className="text-amber-900 font-medium mb-3 block">
-                      When would you like reminders?
-                    </Label>
-                    <RadioGroup value={reminderType} onValueChange={setReminderType}>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="day-before" id="day-before" />
-                        <Label htmlFor="day-before" className="text-amber-800">1 day before</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="hour-before" id="hour-before" />
-                        <Label htmlFor="hour-before" className="text-amber-800">1 hour before</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="both" id="both" />
-                        <Label htmlFor="both" className="text-amber-800">Both (recommended)</Label>
-                      </div>
-                    </RadioGroup>
+                  <div className="flex justify-between">
+                    <span className="font-medium">West Side (Beach Side):</span>
+                    <span>1pm - 3pm, 1st & 3rd Tuesday</span>
                   </div>
                 </div>
+              </div>
 
-                <div className="bg-amber-50 rounded-xl p-4 text-sm text-amber-800">
-                  <p className="leading-relaxed">
-                    We'll only send you street cleaning reminders for 48th Ave. You can unsubscribe anytime. 
-                    We never share your info. Every reminder comes with a little joke to brighten your day! 😊
-                  </p>
+              {/* Sign Up Form */}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <Label htmlFor="email" className="text-amber-900 font-medium">
+                    Email Address *
+                  </Label>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    value={email} 
+                    onChange={e => setEmail(e.target.value)} 
+                    placeholder="neighbor@example.com" 
+                    className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
+                    required 
+                  />
+                </div>
+
+                <div>
+                  <Label className="text-amber-900 font-medium mb-3 block">
+                    Which side reminders do you want?
+                  </Label>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox 
+                        id="eastSide" 
+                        checked={eastSide}
+                        onCheckedChange={(checked) => setEastSide(checked as boolean)}
+                      />
+                      <Label htmlFor="eastSide" className="text-amber-800">East Side (City Side) - 1st & 3rd Friday</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox 
+                        id="westSide" 
+                        checked={westSide}
+                        onCheckedChange={(checked) => setWestSide(checked as boolean)}
+                      />
+                      <Label htmlFor="westSide" className="text-amber-800">West Side (Beach Side) - 1st & 3rd Tuesday</Label>
+                    </div>
+                  </div>
                 </div>
 
                 <Button type="submit" className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium py-3 rounded-xl transition-all duration-200 transform hover:scale-105">
                   Sign Me Up! 🌊
                 </Button>
               </form>
+
+              {/* Unsubscribe Section */}
+              <div className="border-t border-amber-200 pt-4">
+                <h3 className="font-medium text-amber-900 mb-2">Unsubscribe from all reminders</h3>
+                <form onSubmit={handleUnsubscribe} className="flex gap-2">
+                  <Input 
+                    type="email" 
+                    value={unsubscribeEmail} 
+                    onChange={e => setUnsubscribeEmail(e.target.value)} 
+                    placeholder="your@email.com" 
+                    className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
+                  />
+                  <Button type="submit" variant="outline" className="border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl whitespace-nowrap">
+                    Unsubscribe
+                  </Button>
+                </form>
+              </div>
+
+              <div className="bg-amber-50 rounded-xl p-4 text-sm text-amber-800">
+                <p className="leading-relaxed">
+                  We only send street cleaning reminders for 48th Ave. We never share your info. 
+                  Reminders come at 8am on cleaning days.
+                </p>
+              </div>
             </CardContent>
           </Card>
 
@@ -154,16 +232,37 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="text-center py-8">
-                <Calendar className="h-12 w-12 mx-auto text-amber-400 mb-4" />
-                <p className="text-amber-700 mb-4">No events scheduled yet</p>
-                <Button 
-                  variant="outline" 
-                  className="border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl"
-                >
-                  Suggest an event!
-                </Button>
-              </div>
+              {upcomingEvents.length > 0 ? (
+                <div className="space-y-4">
+                  {upcomingEvents.map((event) => (
+                    <div key={event.id} className="border-l-4 border-amber-400 pl-4 pb-4 border-b border-amber-100 last:border-b-0">
+                      <h3 className="font-semibold text-amber-900">{event.name}</h3>
+                      <div className="text-sm text-amber-700 space-y-1">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          <span>{event.date} {event.time && `at ${event.time}`}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3" />
+                          <span>{event.location}</span>
+                        </div>
+                        <p className="text-amber-600 mt-2">{event.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <Calendar className="h-12 w-12 mx-auto text-amber-400 mb-4" />
+                  <p className="text-amber-700 mb-4">No events scheduled yet</p>
+                </div>
+              )}
+              <Button 
+                variant="outline" 
+                className="w-full mt-4 border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl"
+              >
+                Suggest an event!
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -239,7 +338,7 @@ const Index = () => {
           <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 max-w-2xl mx-auto">
             <p className="text-amber-700 text-sm leading-relaxed">
               Made with 💛 by neighbors on 48th Ave. Questions or ideas? 
-              Reach out in our group chat or stop by and say hello!
+              Reach out in our group chat or reach out to Josh!
             </p>
           </div>
         </div>
