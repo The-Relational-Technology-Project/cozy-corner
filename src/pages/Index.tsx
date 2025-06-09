@@ -7,6 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import EventSuggestionForm from "@/components/EventSuggestionForm";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +16,7 @@ const Index = () => {
   const [westSide, setWestSide] = useState(false);
   const [unsubscribeEmail, setUnsubscribeEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showEventForm, setShowEventForm] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,7 +41,19 @@ const Index = () => {
     setIsSubmitting(true);
     
     try {
-      // For now, we'll just log the signup until the street cleaning tables are created
+      const { error } = await supabase
+        .from('street_cleaning_subscriptions')
+        .upsert({
+          email,
+          east_side: eastSide,
+          west_side: westSide,
+          updated_at: new Date().toISOString()
+        }, {
+          onConflict: 'email'
+        });
+
+      if (error) throw error;
+
       const sides = [];
       if (eastSide) sides.push("East Side (City Side)");
       if (westSide) sides.push("West Side (Beach Side)");
@@ -79,7 +94,23 @@ const Index = () => {
     setIsSubmitting(true);
 
     try {
-      // For now, we'll just log the unsubscribe until the street cleaning tables are created
+      // First record the unsubscribe request
+      const { error: unsubscribeError } = await supabase
+        .from('street_cleaning_unsubscribes')
+        .insert({
+          email: unsubscribeEmail
+        });
+
+      if (unsubscribeError) throw unsubscribeError;
+
+      // Then delete the subscription
+      const { error: deleteError } = await supabase
+        .from('street_cleaning_subscriptions')
+        .delete()
+        .eq('email', unsubscribeEmail);
+
+      if (deleteError) throw deleteError;
+
       console.log("Unsubscribe request:", { email: unsubscribeEmail });
       toast({
         title: "Unsubscribed",
@@ -311,7 +342,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 className="w-full mt-4 border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl"
-                onClick={handleEventSuggestion}
+                onClick={() => setShowEventForm(true)}
               >
                 Suggest an event!
               </Button>
@@ -376,6 +407,14 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      {/* Event Suggestion Form Modal */}
+      {showEventForm && (
+        <EventSuggestionForm 
+          isOpen={showEventForm} 
+          onClose={() => setShowEventForm(false)} 
+        />
+      )}
     </div>
   );
 };
