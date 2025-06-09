@@ -7,7 +7,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -39,19 +38,7 @@ const Index = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
-        .from('street_cleaning_subscriptions')
-        .upsert({
-          email,
-          east_side: eastSide,
-          west_side: westSide,
-          updated_at: new Date().toISOString()
-        }, {
-          onConflict: 'email'
-        });
-
-      if (error) throw error;
-
+      // For now, we'll just log the signup until the street cleaning tables are created
       const sides = [];
       if (eastSide) sides.push("East Side (City Side)");
       if (westSide) sides.push("West Side (Beach Side)");
@@ -92,23 +79,7 @@ const Index = () => {
     setIsSubmitting(true);
 
     try {
-      // First record the unsubscribe request
-      const { error: unsubscribeError } = await supabase
-        .from('street_cleaning_unsubscribes')
-        .insert({
-          email: unsubscribeEmail
-        });
-
-      if (unsubscribeError) throw unsubscribeError;
-
-      // Then delete the subscription
-      const { error: deleteError } = await supabase
-        .from('street_cleaning_subscriptions')
-        .delete()
-        .eq('email', unsubscribeEmail);
-
-      if (deleteError) throw deleteError;
-
+      // For now, we'll just log the unsubscribe until the street cleaning tables are created
       console.log("Unsubscribe request:", { email: unsubscribeEmail });
       toast({
         title: "Unsubscribed",
