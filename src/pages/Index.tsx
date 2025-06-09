@@ -141,6 +141,15 @@ const Index = () => {
     },
     {
       id: 2,
+      name: "Outer Sunset Männerstag",
+      date: "Sunday, June 15th",
+      time: "11:30 AM",
+      location: "48th Ave",
+      contact: "Community",
+      description: "Gathering of dads walking by around 11:30am"
+    },
+    {
+      id: 3,
       name: "Block Party", 
       date: "Saturday, August 16th",
       time: "10:00 AM",
