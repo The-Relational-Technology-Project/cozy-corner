@@ -42,7 +42,7 @@ const Index = () => {
     
     try {
       const { error } = await supabase
-        .from('street_cleaning_subscriptions')
+        .from('street_cleaning_subscriptions' as any)
         .upsert({
           email,
           east_side: eastSide,
@@ -96,7 +96,7 @@ const Index = () => {
     try {
       // First record the unsubscribe request
       const { error: unsubscribeError } = await supabase
-        .from('street_cleaning_unsubscribes')
+        .from('street_cleaning_unsubscribes' as any)
         .insert({
           email: unsubscribeEmail
         });
@@ -105,7 +105,7 @@ const Index = () => {
 
       // Then delete the subscription
       const { error: deleteError } = await supabase
-        .from('street_cleaning_subscriptions')
+        .from('street_cleaning_subscriptions' as any)
         .delete()
         .eq('email', unsubscribeEmail);
 
@@ -127,14 +127,6 @@ const Index = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleEventSuggestion = async () => {
-    // This will be implemented when we create the event suggestion form
-    toast({
-      title: "Coming Soon!",
-      description: "Event suggestion form will be available soon."
-    });
   };
 
   const upcomingEvents = [

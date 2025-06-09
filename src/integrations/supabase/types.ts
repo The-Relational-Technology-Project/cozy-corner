@@ -45,6 +45,51 @@ export type Database = {
         }
         Relationships: []
       }
+      street_cleaning_subscriptions: {
+        Row: {
+          created_at: string
+          east_side: boolean
+          email: string
+          id: string
+          updated_at: string
+          west_side: boolean
+        }
+        Insert: {
+          created_at?: string
+          east_side?: boolean
+          email: string
+          id?: string
+          updated_at?: string
+          west_side?: boolean
+        }
+        Update: {
+          created_at?: string
+          east_side?: boolean
+          email?: string
+          id?: string
+          updated_at?: string
+          west_side?: boolean
+        }
+        Relationships: []
+      }
+      street_cleaning_unsubscribes: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
