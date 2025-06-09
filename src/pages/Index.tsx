@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -309,26 +308,7 @@ const Index = () => {
               <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-amber-800 leading-relaxed mb-4">This site is a tiny mutual support and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
-              
-              <div className="space-y-2 text-sm text-amber-700">
-                <div className="flex items-center gap-2">
-                  <span className="text-green-600">✓</span>
-                  <span>Hyperlocal & community-focused</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-green-600">✓</span>
-                  <span>Privacy-respecting, no data sharing</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-green-600">✓</span>
-                  <span>Built with love as a gift to the community</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-green-600">✓</span>
-                  <span>Neighbor-built & neighbor-run</span>
-                </div>
-              </div>
+              <p className="text-amber-800 leading-relaxed">This site is a tiny mutual support and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
             </CardContent>
           </Card>
         </div>
