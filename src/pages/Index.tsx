@@ -1,10 +1,7 @@
 
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 
 const Index = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
       <div className="text-center space-y-6 max-w-2xl">
@@ -14,16 +11,6 @@ const Index = () => {
         <p className="text-xl text-gray-600 mb-8">
           Your neighborhood hub for street cleaning alerts, community events, and local updates
         </p>
-        
-        <div className="flex gap-4 justify-center">
-          <Button 
-            onClick={() => navigate('/admin')}
-            variant="outline"
-            size="sm"
-          >
-            Admin Panel
-          </Button>
-        </div>
       </div>
     </div>
   );
