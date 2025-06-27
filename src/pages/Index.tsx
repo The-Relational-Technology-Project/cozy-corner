@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +8,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import EventSuggestionForm from "@/components/EventSuggestionForm";
+import SandAccumulation from "@/components/SandAccumulation";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -161,6 +161,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
+      {/* Sand Accumulation Component */}
+      <SandAccumulation />
+      
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{

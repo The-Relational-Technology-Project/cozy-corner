@@ -45,6 +45,30 @@ export type Database = {
         }
         Relationships: []
       }
+      sand_accumulation: {
+        Row: {
+          created_at: string
+          id: string
+          last_cleared_at: string
+          sand_count: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_cleared_at?: string
+          sand_count?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_cleared_at?: string
+          sand_count?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       street_cleaning_subscriptions: {
         Row: {
           created_at: string
