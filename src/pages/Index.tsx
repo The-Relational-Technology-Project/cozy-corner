@@ -131,24 +131,6 @@ const Index = () => {
 
   const upcomingEvents = [
     {
-      id: 1,
-      name: "Block Party",
-      date: "Saturday, June 14th",
-      time: "",
-      location: "47th Ave and Kirkham",
-      contact: "Community",
-      description: "Join neighbors for a fun block party celebration!"
-    },
-    {
-      id: 2,
-      name: "Outer Sunset Männerstag",
-      date: "Sunday, June 15th",
-      time: "11:30 AM",
-      location: "48th Ave",
-      contact: "Community",
-      description: "Gathering of dads walking by around 11:30am"
-    },
-    {
       id: 3,
       name: "Block Party", 
       date: "Saturday, August 16th",
