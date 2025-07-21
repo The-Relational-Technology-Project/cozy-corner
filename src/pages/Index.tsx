@@ -131,13 +131,14 @@ const Index = () => {
 
   const upcomingEvents = [
     {
-      id: 3,
-      name: "Block Party", 
-      date: "Saturday, August 16th",
+      id: 1,
+      name: "Inaugural Cozy Corner Block Barty",
+      date: "Saturday, September 27th",
       time: "10:00 AM",
-      location: "45th Ave",
+      location: "On our block!",
       contact: "Community",
-      description: "Another great block party to bring neighbors together!"
+      description: "We're in planning mode – please reach out with ideas!",
+      highlighted: true
     }
   ];
 
@@ -303,8 +304,8 @@ const Index = () => {
               {upcomingEvents.length > 0 ? (
                 <div className="space-y-4">
                   {upcomingEvents.map((event) => (
-                    <div key={event.id} className="border-l-4 border-amber-400 pl-4 pb-4 border-b border-amber-100 last:border-b-0">
-                      <h3 className="font-semibold text-amber-900">{event.name}</h3>
+                    <div key={event.id} className={`${event.highlighted ? 'bg-gradient-to-r from-amber-100 to-orange-100 border-l-4 border-orange-500 rounded-r-lg p-3 -ml-2' : 'border-l-4 border-amber-400 pl-4'} pb-4 border-b border-amber-100 last:border-b-0`}>
+                      <h3 className={`font-semibold ${event.highlighted ? 'text-orange-900' : 'text-amber-900'}`}>{event.name}</h3>
                       <div className="text-sm text-amber-700 space-y-1">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
