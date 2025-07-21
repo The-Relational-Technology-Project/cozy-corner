@@ -132,7 +132,7 @@ const Index = () => {
   const upcomingEvents = [
     {
       id: 1,
-      name: "Inaugural Cozy Corner Block Barty",
+      name: "Inaugural Cozy Corner Block Party",
       date: "Saturday, September 27th",
       time: "10:00 AM",
       location: "On our block!",
