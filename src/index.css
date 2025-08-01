@@ -49,6 +49,10 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Outer Sunset Pastel Colors */
+    --sunset-fog: 220 15% 85%;
+    --sunset-fog-foreground: 220 25% 25%;
   }
 
   .dark {
@@ -87,6 +91,10 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Outer Sunset Pastel Colors - Dark Mode */
+    --sunset-fog: 220 20% 20%;
+    --sunset-fog-foreground: 220 15% 85%;
   }
 }
 

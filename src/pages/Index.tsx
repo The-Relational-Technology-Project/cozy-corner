@@ -173,13 +173,13 @@ const Index = () => {
           {/* Block Party Banner */}
           <div className="max-w-4xl mx-auto mb-16">
             <Link to="/block-party-2025" className="block">
-              <Card className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-xl border-0 rounded-2xl overflow-hidden transition-all duration-300 transform hover:scale-105 animate-[pulse_4s_ease-in-out_infinite]">
+              <Card className="bg-sunset-fog hover:bg-sunset-fog/80 shadow-xl border-2 border-sunset-fog-foreground/20 hover:border-sunset-fog-foreground/40 rounded-2xl overflow-hidden transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
                 <CardContent className="p-6 text-center">
-                  <div className="flex items-center justify-center gap-3 text-white">
+                  <div className="flex items-center justify-center gap-3 text-sunset-fog-foreground">
                     <Sparkles className="w-6 h-6" />
                     <div>
                       <h3 className="text-xl font-bold mb-1">🎉 Block Party 2025!</h3>
-                      <p className="text-orange-100">Saturday, September 27 • Sign up to help make magic!</p>
+                      <p className="text-sunset-fog-foreground/80">Saturday, September 27 • Sign up to help make magic!</p>
                     </div>
                     <Sparkles className="w-6 h-6" />
                   </div>
