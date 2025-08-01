@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Calendar, MapPin, Clock } from "lucide-react";
+import { Calendar, MapPin, Clock, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import EventSuggestionForm from "@/components/EventSuggestionForm";
@@ -163,10 +164,28 @@ const Index = () => {
           </div>
 
           {/* Welcome Message */}
-          <div className="max-w-4xl mx-auto text-center mb-16">
+          <div className="max-w-4xl mx-auto text-center mb-8">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
               <p className="text-lg text-amber-900 leading-relaxed">Welcome! We're neighbors on 48th Ave between Lincoln & Irving. This site is meant to help bring care and joy to our little corner of San Francisco. 🌊</p>
             </div>
+          </div>
+
+          {/* Block Party Banner */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <Link to="/block-party-2025" className="block">
+              <Card className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-xl border-0 rounded-2xl overflow-hidden transition-all duration-300 transform hover:scale-105 animate-[pulse_4s_ease-in-out_infinite]">
+                <CardContent className="p-6 text-center">
+                  <div className="flex items-center justify-center gap-3 text-white">
+                    <Sparkles className="w-6 h-6" />
+                    <div>
+                      <h3 className="text-xl font-bold mb-1">🎉 Block Party 2025!</h3>
+                      <p className="text-orange-100">Saturday, September 27 • Sign up to help make magic!</p>
+                    </div>
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </div>
       </div>
