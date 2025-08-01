@@ -8,7 +8,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles } from "lucide-react";
-import SandAccumulation from "@/components/SandAccumulation";
 
 // Role data structure
 const roles = [
@@ -91,9 +90,6 @@ const BlockParty2025 = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
-      {/* Sand Accumulation Component */}
-      <SandAccumulation />
-      
       {/* Hero Section with Background Image */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{
@@ -195,7 +191,7 @@ const BlockParty2025 = () => {
               <Button 
                 onClick={scrollToSignup} 
                 size="lg" 
-                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-200 animate-pulse"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-200 animate-[pulse_3s_ease-in-out_infinite]"
               >
                 <Sparkles className="mr-2 w-5 h-5" />
                 Sign Up to Help Make Magic!
