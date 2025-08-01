@@ -260,7 +260,7 @@ const BlockParty2025 = () => {
               </Collapsible>
 
               {/* Fun Sign Up CTA */}
-              <Button onClick={scrollToSignup} size="lg" className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-200 animate-[pulse_3s_ease-in-out_infinite]">
+              <Button onClick={scrollToSignup} size="lg" className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-200 animate-[wiggle_2s_ease-in-out_infinite]">
                 <Sparkles className="mr-2 w-5 h-5" />
                 Sign Up to Help Make Magic!
                 <ArrowDown className="ml-2 w-5 h-5" />
