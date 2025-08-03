@@ -124,12 +124,57 @@ const roles = [{
     spots: 2,
     filled: 0
   }, {
+    emoji: "📢",
+    name: "Spread the word",
+    time: "to neighbors",
+    spots: 5,
+    filled: 0
+  }, {
     emoji: "🤔",
     name: "I have a new idea!",
     time: "",
     spots: 999,
     filled: 0,
     isSpecial: true
+  }]
+}, {
+  category: "🎪 Party Supplies & Equipment",
+  items: [{
+    emoji: "🪑",
+    name: "Folding tables",
+    time: "loan for party",
+    spots: 10,
+    filled: 0
+  }, {
+    emoji: "💺",
+    name: "Outdoor chairs",
+    time: "loan for party",
+    spots: 50,
+    filled: 0
+  }, {
+    emoji: "👗",
+    name: "Kids dress up supplies",
+    time: "loan for party",
+    spots: 10,
+    filled: 0
+  }, {
+    emoji: "🎨",
+    name: "Chalk and art supplies",
+    time: "loan for party",
+    spots: 10,
+    filled: 0
+  }, {
+    emoji: "🔊",
+    name: "Speakers for music",
+    time: "loan for party",
+    spots: 2,
+    filled: 0
+  }, {
+    emoji: "✨",
+    name: "Something else we need!",
+    time: "loan for party",
+    spots: 10,
+    filled: 0
   }]
 }];
 const BlockParty2025 = () => {
@@ -167,8 +212,8 @@ const BlockParty2025 = () => {
     e.preventDefault();
     // Here you would typically send to your backend
     toast({
-      title: "You're signed up!",
-      description: `Thanks for volunteering for ${selectedRole?.name}. We'll follow up soon!`
+      title: "Thank you!",
+      description: "Josh will send reminders and a day-of schedule."
     });
     setSignupForm({
       name: "",
