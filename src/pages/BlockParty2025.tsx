@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles } from "lucide-react";
+import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles, Home } from "lucide-react";
 
 // Role data structure
 const roles = [{
@@ -412,10 +413,14 @@ const BlockParty2025 = () => {
         {/* Footer */}
         <div className="mt-16 text-center">
           <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 max-w-2xl mx-auto">
-            <p className="text-amber-700 text-sm leading-relaxed">
+            <p className="text-amber-700 text-sm leading-relaxed mb-4">
               Made with 💛 by neighbors on 48th Ave. Questions about the block party? 
               Reach out in our group chat or reach out to Josh!
             </p>
+            <Link to="/" className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-800 transition-colors duration-200 text-sm font-medium">
+              <Home className="w-4 h-4" />
+              Return home
+            </Link>
           </div>
         </div>
       </div>
