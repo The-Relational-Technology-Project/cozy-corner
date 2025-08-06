@@ -435,7 +435,7 @@ const BlockParty2025 = () => {
           </CardHeader>
           <CardContent className="p-6">
             <div className="text-center">
-              <img src="/lovable-uploads/42a9fd25-722a-41f3-8746-565a8bf50bc0.png" alt="48th Ave Block Party Site Plan" className="w-full max-w-2xl mx-auto rounded-lg shadow-md" />
+              <img src="/lovable-uploads/e634664c-2dee-432b-b6c1-95d5ca32688b.png" alt="48th Ave Block Party Site Plan" className="w-full max-w-2xl mx-auto rounded-lg shadow-md" />
               <p className="text-sm text-amber-600 mt-4">
                 This is the current plan for activities and timeline.
               </p>
