@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles, Home } from "lucide-react";
 
 // Role data structure
@@ -179,9 +180,8 @@ const roles = [{
   }]
 }];
 const BlockParty2025 = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const [rolesData, setRolesData] = useState(roles);
   const [ideaForm, setIdeaForm] = useState({
     email: "",
     phone: "",
@@ -195,34 +195,144 @@ const BlockParty2025 = () => {
   const [selectedRole, setSelectedRole] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isIdeaFormOpen, setIsIdeaFormOpen] = useState(false);
-  const handleIdeaSubmit = e => {
+
+  // Load signup counts from Supabase
+  useEffect(() => {
+    const loadSignupCounts = async () => {
+      try {
+        const { data: signups, error } = await supabase
+          .from('block_party_signups')
+          .select('role_name, role_category');
+
+        if (error) {
+          console.error('Error loading signups:', error);
+          return;
+        }
+
+        // Count signups by role
+        const signupCounts = {};
+        signups?.forEach(signup => {
+          const key = `${signup.role_category}:${signup.role_name}`;
+          signupCounts[key] = (signupCounts[key] || 0) + 1;
+        });
+
+        // Update roles data with counts
+        const updatedRoles = roles.map(category => ({
+          ...category,
+          items: category.items.map(role => ({
+            ...role,
+            filled: signupCounts[`${category.category}:${role.name}`] || 0
+          }))
+        }));
+
+        setRolesData(updatedRoles);
+      } catch (error) {
+        console.error('Error loading signup counts:', error);
+      }
+    };
+
+    loadSignupCounts();
+  }, []);
+  const handleIdeaSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send to your backend
-    toast({
-      title: "Thanks for your idea!",
-      description: "We'll be in touch about incorporating your suggestion."
-    });
-    setIdeaForm({
-      email: "",
-      phone: "",
-      idea: ""
-    });
-    setIsIdeaFormOpen(false);
+    try {
+      const { error } = await supabase
+        .from('block_party_ideas')
+        .insert({
+          email: ideaForm.email,
+          phone: ideaForm.phone || null,
+          idea: ideaForm.idea
+        });
+
+      if (error) {
+        console.error('Error submitting idea:', error);
+        toast({
+          title: "Error",
+          description: "Failed to submit your idea. Please try again.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      toast({
+        title: "Thanks for your idea!",
+        description: "We'll be in touch about incorporating your suggestion."
+      });
+      setIdeaForm({
+        email: "",
+        phone: "",
+        idea: ""
+      });
+      setIsIdeaFormOpen(false);
+    } catch (error) {
+      console.error('Error submitting idea:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit your idea. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
-  const handleRoleSignup = e => {
+
+  const handleRoleSignup = async (e) => {
     e.preventDefault();
-    // Here you would typically send to your backend
-    toast({
-      title: "Thank you!",
-      description: "Josh will send reminders and a day-of schedule."
-    });
-    setSignupForm({
-      name: "",
-      email: "",
-      message: ""
-    });
-    setIsDialogOpen(false);
-    setSelectedRole(null);
+    if (!selectedRole) return;
+
+    try {
+      // Find the category for the selected role
+      const category = rolesData.find(cat => cat.items.some(item => item.name === selectedRole.name));
+      
+      const { error } = await supabase
+        .from('block_party_signups')
+        .insert({
+          name: signupForm.name,
+          email: signupForm.email,
+          message: signupForm.message || null,
+          role_name: selectedRole.name,
+          role_category: category?.category || ''
+        });
+
+      if (error) {
+        console.error('Error submitting signup:', error);
+        toast({
+          title: "Error",
+          description: "Failed to submit your signup. Please try again.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Update the local state to increment the filled count
+      setRolesData(prevRoles => 
+        prevRoles.map(categoryData => ({
+          ...categoryData,
+          items: categoryData.items.map(role => 
+            role.name === selectedRole.name 
+              ? { ...role, filled: role.filled + 1 }
+              : role
+          )
+        }))
+      );
+
+      toast({
+        title: "Thank you!",
+        description: "Josh will send reminders and a day-of schedule."
+      });
+      setSignupForm({
+        name: "",
+        email: "",
+        message: ""
+      });
+      setIsDialogOpen(false);
+      setSelectedRole(null);
+    } catch (error) {
+      console.error('Error submitting signup:', error);
+      toast({
+        title: "Error",
+        description: "Failed to submit your signup. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
   const scrollToSignup = () => {
     document.getElementById('signup-section')?.scrollIntoView({
@@ -339,7 +449,7 @@ const BlockParty2025 = () => {
             🙋‍♀️ Sign Up to Help
           </h2>
           
-          {roles.map((category, categoryIndex) => <Card key={categoryIndex} className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden mb-6">
+          {rolesData.map((category, categoryIndex) => <Card key={categoryIndex} className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden mb-6">
               <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
                 <CardTitle className="text-xl">
                   {category.category}
