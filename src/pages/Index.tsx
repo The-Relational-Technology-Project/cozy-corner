@@ -84,12 +84,12 @@ const Index = () => {
 
           {/* Events Calendar Widget */}
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+            <CardHeader className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
               <CardTitle className="text-xl flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
                 Upcoming Events
               </CardTitle>
-              <CardDescription className="text-amber-100">
+              <CardDescription className="text-emerald-100">
                 Next four weeks on 48th Ave
               </CardDescription>
             </CardHeader>
@@ -97,9 +97,9 @@ const Index = () => {
               {upcomingEvents.length > 0 ? (
                 <div className="space-y-4">
                   {upcomingEvents.map((event) => (
-                    <div key={event.id} className={`${event.highlighted ? 'bg-gradient-to-r from-amber-100 to-orange-100 border-l-4 border-orange-500 rounded-r-lg p-3 -ml-2' : 'border-l-4 border-amber-400 pl-4'} pb-4 border-b border-amber-100 last:border-b-0`}>
-                      <h3 className={`font-semibold ${event.highlighted ? 'text-orange-900' : 'text-amber-900'}`}>{event.name}</h3>
-                      <div className="text-sm text-amber-700 space-y-1">
+                    <div key={event.id} className={`${event.highlighted ? 'bg-gradient-to-r from-emerald-100 to-teal-100 border-l-4 border-teal-500 rounded-r-lg p-3 -ml-2' : 'border-l-4 border-emerald-400 pl-4'} pb-4 border-b border-emerald-100 last:border-b-0`}>
+                      <h3 className={`font-semibold ${event.highlighted ? 'text-teal-900' : 'text-emerald-900'}`}>{event.name}</h3>
+                      <div className="text-sm text-emerald-700 space-y-1">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
                           <span>{event.date} {event.time && `at ${event.time}`}</span>
@@ -108,20 +108,20 @@ const Index = () => {
                           <MapPin className="h-3 w-3" />
                           <span>{event.location}</span>
                         </div>
-                        <p className="text-amber-600 mt-2">{event.description}</p>
+                        <p className="text-emerald-600 mt-2">{event.description}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
                 <div className="text-center py-8">
-                  <Calendar className="h-12 w-12 mx-auto text-amber-400 mb-4" />
-                  <p className="text-amber-700 mb-4">No events scheduled yet</p>
+                  <Calendar className="h-12 w-12 mx-auto text-emerald-400 mb-4" />
+                  <p className="text-emerald-700 mb-4">No events scheduled yet</p>
                 </div>
               )}
               <Button 
                 variant="outline" 
-                className="w-full mt-4 border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl"
+                className="w-full mt-4 border-emerald-300 text-emerald-700 hover:bg-emerald-50 rounded-xl transition-all duration-200"
                 onClick={() => setShowEventForm(true)}
               >
                 Suggest an event!
@@ -133,50 +133,49 @@ const Index = () => {
         {/* Coming Soon & About Section */}
         <div className="grid md:grid-cols-2 gap-8 mt-8">
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+            <CardHeader className="bg-gradient-to-r from-violet-600 to-purple-600 text-white">
               <CardTitle className="text-xl">🔮 Coming Soon</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="space-y-3 text-amber-800 mb-6">
+              <div className="space-y-3 text-violet-800 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>Movie nights</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>Book clubs</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>Tool library sign-ups</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>Block party announcements</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>Lost & found board</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
                   <span>Your idea!</span>
                 </div>
               </div>
               
-              <div className="space-y-3 pt-3 border-t border-amber-200">
-                <p className="text-sm text-amber-700 font-medium">Want to help make these happen?</p>
+              <div className="space-y-3 pt-3 border-t border-violet-200">
+                <p className="text-sm text-violet-700 font-medium">Want to help make these happen?</p>
                 <div className="grid grid-cols-1 gap-2">
                   <Button 
-                    variant="outline" 
-                    className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl text-sm"
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg"
                     onClick={() => setShowContributionsModal(true)}
                   >
                     💡 Suggest a new idea
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl text-sm"
+                    className="w-full border-violet-300 text-violet-700 hover:bg-violet-50 rounded-xl text-sm transition-all duration-200"
                     onClick={() => setShowContributionsModal(true)}
                   >
                     ❤️ Volunteer to help
@@ -188,11 +187,11 @@ const Index = () => {
 
           {/* About Section */}
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-amber-700 to-amber-800 text-white">
+            <CardHeader className="bg-gradient-to-r from-slate-600 to-gray-600 text-white">
               <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-amber-800 leading-relaxed">This site is a tiny mutual support and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
+              <p className="text-slate-800 leading-relaxed">This site is a tiny mutual support and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
             </CardContent>
           </Card>
         </div>

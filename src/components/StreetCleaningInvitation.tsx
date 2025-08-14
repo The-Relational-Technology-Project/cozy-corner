@@ -37,7 +37,7 @@ export const StreetCleaningInvitation = ({ onOpenModal }: StreetCleaningInvitati
           
           <Button 
             onClick={onOpenModal}
-            className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium py-3 rounded-xl transition-all duration-200 transform hover:scale-105"
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
           >
             Set Up Reminders 🌊
           </Button>
