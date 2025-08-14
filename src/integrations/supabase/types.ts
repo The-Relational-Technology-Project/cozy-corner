@@ -217,6 +217,21 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_block_party_ideas_count: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
+      get_block_party_ideas_for_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          created_at: string
+          email: string
+          id: string
+          idea: string
+          phone: string
+          updated_at: string
+        }[]
+      }
       get_event_suggestion_count: {
         Args: Record<PropertyKey, never>
         Returns: number
