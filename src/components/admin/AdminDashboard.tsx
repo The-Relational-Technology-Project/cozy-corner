@@ -24,14 +24,14 @@ export const AdminDashboard = () => {
   const fetchStats = async () => {
     try {
       const [subscriptionsRes, unsubscribesRes, suggestionsRes, eventsRes] = await Promise.all([
-        supabase.from('street_cleaning_subscriptions').select('*', { count: 'exact', head: true }),
+        supabase.rpc('get_subscription_stats'),
         supabase.from('street_cleaning_unsubscribes').select('*', { count: 'exact', head: true }),
         supabase.from('event_suggestions').select('*', { count: 'exact', head: true }),
         supabase.from('upcoming_events').select('*', { count: 'exact', head: true })
       ]);
 
       setStats({
-        subscriptions: subscriptionsRes.count || 0,
+        subscriptions: subscriptionsRes.data?.[0]?.total_subscriptions || 0,
         unsubscribes: unsubscribesRes.count || 0,
         suggestions: suggestionsRes.count || 0,
         events: eventsRes.count || 0

@@ -42,18 +42,36 @@ const Index = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
-        .from('street_cleaning_subscriptions' as any)
-        .upsert({
-          email,
-          east_side: eastSide,
-          west_side: westSide,
-          updated_at: new Date().toISOString()
-        }, {
-          onConflict: 'email'
-        });
+      // First check if subscription exists
+      const { data: exists, error: checkError } = await supabase
+        .rpc('subscription_exists', { check_email: email });
 
-      if (error) throw error;
+      if (checkError) throw checkError;
+
+      if (exists) {
+        // Update existing subscription
+        const { error: updateError } = await supabase
+          .from('street_cleaning_subscriptions')
+          .update({
+            east_side: eastSide,
+            west_side: westSide,
+            updated_at: new Date().toISOString()
+          })
+          .eq('email', email);
+
+        if (updateError) throw updateError;
+      } else {
+        // Insert new subscription
+        const { error: insertError } = await supabase
+          .from('street_cleaning_subscriptions')
+          .insert({
+            email,
+            east_side: eastSide,
+            west_side: westSide
+          });
+
+        if (insertError) throw insertError;
+      }
 
       const sides = [];
       if (eastSide) sides.push("East Side (City Side)");

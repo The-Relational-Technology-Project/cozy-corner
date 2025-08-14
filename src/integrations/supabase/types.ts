@@ -225,6 +225,19 @@ export type Database = {
           signup_count: number
         }[]
       }
+      get_subscription_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          both_sides_count: number
+          east_side_count: number
+          total_subscriptions: number
+          west_side_count: number
+        }[]
+      }
+      subscription_exists: {
+        Args: { check_email: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
