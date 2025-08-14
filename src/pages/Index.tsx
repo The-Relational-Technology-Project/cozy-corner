@@ -133,39 +133,39 @@ const Index = () => {
         {/* Coming Soon & About Section */}
         <div className="grid md:grid-cols-2 gap-8 mt-8">
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-violet-600 to-purple-600 text-white">
+            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
               <CardTitle className="text-xl">🔮 Coming Soon</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="space-y-3 text-violet-800 mb-6">
+              <div className="space-y-3 text-amber-800 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <span>Movie nights</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <span>Book clubs</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <span>Tool library sign-ups</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <span>Block party announcements</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <span>Lost & found board</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-violet-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <span>Your idea!</span>
                 </div>
               </div>
               
-              <div className="space-y-3 pt-3 border-t border-violet-200">
-                <p className="text-sm text-violet-700 font-medium">Want to help make these happen?</p>
+              <div className="space-y-3 pt-3 border-t border-amber-200">
+                <p className="text-sm text-amber-700 font-medium">Want to help make these happen?</p>
                 <div className="grid grid-cols-1 gap-2">
                   <Button 
                     className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg"
@@ -175,7 +175,7 @@ const Index = () => {
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="w-full border-violet-300 text-violet-700 hover:bg-violet-50 rounded-xl text-sm transition-all duration-200"
+                    className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl text-sm transition-all duration-200"
                     onClick={() => setShowContributionsModal(true)}
                   >
                     ❤️ Volunteer to help
@@ -184,7 +184,6 @@ const Index = () => {
               </div>
             </CardContent>
           </Card>
-
           {/* About Section */}
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-slate-600 to-gray-600 text-white">
