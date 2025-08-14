@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Copy, RefreshCw } from 'lucide-react';
+import { Copy, RefreshCw, Shield } from 'lucide-react';
 
 interface EventSuggestion {
   id: string;
@@ -35,9 +35,7 @@ export const EventSuggestionsTable = ({ onDataChange }: EventSuggestionsTablePro
     try {
       setIsLoading(true);
       const { data, error } = await supabase
-        .from('event_suggestions')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .rpc('get_event_suggestions_for_admin');
 
       if (error) throw error;
       setSuggestions(data || []);
@@ -114,6 +112,15 @@ export const EventSuggestionsTable = ({ onDataChange }: EventSuggestionsTablePro
         </div>
       </CardHeader>
       <CardContent>
+        <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="flex items-center gap-2 text-blue-800 mb-2">
+            <Shield className="h-4 w-4" />
+            <span className="font-medium">Sensitive Data - Admin Access Only</span>
+          </div>
+          <p className="text-sm text-blue-700">
+            This data contains personal contact information. Handle with care and use only for legitimate event organization purposes.
+          </p>
+        </div>
         {isLoading ? (
           <div className="flex justify-center py-8">
             <div className="text-orange-600">Loading event suggestions...</div>

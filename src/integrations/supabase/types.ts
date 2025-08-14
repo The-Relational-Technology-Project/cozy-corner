@@ -217,6 +217,24 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_event_suggestion_count: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
+      get_event_suggestions_for_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          contact_info: string
+          created_at: string
+          email: string
+          event_description: string
+          event_title: string
+          id: string
+          name: string
+          suggested_date: string
+          suggested_location: string
+        }[]
+      }
       get_signup_counts: {
         Args: Record<PropertyKey, never>
         Returns: {
