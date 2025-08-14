@@ -84,12 +84,12 @@ const Index = () => {
 
           {/* Events Calendar Widget */}
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
+            <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
               <CardTitle className="text-xl flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
                 Upcoming Events
               </CardTitle>
-              <CardDescription className="text-emerald-100">
+              <CardDescription className="text-orange-100">
                 Next four weeks on 48th Ave
               </CardDescription>
             </CardHeader>
@@ -97,9 +97,9 @@ const Index = () => {
               {upcomingEvents.length > 0 ? (
                 <div className="space-y-4">
                   {upcomingEvents.map((event) => (
-                    <div key={event.id} className={`${event.highlighted ? 'bg-gradient-to-r from-emerald-100 to-teal-100 border-l-4 border-teal-500 rounded-r-lg p-3 -ml-2' : 'border-l-4 border-emerald-400 pl-4'} pb-4 border-b border-emerald-100 last:border-b-0`}>
-                      <h3 className={`font-semibold ${event.highlighted ? 'text-teal-900' : 'text-emerald-900'}`}>{event.name}</h3>
-                      <div className="text-sm text-emerald-700 space-y-1">
+                    <div key={event.id} className={`${event.highlighted ? 'bg-gradient-to-r from-orange-100 to-red-100 border-l-4 border-red-500 rounded-r-lg p-3 -ml-2' : 'border-l-4 border-orange-400 pl-4'} pb-4 border-b border-orange-100 last:border-b-0`}>
+                      <h3 className={`font-semibold ${event.highlighted ? 'text-red-900' : 'text-orange-900'}`}>{event.name}</h3>
+                      <div className="text-sm text-orange-700 space-y-1">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
                           <span>{event.date} {event.time && `at ${event.time}`}</span>
@@ -108,20 +108,20 @@ const Index = () => {
                           <MapPin className="h-3 w-3" />
                           <span>{event.location}</span>
                         </div>
-                        <p className="text-emerald-600 mt-2">{event.description}</p>
+                        <p className="text-orange-600 mt-2">{event.description}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
                 <div className="text-center py-8">
-                  <Calendar className="h-12 w-12 mx-auto text-emerald-400 mb-4" />
-                  <p className="text-emerald-700 mb-4">No events scheduled yet</p>
+                  <Calendar className="h-12 w-12 mx-auto text-orange-400 mb-4" />
+                  <p className="text-orange-700 mb-4">No events scheduled yet</p>
                 </div>
               )}
               <Button 
                 variant="outline" 
-                className="w-full mt-4 border-emerald-300 text-emerald-700 hover:bg-emerald-50 rounded-xl transition-all duration-200"
+                className="w-full mt-4 border-orange-300 text-orange-700 hover:bg-orange-50 rounded-xl transition-all duration-200"
                 onClick={() => setShowEventForm(true)}
               >
                 Suggest an event!
@@ -168,7 +168,7 @@ const Index = () => {
                 <p className="text-sm text-amber-700 font-medium">Want to help make these happen?</p>
                 <div className="grid grid-cols-1 gap-2">
                   <Button 
-                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg"
+                    className="w-full bg-gradient-to-r from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600 text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg"
                     onClick={() => setShowContributionsModal(true)}
                   >
                     💡 Suggest a new idea
