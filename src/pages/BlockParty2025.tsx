@@ -196,24 +196,23 @@ const BlockParty2025 = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isIdeaFormOpen, setIsIdeaFormOpen] = useState(false);
 
-  // Load signup counts from Supabase
+  // Load signup counts from Supabase using secure function
   useEffect(() => {
     const loadSignupCounts = async () => {
       try {
         const { data: signups, error } = await supabase
-          .from('block_party_signups')
-          .select('role_name, role_category');
+          .rpc('get_signup_counts');
 
         if (error) {
           console.error('Error loading signups:', error);
           return;
         }
 
-        // Count signups by role
+        // Convert the function result to the expected format
         const signupCounts = {};
         signups?.forEach(signup => {
           const key = `${signup.role_category}:${signup.role_name}`;
-          signupCounts[key] = (signupCounts[key] || 0) + 1;
+          signupCounts[key] = signup.signup_count;
         });
 
         // Update roles data with counts
