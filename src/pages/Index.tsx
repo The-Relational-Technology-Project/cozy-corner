@@ -7,10 +7,12 @@ import EventSuggestionForm from "@/components/EventSuggestionForm";
 import SandAccumulation from "@/components/SandAccumulation";
 import { StreetCleaningModal } from "@/components/StreetCleaningModal";
 import { StreetCleaningInvitation } from "@/components/StreetCleaningInvitation";
+import { NeighborhoodContributionsModal } from "@/components/NeighborhoodContributionsModal";
 
 const Index = () => {
   const [showEventForm, setShowEventForm] = useState(false);
   const [showStreetCleaningModal, setShowStreetCleaningModal] = useState(false);
+  const [showContributionsModal, setShowContributionsModal] = useState(false);
 
   const upcomingEvents = [
     {
@@ -134,7 +136,7 @@ const Index = () => {
               <CardTitle className="text-xl">🔮 Coming Soon</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="space-y-3 text-amber-800">
+              <div className="space-y-3 text-amber-800 mb-6">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <span>Movie nights</span>
@@ -158,6 +160,26 @@ const Index = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                   <span>Your idea!</span>
+                </div>
+              </div>
+              
+              <div className="space-y-3 pt-3 border-t border-amber-200">
+                <p className="text-sm text-amber-700 font-medium">Want to help make these happen?</p>
+                <div className="grid grid-cols-1 gap-2">
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl text-sm"
+                    onClick={() => setShowContributionsModal(true)}
+                  >
+                    💡 Suggest a new idea
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl text-sm"
+                    onClick={() => setShowContributionsModal(true)}
+                  >
+                    ❤️ Volunteer to help
+                  </Button>
                 </div>
               </div>
             </CardContent>
@@ -198,6 +220,12 @@ const Index = () => {
           onClose={() => setShowEventForm(false)} 
         />
       )}
+
+      {/* Neighborhood Contributions Modal */}
+      <NeighborhoodContributionsModal 
+        open={showContributionsModal} 
+        onOpenChange={setShowContributionsModal} 
+      />
     </div>
   );
 };

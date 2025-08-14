@@ -110,6 +110,48 @@ export type Database = {
         }
         Relationships: []
       }
+      neighborhood_contributions: {
+        Row: {
+          availability: string | null
+          contribution_type: string
+          created_at: string
+          email: string
+          existing_idea: string | null
+          id: string
+          message: string | null
+          name: string | null
+          phone: string | null
+          suggested_idea: string | null
+          updated_at: string
+        }
+        Insert: {
+          availability?: string | null
+          contribution_type: string
+          created_at?: string
+          email: string
+          existing_idea?: string | null
+          id?: string
+          message?: string | null
+          name?: string | null
+          phone?: string | null
+          suggested_idea?: string | null
+          updated_at?: string
+        }
+        Update: {
+          availability?: string | null
+          contribution_type?: string
+          created_at?: string
+          email?: string
+          existing_idea?: string | null
+          id?: string
+          message?: string | null
+          name?: string | null
+          phone?: string | null
+          suggested_idea?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       sand_accumulation: {
         Row: {
           created_at: string
@@ -248,6 +290,30 @@ export type Database = {
           name: string
           suggested_date: string
           suggested_location: string
+        }[]
+      }
+      get_neighborhood_contributions_count: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          suggestions_count: number
+          total_contributions: number
+          volunteer_count: number
+        }[]
+      }
+      get_neighborhood_contributions_for_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          availability: string
+          contribution_type: string
+          created_at: string
+          email: string
+          existing_idea: string
+          id: string
+          message: string
+          name: string
+          phone: string
+          suggested_idea: string
+          updated_at: string
         }[]
       }
       get_signup_counts: {
