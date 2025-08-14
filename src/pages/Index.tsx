@@ -186,11 +186,11 @@ const Index = () => {
           </Card>
           {/* About Section */}
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-slate-600 to-gray-600 text-white">
+            <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
               <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-slate-800 leading-relaxed">This site is a tiny mutual support and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
+              <p className="text-amber-800 leading-relaxed">This site is a tiny mutual support and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
             </CardContent>
           </Card>
         </div>
