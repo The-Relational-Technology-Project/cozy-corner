@@ -1,3 +1,4 @@
+// Cozy Corner - Neighborhood Hub
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Sparkles } from "lucide-react";
