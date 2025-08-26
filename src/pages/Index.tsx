@@ -225,23 +225,6 @@ const Index = () => {
         open={showContributionsModal} 
         onOpenChange={setShowContributionsModal} 
       />
-
-      {/* Footer with subtle admin link */}
-      <footer className="mt-16 py-8 text-center">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="border-t border-amber-200 pt-8">
-            <p className="text-amber-700/60 text-sm mb-4">
-              © 2024 Cozy Corner Neighborhood Hub
-            </p>
-            <Link 
-              to="/admin/login" 
-              className="text-xs text-amber-600/40 hover:text-amber-600 transition-colors"
-            >
-              Community Admin Access
-            </Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
