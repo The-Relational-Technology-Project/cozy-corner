@@ -1,8 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
 export const CouponsHowItWorksTab = () => {
-  return (
-    <div className="max-w-3xl mx-auto space-y-6">
+  return <div className="max-w-3xl mx-auto space-y-6">
       <Card className="bg-white border-cozy-orange/20">
         <CardHeader>
           <CardTitle className="text-cozy-cream-foreground text-center">
@@ -54,13 +52,10 @@ export const CouponsHowItWorksTab = () => {
             </h3>
             <p className="text-cozy-cream-foreground">
               Reach out to Josh{' '}
-              <a href="mailto:steward@cozycorner.place" className="text-cozy-orange-dark underline">
-                steward@cozycorner.place
-              </a>
+              
             </p>
           </div>
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>;
 };
