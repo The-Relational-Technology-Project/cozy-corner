@@ -8,7 +8,9 @@ import Index from "./pages/Index";
 import Admin from "./pages/Admin";
 import BlockParty2025 from "./pages/BlockParty2025";
 import NeighborCoupons from "./pages/NeighborCoupons";
+import AdminAuth from "./pages/AdminAuth";
 import NotFound from "./pages/NotFound";
+import { ProtectedAdminRoute } from "./components/ProtectedAdminRoute";
 
 const queryClient = new QueryClient();
 
@@ -20,9 +22,14 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="/block-party-2025" element={<BlockParty2025 />} />
           <Route path="/coupons" element={<NeighborCoupons />} />
+          <Route path="/admin/login" element={<AdminAuth />} />
+          <Route path="/admin" element={
+            <ProtectedAdminRoute>
+              <Admin />
+            </ProtectedAdminRoute>
+          } />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
