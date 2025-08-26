@@ -5,6 +5,7 @@ import { SubscriptionsTable } from './SubscriptionsTable';
 import { UnsubscribesTable } from './UnsubscribesTable';
 import { EventSuggestionsTable } from './EventSuggestionsTable';
 import { EventsManager } from './EventsManager';
+import { CouponClaimsTable } from './CouponClaimsTable';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -13,7 +14,8 @@ export const AdminDashboard = () => {
     subscriptions: 0,
     unsubscribes: 0,
     suggestions: 0,
-    events: 0
+    events: 0,
+    couponClaims: 0
   });
   const { toast } = useToast();
 
@@ -23,18 +25,20 @@ export const AdminDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const [subscriptionsRes, unsubscribesRes, suggestionsRes, eventsRes] = await Promise.all([
+      const [subscriptionsRes, unsubscribesRes, suggestionsRes, eventsRes, couponClaimsRes] = await Promise.all([
         supabase.rpc('get_subscription_stats'),
         supabase.from('street_cleaning_unsubscribes').select('*', { count: 'exact', head: true }),
         supabase.rpc('get_event_suggestion_count'),
-        supabase.from('upcoming_events').select('*', { count: 'exact', head: true })
+        supabase.from('upcoming_events').select('*', { count: 'exact', head: true }),
+        supabase.from('coupon_claims').select('*', { count: 'exact', head: true })
       ]);
 
       setStats({
         subscriptions: subscriptionsRes.data?.[0]?.total_subscriptions || 0,
         unsubscribes: unsubscribesRes.count || 0,
         suggestions: suggestionsRes.data || 0,
-        events: eventsRes.count || 0
+        events: eventsRes.count || 0,
+        couponClaims: couponClaimsRes.count || 0
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -49,7 +53,7 @@ export const AdminDashboard = () => {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-orange-600">
@@ -93,15 +97,27 @@ export const AdminDashboard = () => {
             <div className="text-2xl font-bold text-orange-800">{stats.events}</div>
           </CardContent>
         </Card>
+        
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-orange-600">
+              Coupon Claims
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-orange-800">{stats.couponClaims}</div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Main Content Tabs */}
       <Tabs defaultValue="subscriptions" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="subscriptions">Subscriptions</TabsTrigger>
           <TabsTrigger value="unsubscribes">Unsubscribes</TabsTrigger>
           <TabsTrigger value="suggestions">Event Suggestions</TabsTrigger>
           <TabsTrigger value="events">Manage Events</TabsTrigger>
+          <TabsTrigger value="coupons">Coupon Claims</TabsTrigger>
         </TabsList>
         
         <TabsContent value="subscriptions" className="space-y-4">
@@ -118,6 +134,10 @@ export const AdminDashboard = () => {
         
         <TabsContent value="events" className="space-y-4">
           <EventsManager onDataChange={fetchStats} />
+        </TabsContent>
+        
+        <TabsContent value="coupons" className="space-y-4">
+          <CouponClaimsTable onDataChange={fetchStats} />
         </TabsContent>
       </Tabs>
     </div>

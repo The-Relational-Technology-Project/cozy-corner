@@ -53,6 +53,14 @@
     /* Outer Sunset Pastel Colors */
     --sunset-fog: 220 15% 85%;
     --sunset-fog-foreground: 220 25% 25%;
+    
+    /* Cozy Corner Orange Colors */
+    --cozy-orange: 24 95% 53%;
+    --cozy-orange-foreground: 0 0% 100%;
+    --cozy-orange-light: 24 100% 94%;
+    --cozy-orange-dark: 24 95% 43%;
+    --cozy-cream: 45 100% 96%;
+    --cozy-cream-foreground: 24 25% 25%;
   }
 
   .dark {
@@ -95,6 +103,14 @@
     /* Outer Sunset Pastel Colors - Dark Mode */
     --sunset-fog: 220 20% 20%;
     --sunset-fog-foreground: 220 15% 85%;
+    
+    /* Cozy Corner Orange Colors - Dark Mode */
+    --cozy-orange: 24 95% 53%;
+    --cozy-orange-foreground: 0 0% 100%;
+    --cozy-orange-light: 24 100% 15%;
+    --cozy-orange-dark: 24 95% 63%;
+    --cozy-cream: 45 20% 15%;
+    --cozy-cream-foreground: 45 100% 85%;
   }
 }
 

@@ -56,6 +56,16 @@ export default {
 					DEFAULT: 'hsl(var(--sunset-fog))',
 					foreground: 'hsl(var(--sunset-fog-foreground))'
 				},
+				'cozy-orange': {
+					DEFAULT: 'hsl(var(--cozy-orange))',
+					foreground: 'hsl(var(--cozy-orange-foreground))',
+					light: 'hsl(var(--cozy-orange-light))',
+					dark: 'hsl(var(--cozy-orange-dark))'
+				},
+				'cozy-cream': {
+					DEFAULT: 'hsl(var(--cozy-cream))',
+					foreground: 'hsl(var(--cozy-cream-foreground))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
