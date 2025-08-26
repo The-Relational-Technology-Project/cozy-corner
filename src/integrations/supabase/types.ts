@@ -360,6 +360,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assign_admin_role: {
+        Args: { user_email: string }
+        Returns: boolean
+      }
       get_block_party_ideas_count: {
         Args: Record<PropertyKey, never>
         Returns: number
