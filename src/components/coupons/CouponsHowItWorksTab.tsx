@@ -51,8 +51,7 @@ export const CouponsHowItWorksTab = () => {
               Questions or Concerns?
             </h3>
             <p className="text-cozy-cream-foreground">
-              Reach out to Josh{' '}
-              
+              Please reach out to Josh
             </p>
           </div>
         </CardContent>
