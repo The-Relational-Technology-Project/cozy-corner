@@ -54,6 +54,10 @@
     --sunset-fog: 220 15% 85%;
     --sunset-fog-foreground: 220 25% 25%;
     
+    /* Dark Brown Sand Colors */
+    --brown-sand: 30 30% 35%;
+    --brown-sand-foreground: 30 50% 95%;
+    
     /* Cozy Corner Orange Colors */
     --cozy-orange: 24 95% 53%;
     --cozy-orange-foreground: 0 0% 100%;
@@ -103,6 +107,10 @@
     /* Outer Sunset Pastel Colors - Dark Mode */
     --sunset-fog: 220 20% 20%;
     --sunset-fog-foreground: 220 15% 85%;
+    
+    /* Dark Brown Sand Colors - Dark Mode */
+    --brown-sand: 30 25% 45%;
+    --brown-sand-foreground: 30 50% 95%;
     
     /* Cozy Corner Orange Colors - Dark Mode */
     --cozy-orange: 24 95% 53%;

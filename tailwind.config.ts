@@ -56,6 +56,10 @@ export default {
 					DEFAULT: 'hsl(var(--sunset-fog))',
 					foreground: 'hsl(var(--sunset-fog-foreground))'
 				},
+				'brown-sand': {
+					DEFAULT: 'hsl(var(--brown-sand))',
+					foreground: 'hsl(var(--brown-sand-foreground))'
+				},
 				'cozy-orange': {
 					DEFAULT: 'hsl(var(--cozy-orange))',
 					foreground: 'hsl(var(--cozy-orange-foreground))',
