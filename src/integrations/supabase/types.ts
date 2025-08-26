@@ -113,13 +113,6 @@ export type Database = {
             referencedRelation: "neighbor_coupons"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "coupon_claims_coupon_id_fkey"
-            columns: ["coupon_id"]
-            isOneToOne: false
-            referencedRelation: "public_coupons"
-            referencedColumns: ["id"]
-          },
         ]
       }
       event_suggestions: {
@@ -364,42 +357,7 @@ export type Database = {
       }
     }
     Views: {
-      public_coupons: {
-        Row: {
-          availability: string | null
-          contributor_name: string | null
-          created_at: string | null
-          description: string | null
-          icon: string | null
-          id: string | null
-          is_active: boolean | null
-          title: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          availability?: string | null
-          contributor_name?: string | null
-          created_at?: string | null
-          description?: string | null
-          icon?: string | null
-          id?: string | null
-          is_active?: boolean | null
-          title?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          availability?: string | null
-          contributor_name?: string | null
-          created_at?: string | null
-          description?: string | null
-          icon?: string | null
-          id?: string | null
-          is_active?: boolean | null
-          title?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       get_block_party_ideas_count: {
@@ -471,6 +429,20 @@ export type Database = {
           name: string
           phone: string
           suggested_idea: string
+          updated_at: string
+        }[]
+      }
+      get_public_coupons: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          availability: string
+          contributor_name: string
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          is_active: boolean
+          title: string
           updated_at: string
         }[]
       }

@@ -26,10 +26,7 @@ export const CouponsRedeemTab = () => {
   const fetchCoupons = async () => {
     try {
       const { data, error } = await supabase
-        .from('neighbor_coupons')
-        .select('id, title, description, icon')
-        .eq('is_active', true)
-        .order('created_at', { ascending: true });
+        .rpc('get_public_coupons');
 
       if (error) throw error;
       setCoupons(data || []);
