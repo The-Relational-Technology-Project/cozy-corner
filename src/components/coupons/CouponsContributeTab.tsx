@@ -42,10 +42,10 @@ export const CouponsContributeTab = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.title || !formData.description) {
+    if (!formData.title || !formData.description || !formData.contributorName || !formData.contributorEmail) {
       toast({
         title: "Error",
-        description: "Please fill in the title and description.",
+        description: "Please fill in all required fields.",
         variant: "destructive",
       });
       return;
@@ -60,8 +60,8 @@ export const CouponsContributeTab = () => {
           description: formData.description,
           icon: formData.icon,
           availability: formData.availability,
-          contributor_name: formData.contributorName || null,
-          contributor_email: formData.contributorEmail || null
+          contributor_name: formData.contributorName,
+          contributor_email: formData.contributorEmail
         });
 
       if (error) throw error;
@@ -184,25 +184,32 @@ export const CouponsContributeTab = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="contributorName">Your Name (optional)</Label>
+                <Label htmlFor="contributorName">Your Name *</Label>
                 <Input
                   id="contributorName"
                   value={formData.contributorName}
                   onChange={(e) => setFormData(prev => ({ ...prev, contributorName: e.target.value }))}
                   placeholder="Your first name"
+                  required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="contributorEmail">Your Email (optional)</Label>
+                <Label htmlFor="contributorEmail">Your Email *</Label>
                 <Input
                   id="contributorEmail"
                   type="email"
                   value={formData.contributorEmail}
                   onChange={(e) => setFormData(prev => ({ ...prev, contributorEmail: e.target.value }))}
                   placeholder="For the steward to contact you"
+                  required
                 />
               </div>
+            </div>
+
+            <div className="text-sm text-cozy-cream-foreground/80 bg-cozy-orange-light p-3 rounded-lg">
+              <p className="font-medium mb-1">🔒 Privacy Note</p>
+              <p>Your name and email are necessary but only shared with the block steward to facilitate connections. They won't appear publicly on the site.</p>
             </div>
 
             <Button 
