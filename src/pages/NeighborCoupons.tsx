@@ -14,7 +14,7 @@ const NeighborCoupons = () => {
             🎟️ Neighbor Coupons
           </h1>
           <p className="text-lg text-cozy-cream-foreground/80">
-            Connect with your neighbors through shared experiences
+            Open invitations to connect with your neighbors 🤗
           </p>
         </div>
 
