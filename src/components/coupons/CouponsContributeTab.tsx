@@ -96,8 +96,8 @@ export const CouponsContributeTab = () => {
     <div className="space-y-8">
       <div className="mb-6">
         <p className="text-cozy-cream-foreground italic text-center">
-          "Want to share something you love about the neighborhood? Add it here — it doesn't need 
-          to be big. The steward will help connect you when someone claims it."
+          Want to share something you love about the neighborhood? Add it here — it doesn't need 
+          to be big. The steward will help connect you when someone claims it.
         </p>
       </div>
 
