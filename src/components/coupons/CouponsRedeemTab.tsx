@@ -70,8 +70,8 @@ export const CouponsRedeemTab = () => {
     <>
       <div className="mb-6">
         <p className="text-cozy-cream-foreground italic text-center">
-          "Pick a coupon to explore the neighborhood with a neighbor! When you claim one, 
-          our block steward will make an intro."
+          Pick a coupon to explore the neighborhood with a neighbor! When you claim one, 
+          our block steward will make an intro.
         </p>
       </div>
 
