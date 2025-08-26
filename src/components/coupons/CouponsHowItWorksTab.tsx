@@ -53,7 +53,7 @@ export const CouponsHowItWorksTab = () => {
               Questions or Concerns?
             </h3>
             <p className="text-cozy-cream-foreground">
-              Reach out to your block steward at{' '}
+              Reach out to Josh{' '}
               <a href="mailto:steward@cozycorner.place" className="text-cozy-orange-dark underline">
                 steward@cozycorner.place
               </a>
