@@ -74,6 +74,47 @@ export type Database = {
         }
         Relationships: []
       }
+      coupon_claims: {
+        Row: {
+          admin_notes: string | null
+          claimer_email: string | null
+          claimer_name: string | null
+          coupon_id: string
+          created_at: string
+          id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          claimer_email?: string | null
+          claimer_name?: string | null
+          coupon_id: string
+          created_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string | null
+          claimer_email?: string | null
+          claimer_name?: string | null
+          coupon_id?: string
+          created_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coupon_claims_coupon_id_fkey"
+            columns: ["coupon_id"]
+            isOneToOne: false
+            referencedRelation: "neighbor_coupons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       event_suggestions: {
         Row: {
           contact_info: string | null
@@ -107,6 +148,45 @@ export type Database = {
           name?: string | null
           suggested_date?: string | null
           suggested_location?: string | null
+        }
+        Relationships: []
+      }
+      neighbor_coupons: {
+        Row: {
+          availability: string | null
+          contributor_email: string | null
+          contributor_name: string | null
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          is_active: boolean
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          availability?: string | null
+          contributor_email?: string | null
+          contributor_name?: string | null
+          created_at?: string
+          description: string
+          icon?: string
+          id?: string
+          is_active?: boolean
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          availability?: string | null
+          contributor_email?: string | null
+          contributor_name?: string | null
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          is_active?: boolean
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -272,6 +352,21 @@ export type Database = {
           idea: string
           phone: string
           updated_at: string
+        }[]
+      }
+      get_coupon_claims_for_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          admin_notes: string
+          claimer_email: string
+          claimer_name: string
+          contributor_email: string
+          contributor_name: string
+          coupon_description: string
+          coupon_title: string
+          created_at: string
+          id: string
+          status: string
         }[]
       }
       get_event_suggestion_count: {
