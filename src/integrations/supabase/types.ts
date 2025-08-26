@@ -113,6 +113,13 @@ export type Database = {
             referencedRelation: "neighbor_coupons"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "coupon_claims_coupon_id_fkey"
+            columns: ["coupon_id"]
+            isOneToOne: false
+            referencedRelation: "public_coupons"
+            referencedColumns: ["id"]
+          },
         ]
       }
       event_suggestions: {
@@ -357,7 +364,42 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_coupons: {
+        Row: {
+          availability: string | null
+          contributor_name: string | null
+          created_at: string | null
+          description: string | null
+          icon: string | null
+          id: string | null
+          is_active: boolean | null
+          title: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          availability?: string | null
+          contributor_name?: string | null
+          created_at?: string | null
+          description?: string | null
+          icon?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          title?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          availability?: string | null
+          contributor_name?: string | null
+          created_at?: string | null
+          description?: string | null
+          icon?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          title?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_block_party_ideas_count: {
