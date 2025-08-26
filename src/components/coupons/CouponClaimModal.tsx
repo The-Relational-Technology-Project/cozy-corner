@@ -31,14 +31,23 @@ export const CouponClaimModal = ({ coupon, open, onOpenChange, onSuccess }: Coup
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!formData.claimerName || !formData.claimerEmail) {
+      toast({
+        title: "Error",
+        description: "Please fill in your name and email.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     try {
       const { error } = await supabase
         .from('coupon_claims')
         .insert({
           coupon_id: coupon.id,
-          claimer_name: formData.claimerName || null,
-          claimer_email: formData.claimerEmail || null,
+          claimer_name: formData.claimerName,
+          claimer_email: formData.claimerEmail,
           status: 'pending'
         });
 
@@ -73,29 +82,30 @@ export const CouponClaimModal = ({ coupon, open, onOpenChange, onSuccess }: Coup
           </p>
           
           <div className="bg-cozy-orange-light p-3 rounded text-sm text-center">
-            When you claim this coupon, our block steward will reach out to both you and the 
-            coupon creator to facilitate the introduction.
+            After you claim this coupon, our block steward will reach out with an intro.
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="claimerName">Your Name (optional)</Label>
+              <Label htmlFor="claimerName">Your Name *</Label>
               <Input
                 id="claimerName"
                 value={formData.claimerName}
                 onChange={(e) => setFormData(prev => ({ ...prev, claimerName: e.target.value }))}
                 placeholder="How should we introduce you?"
+                required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="claimerEmail">Your Email (optional but recommended)</Label>
+              <Label htmlFor="claimerEmail">Your Email *</Label>
               <Input
                 id="claimerEmail"
                 type="email"
                 value={formData.claimerEmail}
                 onChange={(e) => setFormData(prev => ({ ...prev, claimerEmail: e.target.value }))}
                 placeholder="For the steward to contact you"
+                required
               />
             </div>
 
