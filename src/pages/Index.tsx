@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MainNavigation } from "@/components/MainNavigation";
 import EventSuggestionForm from "@/components/EventSuggestionForm";
-import SandAccumulation from "@/components/SandAccumulation";
+
 import { StreetCleaningModal } from "@/components/StreetCleaningModal";
 import { NeighborhoodContributionsModal } from "@/components/NeighborhoodContributionsModal";
 
@@ -56,7 +56,7 @@ const NewIndex = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
-      <SandAccumulation />
+      
       <MainNavigation />
       
       {/* Hero Section */}

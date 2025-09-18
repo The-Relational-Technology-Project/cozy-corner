@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MainNavigation } from '@/components/MainNavigation';
-import SandAccumulation from '@/components/SandAccumulation';
+
 import { CouponsRedeemTab } from '@/components/coupons/CouponsRedeemTab';
 import { CouponsContributeTab } from '@/components/coupons/CouponsContributeTab';
 import { CouponsHowItWorksTab } from '@/components/coupons/CouponsHowItWorksTab';
@@ -9,7 +9,7 @@ import { CouponsHowItWorksTab } from '@/components/coupons/CouponsHowItWorksTab'
 const NeighborCoupons = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
-      <SandAccumulation />
+      
       <MainNavigation />
       <div className="container mx-auto px-4 py-8">
         {/* Header */}

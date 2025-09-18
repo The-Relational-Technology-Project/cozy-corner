@@ -10,7 +10,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import SandAccumulation from "@/components/SandAccumulation";
+
 import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles, Home } from "lucide-react";
 
 // Role data structure
@@ -341,7 +341,7 @@ const BlockParty2025 = () => {
     });
   };
   return <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
-      <SandAccumulation />
+      
       <MainNavigation />
       {/* Hero Section with Background Image */}
       <div className="relative overflow-hidden">

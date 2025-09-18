@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Mail, MessageSquare, Phone } from "lucide-react";
-import SandAccumulation from "@/components/SandAccumulation";
+
 
 const Contact = () => {
   const { toast } = useToast();
@@ -53,7 +53,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
-      <SandAccumulation />
+      
       <MainNavigation />
       
       <div className="px-4 py-16 mx-auto max-w-4xl">

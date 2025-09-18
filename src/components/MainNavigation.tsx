@@ -21,37 +21,28 @@ export const MainNavigation = () => {
   return (
     <nav className="bg-white/90 backdrop-blur-sm border-b border-amber-200/50 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Home link with icon */}
-          <Link to="/" className="flex items-center gap-2 text-amber-800 hover:text-amber-900 transition-colors">
-            <Home className="h-6 w-6" />
-            <span className="font-semibold text-lg hidden sm:inline">Cozy Corner</span>
-          </Link>
-
-          {/* Navigation items */}
-          <div className="flex items-center gap-1 md:gap-2">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link key={item.path} to={item.path}>
-                  <Button
-                    variant={isActive(item.path) ? "default" : "ghost"}
-                    size="sm"
-                    className={`
-                      flex items-center gap-2 rounded-xl font-medium transition-all duration-200
-                      ${isActive(item.path) 
-                        ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md" 
-                        : "text-amber-700 hover:text-amber-900 hover:bg-amber-50"
-                      }
-                    `}
-                  >
-                    <Icon className="h-4 w-4" />
-                    <span className="hidden sm:inline">{item.label}</span>
-                  </Button>
-                </Link>
-              );
-            })}
-          </div>
+        <div className="flex items-center h-16 gap-1 md:gap-2">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link key={item.path} to={item.path}>
+                <Button
+                  variant={isActive(item.path) ? "default" : "ghost"}
+                  size="sm"
+                  className={`
+                    flex items-center gap-2 rounded-xl font-medium transition-all duration-200
+                    ${isActive(item.path) 
+                      ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md" 
+                      : "text-amber-700 hover:text-amber-900 hover:bg-amber-50"
+                    }
+                  `}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="hidden sm:inline">{item.label}</span>
+                </Button>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </nav>
