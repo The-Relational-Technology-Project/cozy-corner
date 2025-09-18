@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MainNavigation } from "@/components/MainNavigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,19 +14,62 @@ const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     subject: "",
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Math verification
+  const [mathQuestion, setMathQuestion] = useState({ a: 0, b: 0, answer: 0 });
+  const [userAnswer, setUserAnswer] = useState("");
+
+  // Generate new math question
+  const generateMathQuestion = () => {
+    const a = Math.floor(Math.random() * 10) + 1;
+    const b = Math.floor(Math.random() * 10) + 1;
+    setMathQuestion({ a, b, answer: a + b });
+    setUserAnswer("");
+  };
+
+  // Initialize with a math question
+  useEffect(() => {
+    generateMathQuestion();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Verify math answer
+    if (parseInt(userAnswer) !== mathQuestion.answer) {
+      toast({
+        title: "Verification failed",
+        description: "Please solve the math problem correctly.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
-      // For now, just show success message without database save
-      // TODO: Add contact_messages table to database schema
+      const { error } = await supabase
+        .from('contact_messages')
+        .insert({
+          name: formData.name,
+          email: 'via-website@contact.local', // Placeholder since email is removed from form
+          subject: formData.subject,
+          message: formData.message
+        });
+
+      if (error) {
+        console.error('Error submitting contact form:', error);
+        toast({
+          title: "Error",
+          description: "Failed to send your message. Please try again.",
+          variant: "destructive"
+        });
+        return;
+      }
       
       toast({
         title: "Message sent!",
@@ -35,10 +78,10 @@ const Contact = () => {
 
       setFormData({
         name: "",
-        email: "",
         subject: "",
         message: ""
       });
+      generateMathQuestion(); // Generate new math question
     } catch (error) {
       console.error('Error submitting contact form:', error);
       toast({
@@ -126,30 +169,16 @@ const Contact = () => {
             </CardHeader>
             <CardContent className="p-6">
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="name" className="text-amber-900 font-medium">Name</Label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email" className="text-amber-900 font-medium">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
-                      required
-                    />
-                  </div>
+                <div>
+                  <Label htmlFor="name" className="text-amber-900 font-medium">Name</Label>
+                  <Input
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
+                    required
+                  />
                 </div>
-                
                 <div>
                   <Label htmlFor="subject" className="text-amber-900 font-medium">Subject</Label>
                   <Input
@@ -170,6 +199,21 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl min-h-32"
                     placeholder="Tell us what's on your mind..."
+                    required
+                  />
+                </div>
+                
+                {/* Math verification */}
+                <div>
+                  <Label className="text-amber-900 font-medium">
+                    Human Verification: What is {mathQuestion.a} + {mathQuestion.b}?
+                  </Label>
+                  <Input
+                    type="number"
+                    value={userAnswer}
+                    onChange={(e) => setUserAnswer(e.target.value)}
+                    className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
+                    placeholder="Enter the answer"
                     required
                   />
                 </div>
