@@ -1,0 +1,9 @@
+-- Insert the initial coupons from the neighborhood steward
+INSERT INTO public.neighbor_coupons (title, description, icon, availability, contributor_name, contributor_email, is_active) VALUES
+('Try out different e-bikes', 'Test ride various electric bikes to see which style works best for your neighborhood adventures. Great for commuting or weekend exploration!', '🚲', 'Flexible scheduling', 'Josh', 'josh@example.com', true),
+('Talk about local preschools', 'Get the inside scoop on neighborhood preschools from a parent who has navigated the options. Perfect for families planning ahead.', '🏫', 'Evenings and weekends', 'Josh', 'josh@example.com', true),
+('Talk about local schools', 'Discuss elementary and middle school options in our area. Share experiences and insights about what to expect.', '📚', 'Flexible', 'Josh', 'josh@example.com', true),
+('Introduce you to neighbors', 'Meet some of the wonderful people in our neighborhood! Perfect for newcomers or anyone wanting to expand their local connections.', '👋', 'Most evenings', 'Josh', 'josh@example.com', true),
+('Kids playdate at Blue Boat playground', 'Organize a fun playdate at the nearby Blue Boat playground. Great for families with young children to meet and kids to make friends.', '🛝', 'Weekends preferred', 'Josh', 'josh@example.com', true),
+('Sunrise or sunset walk', 'Take a peaceful walk around the neighborhood during the golden hour. Perfect for starting or ending the day mindfully.', '🌅', 'Daily, weather permitting', 'Josh', 'josh@example.com', true),
+('Book swap for adults or kids', 'Exchange books and discover new reads! Bring books you have enjoyed and take some new ones home. Great for all ages.', '📖', 'Anytime', 'Josh', 'josh@example.com', true);
