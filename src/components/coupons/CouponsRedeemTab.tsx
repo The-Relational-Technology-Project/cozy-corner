@@ -85,7 +85,7 @@ export const CouponsRedeemTab = () => {
                     {coupon.title}
                   </h3>
                   <p className="text-cozy-cream-foreground/80 mb-4 text-sm flex-1">
-                    {coupon.description.length > 60 ? `${coupon.description.substring(0, 60)}...` : coupon.description}
+                    {coupon.description.length > 40 ? `${coupon.description.substring(0, 40)}...` : coupon.description}
                   </p>
                   
                   <div className="mt-auto">
