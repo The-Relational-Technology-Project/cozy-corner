@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import SandAccumulation from "@/components/SandAccumulation";
-import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles } from "lucide-react";
+import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles, Home } from "lucide-react";
 
 // Role data structure
 const roles = [{
