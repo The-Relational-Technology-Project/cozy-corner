@@ -67,7 +67,7 @@ const NewIndex = () => {
         }} />
         <div className="relative px-4 py-12 md:py-16 mx-auto max-w-6xl">
           <div className="text-center mb-8 md:mb-12">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4 leading-tight">
               Cozy Corner
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-amber-800 font-medium mb-6">

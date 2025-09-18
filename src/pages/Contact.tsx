@@ -104,7 +104,7 @@ const Contact = () => {
       <div className="px-4 py-16 mx-auto max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4 leading-tight">
             Get in Touch
           </h1>
           <p className="text-xl text-amber-800 leading-relaxed max-w-2xl mx-auto">
