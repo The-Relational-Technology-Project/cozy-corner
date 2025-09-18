@@ -25,22 +25,22 @@ const NeighborCoupons = () => {
 
         {/* Tabs */}
         <Tabs defaultValue="redeem" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8 bg-white/50 border border-brown-sand/20">
+          <TabsList className="grid w-full grid-cols-3 mb-8 bg-white/50 border border-orange-200/40">
             <TabsTrigger 
               value="redeem" 
-              className="data-[state=active]:bg-brown-sand data-[state=active]:text-brown-sand-foreground"
+              className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
             >
               Redeem
             </TabsTrigger>
             <TabsTrigger 
               value="contribute"
-              className="data-[state=active]:bg-brown-sand data-[state=active]:text-brown-sand-foreground"
+              className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
             >
               Contribute
             </TabsTrigger>
             <TabsTrigger 
               value="how-it-works"
-              className="data-[state=active]:bg-brown-sand data-[state=active]:text-brown-sand-foreground"
+              className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
             >
               How It Works
             </TabsTrigger>

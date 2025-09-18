@@ -77,31 +77,33 @@ export const CouponsRedeemTab = () => {
           const isClaimed = claimedCoupons.includes(coupon.id);
           
           return (
-            <Card key={coupon.id} className="bg-white shadow-md hover:shadow-lg transition-shadow border-cozy-orange/20">
-              <CardContent className="p-6">
-                <div className="text-center">
+            <Card key={coupon.id} className="bg-white shadow-md hover:shadow-lg transition-shadow border-cozy-orange/20 h-full">
+              <CardContent className="p-6 h-full flex flex-col">
+                <div className="text-center flex-1 flex flex-col">
                   <div className="text-4xl mb-3">{coupon.icon}</div>
                   <h3 className="font-semibold text-lg mb-2 text-cozy-cream-foreground">
                     {coupon.title}
                   </h3>
-                  <p className="text-cozy-cream-foreground/80 mb-4 text-sm">
-                    {coupon.description}
+                  <p className="text-cozy-cream-foreground/80 mb-4 text-sm flex-1">
+                    {coupon.description.length > 60 ? `${coupon.description.substring(0, 60)}...` : coupon.description}
                   </p>
                   
-                  {isClaimed ? (
-                    <div className="text-center py-2">
-                      <p className="text-green-600 font-medium">
-                        ✅ Pending steward intro — you'll be connected soon!
-                      </p>
-                    </div>
-                  ) : (
-                    <Button 
-                      onClick={() => handleClaim(coupon)}
-                      className="w-full bg-cozy-orange hover:bg-cozy-orange-dark text-cozy-orange-foreground"
-                    >
-                      Claim
-                    </Button>
-                  )}
+                  <div className="mt-auto">
+                    {isClaimed ? (
+                      <div className="text-center py-2">
+                        <p className="text-green-600 font-medium text-sm">
+                          ✅ Pending steward intro
+                        </p>
+                      </div>
+                    ) : (
+                      <Button 
+                        onClick={() => handleClaim(coupon)}
+                        className="w-full bg-cozy-orange hover:bg-cozy-orange-dark text-cozy-orange-foreground"
+                      >
+                        Claim
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </CardContent>
             </Card>
