@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Admin from "./pages/Admin";
 import BlockParty2025 from "./pages/BlockParty2025";
 import NeighborCoupons from "./pages/NeighborCoupons";
+import Contact from "./pages/Contact";
 import AdminAuth from "./pages/AdminAuth";
 import NotFound from "./pages/NotFound";
 import { ProtectedAdminRoute } from "./components/ProtectedAdminRoute";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/block-party-2025" element={<BlockParty2025 />} />
           <Route path="/coupons" element={<NeighborCoupons />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/admin/login" element={<AdminAuth />} />
           <Route path="/admin" element={
             <ProtectedAdminRoute>

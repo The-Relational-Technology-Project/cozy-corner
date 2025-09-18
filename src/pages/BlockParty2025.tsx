@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { MainNavigation } from "@/components/MainNavigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,7 +10,8 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles, Home } from "lucide-react";
+import SandAccumulation from "@/components/SandAccumulation";
+import { ArrowDown, Users, Clock, MapPin, ChevronDown, Lightbulb, Sparkles } from "lucide-react";
 
 // Role data structure
 const roles = [{
@@ -339,6 +341,8 @@ const BlockParty2025 = () => {
     });
   };
   return <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
+      <SandAccumulation />
+      <MainNavigation />
       {/* Hero Section with Background Image */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{
