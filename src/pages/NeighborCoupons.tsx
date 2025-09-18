@@ -11,13 +11,14 @@ const NeighborCoupons = () => {
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
       
       <MainNavigation />
-      <div className="container mx-auto px-4 py-8">
+      
+      <div className="px-4 py-16 mx-auto max-w-4xl">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2 text-cozy-cream-foreground">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4">
             🎟️ Neighbor Coupons
           </h1>
-          <p className="text-lg text-cozy-cream-foreground/80">
+          <p className="text-xl text-amber-800 leading-relaxed max-w-2xl mx-auto">
             Open invitations to connect with your neighbors 🤗
           </p>
         </div>
