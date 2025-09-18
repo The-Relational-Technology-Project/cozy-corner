@@ -14,6 +14,7 @@ const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     subject: "",
     message: ""
   });
@@ -56,7 +57,7 @@ const Contact = () => {
         .from('contact_messages')
         .insert({
           name: formData.name,
-          email: 'via-website@contact.local', // Placeholder since email is removed from form
+          email: formData.email || 'no-email-provided@contact.local',
           subject: formData.subject,
           message: formData.message
         });
@@ -78,6 +79,7 @@ const Contact = () => {
 
       setFormData({
         name: "",
+        email: "",
         subject: "",
         message: ""
       });
@@ -125,14 +127,6 @@ const Contact = () => {
             <CardContent className="p-6 space-y-6">
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <Mail className="h-5 w-5 text-amber-600 mt-1" />
-                  <div>
-                    <h3 className="font-medium text-amber-900">Email</h3>
-                    <p className="text-amber-700 text-sm">steward@cozycorner.place</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
                   <MessageSquare className="h-5 w-5 text-amber-600 mt-1" />
                   <div>
                     <h3 className="font-medium text-amber-900">Group Chat</h3>
@@ -169,15 +163,26 @@ const Contact = () => {
             </CardHeader>
             <CardContent className="p-6">
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Label htmlFor="name" className="text-amber-900 font-medium">Name</Label>
-                  <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
-                    required
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="name" className="text-amber-900 font-medium">Name (optional)</Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="text-amber-900 font-medium">Email (optional)</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
+                    />
+                  </div>
                 </div>
                 <div>
                   <Label htmlFor="subject" className="text-amber-900 font-medium">Subject</Label>
