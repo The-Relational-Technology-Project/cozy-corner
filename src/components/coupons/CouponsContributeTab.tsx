@@ -21,18 +21,21 @@ export const CouponsContributeTab = () => {
   const { toast } = useToast();
 
   const inspirationItems = [
-    'Teach a card game',
-    'Share favorite coffee spots',
-    'Lead a short stretch/yoga routine',
-    'Host a tea chat',
-    'Show composting/gardening tips',
-    'Share a local parenting hack',
-    'Offer a surf lesson',
-    'Give a tour of your backyard plants',
-    'Share your favorite baking recipe',
-    'Host a board game night',
-    'Share tech setup tips (wifi, apps)',
-    'Invite neighbors to walk with you at sunrise/sunset'
+    'Check surf conditions together',
+    'Peer support for career planning',
+    'Offer an empathetic listening ear',
+    'Learn about our neighborhood history',
+    'Try out different kid bikes',
+    'Place the best Hook Fish order',
+    'Plan a hike or backpacking trip',
+    'Bring some baked goods!',
+    'Tour of Other Avenues Co–op',
+    'Talk about local daycares',
+    'Talk about local preschools',
+    'Talk about local schools',
+    'Go on a bike tour of GG Park',
+    'Share gardening tips',
+    'Go on a sunrise or sunset walk'
   ];
 
   const iconOptions = [
