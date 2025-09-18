@@ -48,9 +48,10 @@ const NewIndex = () => {
     },
     {
       title: "Neighbor coupons",
-      status: "coming soon",
+      status: "we're live!",
       emoji: "🎟️",
-      description: "Share skills and connect through friendly exchanges"
+      description: "Share skills and connect through friendly exchanges",
+      link: "/coupons"
     }
   ];
 
@@ -176,26 +177,40 @@ const NewIndex = () => {
             </CardHeader>
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                {newIdeas.map((idea, index) => (
-                  <div key={index} className="bg-amber-50 rounded-xl p-4 border border-amber-200">
-                    <div className="flex items-start gap-3">
-                      <span className="text-2xl">{idea.emoji}</span>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-medium text-amber-900">{idea.title}</h3>
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            idea.status === 'in progress' 
-                              ? 'bg-green-100 text-green-700' 
-                              : 'bg-blue-100 text-blue-700'
-                          }`}>
-                            {idea.status}
-                          </span>
+                {newIdeas.map((idea, index) => {
+                  const content = (
+                    <div className="bg-amber-50 rounded-xl p-4 border border-amber-200 hover:bg-amber-100 transition-colors duration-200">
+                      <div className="flex items-start gap-3">
+                        <span className="text-2xl">{idea.emoji}</span>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="font-medium text-amber-900">{idea.title}</h3>
+                            <span className={`text-xs px-2 py-1 rounded-full ${
+                              idea.status === 'in progress' 
+                                ? 'bg-green-100 text-green-700' 
+                                : idea.status === "we're live!"
+                                ? 'bg-emerald-100 text-emerald-700'
+                                : 'bg-blue-100 text-blue-700'
+                            }`}>
+                              {idea.status}
+                            </span>
+                          </div>
+                          <p className="text-sm text-amber-700">{idea.description}</p>
                         </div>
-                        <p className="text-sm text-amber-700">{idea.description}</p>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+
+                  return idea.link ? (
+                    <Link key={index} to={idea.link}>
+                      {content}
+                    </Link>
+                  ) : (
+                    <div key={index}>
+                      {content}
+                    </div>
+                  );
+                })}
               </div>
               
               <Button 
