@@ -226,13 +226,6 @@ const BlockParty2025 = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="rounded-lg overflow-hidden shadow-md md:col-span-2">
-                <img 
-                  src={blockPartyChalk} 
-                  alt="Sidewalk chalk announcing the block party" 
-                  className="w-full h-auto object-cover max-h-96"
-                />
-              </div>
             </div>
           </CardContent>
         </Card>
