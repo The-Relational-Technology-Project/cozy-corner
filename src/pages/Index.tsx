@@ -32,7 +32,7 @@ const NewIndex = () => {
       time: "4:00 PM - 5:00 PM",
       location: "In front of Josh N's place",
       contact: "Community",
-      description: "Come celebrate Halloween with your neighbors!",
+      description: "Hang out before trick-or-treating!",
       highlighted: true
     }
   ];
