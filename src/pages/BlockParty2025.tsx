@@ -169,17 +169,15 @@ const roles = [{
     filled: 10
   }]
 }];
-
 const BlockParty2025 = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
+  return <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
       <MainNavigation />
       
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{
-          backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
-        }} />
+        backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
+      }} />
         <div className="relative px-4 py-16 mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4 leading-tight">
@@ -196,9 +194,7 @@ const BlockParty2025 = () => {
           {/* Welcome Message */}
           <div className="max-w-4xl mx-auto text-center mb-12">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-              <p className="text-lg text-amber-900 leading-relaxed">
-                What an incredible day! Thank you to all the neighbors, volunteers, and partners who made our first block party a huge success. From the pirate ship bounce house to the live music, face painting to sidewalk chalk, it was a day filled with joy, community, and connection.
-              </p>
+              <p className="text-lg text-amber-900 leading-relaxed">What an incredible day! Thank you to all the neighbors, volunteers, and partners who made our first block party a huge success. From the pirate ship bounce house to the live music and sidewalk chalk, it was a day filled with joy, community, and connection.</p>
             </div>
           </div>
         </div>
@@ -213,18 +209,10 @@ const BlockParty2025 = () => {
           <CardContent className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src={blockPartyAerial} 
-                  alt="Aerial view of the block party with pirate ship bounce house" 
-                  className="w-full h-full object-cover"
-                />
+                <img src={blockPartyAerial} alt="Aerial view of the block party with pirate ship bounce house" className="w-full h-full object-cover" />
               </div>
               <div className="rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src={blockPartyMusic} 
-                  alt="Live music and neighbors gathering at the block party" 
-                  className="w-full h-full object-cover"
-                />
+                <img src={blockPartyMusic} alt="Live music and neighbors gathering at the block party" className="w-full h-full object-cover" />
               </div>
             </div>
           </CardContent>
@@ -244,20 +232,12 @@ const BlockParty2025 = () => {
             </p>
             <div className="flex flex-wrap justify-center items-center gap-12">
               <div className="flex flex-col items-center">
-                <img 
-                  src={civicJoyLogo} 
-                  alt="Civic Joy Fund logo" 
-                  className="w-32 h-32 object-contain mb-3"
-                />
+                <img src={civicJoyLogo} alt="Civic Joy Fund logo" className="w-32 h-32 object-contain mb-3" />
                 <p className="text-sm text-amber-800 font-medium">Civic Joy Fund</p>
                 <p className="text-xs text-amber-600">Event Funding</p>
               </div>
               <div className="flex flex-col items-center">
-                <img 
-                  src={oslLogo} 
-                  alt="Outer Sunset Neighbors logo" 
-                  className="w-32 h-32 object-contain mb-3"
-                />
+                <img src={oslLogo} alt="Outer Sunset Neighbors logo" className="w-32 h-32 object-contain mb-3" />
                 <p className="text-sm text-amber-800 font-medium">Outer Sunset Neighbors</p>
                 <p className="text-xs text-amber-600">Admin Support & Supplies</p>
               </div>
@@ -272,11 +252,7 @@ const BlockParty2025 = () => {
           </CardHeader>
           <CardContent className="p-6">
             <div className="text-center">
-              <img 
-                src="/lovable-uploads/Updated_BP_Site_Plan.png" 
-                alt="48th Ave Block Party Site Plan" 
-                className="w-full max-w-2xl mx-auto rounded-lg shadow-md" 
-              />
+              <img src="/lovable-uploads/Updated_BP_Site_Plan.png" alt="48th Ave Block Party Site Plan" className="w-full max-w-2xl mx-auto rounded-lg shadow-md" />
               <p className="text-sm text-amber-600 mt-4">
                 Our layout for the day's activities and stations.
               </p>
@@ -293,8 +269,7 @@ const BlockParty2025 = () => {
             Every role was filled by amazing neighbors who stepped up to make this event happen. Thank you to everyone who contributed!
           </p>
           
-          {roles.map((category, categoryIndex) => (
-            <Card key={categoryIndex} className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden mb-6">
+          {roles.map((category, categoryIndex) => <Card key={categoryIndex} className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden mb-6">
               <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
                 <CardTitle className="text-xl">
                   {category.category}
@@ -302,32 +277,24 @@ const BlockParty2025 = () => {
               </CardHeader>
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {category.items.map((role, roleIndex) => (
-                    <Card 
-                      key={roleIndex} 
-                      className="border-green-300 bg-green-50/50"
-                    >
+                  {category.items.map((role, roleIndex) => <Card key={roleIndex} className="border-green-300 bg-green-50/50">
                       <CardContent className="p-4">
                         <div className="text-center">
                           <div className="text-2xl mb-2">{role.emoji}</div>
                           <h4 className="font-medium text-sm mb-1 text-amber-900">{role.name}</h4>
-                          {role.time && (
-                            <p className="text-xs text-amber-700 mb-2">
+                          {role.time && <p className="text-xs text-amber-700 mb-2">
                               {role.time}
-                            </p>
-                          )}
+                            </p>}
                           <div className="flex items-center justify-center gap-1 text-xs text-green-700 font-medium">
                             <Users className="w-3 h-3" />
                             ✓ All {role.spots} spots filled!
                           </div>
                         </div>
                       </CardContent>
-                    </Card>
-                  ))}
+                    </Card>)}
                 </div>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
 
         {/* Stay Tuned Section */}
@@ -352,18 +319,13 @@ const BlockParty2025 = () => {
               Made with 💛 by neighbors on 48th Ave. Questions about future block parties? 
               Reach out in our group chat or reach out to Josh!
             </p>
-            <Link 
-              to="/" 
-              className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-800 transition-colors duration-200 text-sm font-medium"
-            >
+            <Link to="/" className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-800 transition-colors duration-200 text-sm font-medium">
               <Home className="w-4 h-4" />
               Return home
             </Link>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default BlockParty2025;
