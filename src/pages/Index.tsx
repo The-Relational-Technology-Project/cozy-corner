@@ -17,12 +17,22 @@ const NewIndex = () => {
   const upcomingEvents = [
     {
       id: 1,
-      name: "Inaugural Cozy Corner Block Party",
-      date: "Saturday, September 27th",
-      time: "10:00 AM",
-      location: "On our block!",
+      name: "Neighbor Lunch Outside",
+      date: "Friday, October 10th",
+      time: "12:00 PM",
+      location: "In front of Josh N's place",
       contact: "Community",
-      description: "We're in planning mode – please reach out with ideas!",
+      description: "Join us for a casual outdoor lunch with neighbors!",
+      highlighted: true
+    },
+    {
+      id: 2,
+      name: "Halloween Hangout",
+      date: "Friday, October 31st",
+      time: "4:00 PM - 5:00 PM",
+      location: "In front of Josh N's place",
+      contact: "Community",
+      description: "Come celebrate Halloween with your neighbors!",
       highlighted: true
     }
   ];
