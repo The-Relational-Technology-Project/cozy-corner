@@ -194,7 +194,7 @@ const BlockParty2025 = () => {
           {/* Welcome Message */}
           <div className="max-w-4xl mx-auto text-center mb-12">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-              <p className="text-lg text-amber-900 leading-relaxed">What an incredible day! Thank you to all the neighbors, volunteers, and partners who made our first block party a huge success. From the pirate ship bounce house to the live music and sidewalk chalk, it was a day filled with joy, community, and connection.</p>
+              <p className="text-lg text-amber-900 leading-relaxed">What an incredible day! Thank you to all the neighbors, volunteers, and partners who made our first block party a huge success. From the pirate ship bounce house to the live music and sidewalk chalk, it was a day filled with joy and community.</p>
             </div>
           </div>
         </div>
