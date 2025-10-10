@@ -18,8 +18,8 @@ const NewIndex = () => {
     {
       id: 1,
       name: "Neighbor Lunch Outside",
-      date: "Friday, October 10th",
-      time: "12:00 PM",
+      date: "Friday, October 17th",
+      time: "12:30 PM",
       location: "In front of Josh N's place",
       contact: "Community",
       description: "Join us for a casual outdoor lunch with neighbors!",
