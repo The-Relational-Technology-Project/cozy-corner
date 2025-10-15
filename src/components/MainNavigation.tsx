@@ -8,6 +8,12 @@ export const MainNavigation = () => {
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
   
+  const languageAbbreviations = {
+    'en': 'EN',
+    'zh-CN': '简',
+    'zh-HK': '繁'
+  };
+  
   const isActive = (path: string) => {
     if (path === "/" && location.pathname === "/") return true;
     if (path !== "/" && location.pathname.startsWith(path)) return true;
@@ -46,13 +52,15 @@ export const MainNavigation = () => {
           </Link>
 
           {/* Right navigation items */}
-          <div className="flex items-center gap-1 md:gap-3">
+          <div className="flex items-center gap-1.5 md:gap-3">
             {/* Language selector */}
             <Select value={language} onValueChange={(value) => setLanguage(value as 'en' | 'zh-CN' | 'zh-HK')}>
-              <SelectTrigger className="w-[50px] md:w-[140px] h-9 border-amber-200 bg-white/80 hover:bg-amber-50 rounded-xl">
+              <SelectTrigger className="w-auto h-9 px-2 md:px-3 border-amber-200 bg-white/80 hover:bg-amber-50 rounded-xl">
                 <div className="flex items-center gap-1.5">
-                  <Languages className="h-4 w-4 text-amber-700" />
-                  <SelectValue className="hidden md:inline" />
+                  <Languages className="h-4 w-4 text-amber-700 hidden sm:block" />
+                  <span className="text-sm font-medium text-amber-700">
+                    {languageAbbreviations[language]}
+                  </span>
                 </div>
               </SelectTrigger>
               <SelectContent>
