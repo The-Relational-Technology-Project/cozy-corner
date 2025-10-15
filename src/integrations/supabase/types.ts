@@ -145,6 +145,42 @@ export type Database = {
           },
         ]
       }
+      disaster_check_ins: {
+        Row: {
+          address: string
+          contact_info: string | null
+          created_at: string
+          id: string
+          language_preference: string | null
+          name: string | null
+          specific_needs: string | null
+          updated_at: string
+          vulnerable_count: number
+        }
+        Insert: {
+          address: string
+          contact_info?: string | null
+          created_at?: string
+          id?: string
+          language_preference?: string | null
+          name?: string | null
+          specific_needs?: string | null
+          updated_at?: string
+          vulnerable_count?: number
+        }
+        Update: {
+          address?: string
+          contact_info?: string | null
+          created_at?: string
+          id?: string
+          language_preference?: string | null
+          name?: string | null
+          specific_needs?: string | null
+          updated_at?: string
+          vulnerable_count?: number
+        }
+        Relationships: []
+      }
       event_suggestions: {
         Row: {
           contact_info: string | null
@@ -422,6 +458,20 @@ export type Database = {
           created_at: string
           id: string
           status: string
+        }[]
+      }
+      get_disaster_check_ins_for_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          address: string
+          contact_info: string
+          created_at: string
+          id: string
+          language_preference: string
+          name: string
+          specific_needs: string
+          updated_at: string
+          vulnerable_count: number
         }[]
       }
       get_event_suggestion_count: {
