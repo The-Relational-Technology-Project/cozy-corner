@@ -227,7 +227,7 @@ const PrepTogether = () => {
         </section>
 
         {/* Check-In Form */}
-        <section id="check-in-form">
+        <section id="check-in-form" className="scroll-mt-24">
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-red-600 to-pink-600 text-white">
               <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
