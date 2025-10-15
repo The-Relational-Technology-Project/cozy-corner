@@ -87,10 +87,7 @@ const PrepTogether = () => {
       }} />
         <div className="relative px-4 py-16 mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <div className="flex justify-center gap-4 mb-6">
-              <AlertCircle className="w-12 h-12 text-orange-600" />
-              <Waves className="w-12 h-12 text-blue-600" />
-            </div>
+            
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-800 via-slate-700 to-blue-600 bg-clip-text text-transparent mb-4 leading-tight">
               Prep Together
             </h1>
