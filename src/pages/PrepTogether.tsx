@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { AlertCircle, Waves, Home, Users, ExternalLink, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -21,7 +22,8 @@ const PrepTogether = () => {
     contact_info: "",
     vulnerable_count: "1",
     specific_needs: "",
-    language_preference: "english"
+    language_preference: "english",
+    completing_on_behalf: false
   });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +45,8 @@ const PrepTogether = () => {
         contact_info: formData.contact_info || null,
         vulnerable_count: parseInt(formData.vulnerable_count),
         specific_needs: formData.specific_needs || null,
-        language_preference: formData.language_preference
+        language_preference: formData.language_preference,
+        completing_on_behalf: formData.completing_on_behalf
       }]);
       if (error) throw error;
       setSubmitted(true);
@@ -59,7 +62,8 @@ const PrepTogether = () => {
         contact_info: "",
         vulnerable_count: "1",
         specific_needs: "",
-        language_preference: "english"
+        language_preference: "english",
+        completing_on_behalf: false
       });
     } catch (error) {
       console.error("Error submitting check-in request:", error);
@@ -253,7 +257,27 @@ const PrepTogether = () => {
                       Submit Another Request
                     </Button>
                   </div>
-                </div> : <form onSubmit={handleSubmit} className="space-y-6">
+                 </div> : <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="flex items-start space-x-3 bg-blue-50 border border-blue-200 rounded-xl p-4">
+                    <Checkbox 
+                      id="on-behalf" 
+                      checked={formData.completing_on_behalf}
+                      onCheckedChange={(checked) => setFormData({
+                        ...formData,
+                        completing_on_behalf: checked as boolean
+                      })}
+                      className="mt-1"
+                    />
+                    <div className="space-y-1">
+                      <Label htmlFor="on-behalf" className="text-slate-900 font-medium cursor-pointer">
+                        I'm completing this form on behalf of someone else
+                      </Label>
+                      <p className="text-sm text-slate-600">
+                        (who has given consent)
+                      </p>
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-slate-900">Name / 姓名 (Optional)</Label>
                     <Input id="name" value={formData.name} onChange={e => setFormData({

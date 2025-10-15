@@ -148,6 +148,7 @@ export type Database = {
       disaster_check_ins: {
         Row: {
           address: string
+          completing_on_behalf: boolean
           contact_info: string | null
           created_at: string
           id: string
@@ -159,6 +160,7 @@ export type Database = {
         }
         Insert: {
           address: string
+          completing_on_behalf?: boolean
           contact_info?: string | null
           created_at?: string
           id?: string
@@ -170,6 +172,7 @@ export type Database = {
         }
         Update: {
           address?: string
+          completing_on_behalf?: boolean
           contact_info?: string | null
           created_at?: string
           id?: string
