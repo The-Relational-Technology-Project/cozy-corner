@@ -219,7 +219,7 @@ const PrepTogether = () => {
 
               <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
                 <p className="text-sm font-medium text-slate-900">
-                  Want to volunteer to check on neighbors? <a href="/contact" className="text-blue-600 hover:text-blue-800 underline">Contact us</a>.
+                  Want to join an upcoming planning meeting or volunteer to check on neighbors? <a href="/contact" className="text-blue-600 hover:text-blue-800 underline">Contact us</a>.
                 </p>
               </div>
             </CardContent>
