@@ -115,18 +115,18 @@ const PrepTogether = () => {
       <div className="px-4 pb-16 mx-auto max-w-6xl space-y-12">
         
         {/* Know Our Risks */}
-        <section>
-          <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-800 via-slate-700 to-blue-600 bg-clip-text text-transparent mb-8 leading-tight">
+        <section className="pt-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-800 via-slate-700 to-blue-600 bg-clip-text text-transparent mb-10 leading-tight">
             Know Our Risks
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
             {/* Earthquake Risk */}
             <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-orange-600 to-red-600 text-white">
+              <CardHeader className="bg-white/60">
                 <div className="flex items-center gap-2">
-                  <AlertCircle className="w-6 h-6" />
-                  <CardTitle className="text-xl">Earthquake Risks</CardTitle>
+                  <AlertCircle className="w-6 h-6 text-orange-600" />
+                  <CardTitle className="text-xl text-slate-900">Earthquake Risks</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
@@ -150,10 +150,10 @@ const PrepTogether = () => {
 
             {/* Tsunami Risk */}
             <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
+              <CardHeader className="bg-white/60">
                 <div className="flex items-center gap-2">
-                  <Waves className="w-6 h-6" />
-                  <CardTitle className="text-xl">Tsunami Risks</CardTitle>
+                  <Waves className="w-6 h-6 text-blue-600" />
+                  <CardTitle className="text-xl text-slate-900">Tsunami Risks</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
