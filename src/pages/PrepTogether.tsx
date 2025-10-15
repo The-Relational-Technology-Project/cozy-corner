@@ -83,49 +83,68 @@ const PrepTogether = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
       <MainNavigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-950/20 dark:to-green-950/20 py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center gap-4 mb-6">
-            <Home className="w-12 h-12 text-primary" />
-            <Waves className="w-12 h-12 text-blue-500" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            Prep Together: Stay Safe, Stay Connected
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Earthquakes and tsunamis are real risks in our neighborhood. By preparing together, we can protect each other.
-          </p>
-          <Button size="lg" onClick={scrollToForm} className="text-lg px-8">
-            Sign Up for a Post-Disaster Check-In
-          </Button>
-        </div>
-      </section>
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{
+          backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
+        }} />
+        <div className="relative px-4 py-16 mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <div className="flex justify-center gap-4 mb-6">
+              <AlertCircle className="w-12 h-12 text-orange-600" />
+              <Waves className="w-12 h-12 text-blue-600" />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-800 via-slate-700 to-blue-600 bg-clip-text text-transparent mb-4 leading-tight">
+              Prep Together
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-800 font-medium mb-6">
+              Stay Safe, Stay Connected
+            </p>
+            
+            {/* Welcome Message */}
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+                <p className="text-lg text-slate-900 leading-relaxed">
+                  Earthquakes and tsunamis are real risks in our neighborhood. By preparing together, we can protect each other.
+                </p>
+              </div>
+            </div>
 
-      {/* Know Our Risks */}
-      <section className="py-16 px-4 bg-background">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Know Our Risks</h2>
+            <Button size="lg" onClick={scrollToForm} className="mt-8 bg-gradient-to-r from-blue-600 to-slate-600 hover:from-blue-700 hover:to-slate-700 text-white font-medium rounded-xl text-lg px-8">
+              Sign Up for a Post-Disaster Check-In
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="px-4 pb-16 mx-auto max-w-6xl space-y-12">
+        
+        {/* Know Our Risks */}
+        <section>
+          <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-800 via-slate-700 to-blue-600 bg-clip-text text-transparent mb-8 leading-tight">
+            Know Our Risks
+          </h2>
           
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {/* Earthquake Risk */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <AlertCircle className="w-6 h-6 text-orange-500" />
-                  <CardTitle>Earthquake Risks</CardTitle>
+            <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-orange-600 to-red-600 text-white">
+                <div className="flex items-center gap-2">
+                  <AlertCircle className="w-6 h-6" />
+                  <CardTitle className="text-xl">Earthquake Risks</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
+              <CardContent className="p-6 space-y-4">
+                <p className="text-slate-700 leading-relaxed">
                   The Sunset sits on sandy soil that can act like quicksand in a quake. Experts say there's a 72% chance of a major earthquake (M6.7+) in the Bay Area by 2043.
                 </p>
-                <div className="bg-muted p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2 text-foreground">What you can do now:</h4>
-                  <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                <div className="bg-orange-50 rounded-xl p-4 border border-orange-200">
+                  <h4 className="font-semibold mb-2 text-orange-900">What you can do now:</h4>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-orange-800">
                     <li>Secure heavy furniture</li>
                     <li>Prepare a 72-hour emergency kit</li>
                     <li>Practice 'Drop, Cover, and Hold On'</li>
@@ -136,7 +155,7 @@ const PrepTogether = () => {
                   href="https://www.ready.gov/earthquakes" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-primary hover:underline"
+                  className="inline-flex items-center gap-1 text-orange-600 hover:text-orange-800 font-medium transition-colors"
                 >
                   Learn more at Ready.gov <ExternalLink className="w-4 h-4" />
                 </a>
@@ -144,20 +163,20 @@ const PrepTogether = () => {
             </Card>
 
             {/* Tsunami Risk */}
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <Waves className="w-6 h-6 text-blue-500" />
-                  <CardTitle>Tsunami Risks</CardTitle>
+            <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
+                <div className="flex items-center gap-2">
+                  <Waves className="w-6 h-6" />
+                  <CardTitle className="text-xl">Tsunami Risks</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
+              <CardContent className="p-6 space-y-4">
+                <p className="text-slate-700 leading-relaxed">
                   Outer Sunset is in a tsunami hazard zone. In a worst-case quake offshore, waves could reach 20–30 feet and flood up to 46th Avenue.
                 </p>
-                <div className="bg-muted p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2 text-foreground">What you can do now:</h4>
-                  <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                  <h4 className="font-semibold mb-2 text-blue-900">What you can do now:</h4>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
                     <li>Know evacuation routes uphill</li>
                     <li>If west of 46th Ave, be ready to evacuate</li>
                     <li>Store water and supplies</li>
@@ -168,139 +187,146 @@ const PrepTogether = () => {
                   href="https://www.conservation.ca.gov/cgs/tsunami" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-primary hover:underline"
+                  className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
                 >
                   CA Geological Survey tsunami map <ExternalLink className="w-4 h-4" />
                 </a>
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Neighbors Helping Neighbors */}
-      <section className="py-16 px-4 bg-muted/30">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Users className="w-8 h-8 text-primary" />
-            <h2 className="text-3xl font-bold text-foreground">Neighbors Helping Neighbors</h2>
-          </div>
-          
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Connection is Preparedness</CardTitle>
+        {/* Neighbors Helping Neighbors */}
+        <section>
+          <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-slate-600 to-blue-600 text-white">
+              <div className="flex items-center justify-center gap-2">
+                <Users className="w-6 h-6" />
+                <CardTitle className="text-2xl">Neighbors Helping Neighbors</CardTitle>
+              </div>
+              <CardDescription className="text-blue-100 text-center text-lg">
+                Connection is Preparedness
+              </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-muted-foreground">
+            <CardContent className="p-8 space-y-6">
+              <p className="text-slate-700 leading-relaxed text-lg">
                 Neighbors are the true first responders. Checking on each other saves lives. Imagine the day after a big quake: power is out, cell service is down. Who will knock on the door of the elderly couple nearby? Together, we can make sure no one is left isolated.
               </p>
               
-              <div className="bg-background p-4 rounded-lg">
-                <h4 className="font-semibold mb-3 text-foreground">Ways to connect:</h4>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>Exchange phone numbers or WeChat/WhatsApp info</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>Organize a block coffee chat or annual meet-up</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>Pair up in a buddy system</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>Connect with local NERT/CERT trainings</span>
-                  </li>
-                </ul>
+              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                <h4 className="font-semibold mb-4 text-slate-900 text-lg">Ways to connect:</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-slate-700">Exchange phone numbers or WeChat/WhatsApp info</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-slate-700">Organize a block coffee chat or annual meet-up</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-slate-700">Pair up in a buddy system</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-slate-700">Connect with local NERT/CERT trainings</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="bg-primary/10 border-l-4 border-primary p-4 rounded">
-                <p className="text-sm font-medium text-foreground">
-                  Want to volunteer to check on neighbors? <a href="/contact" className="underline hover:text-primary">Contact us</a>.
+              <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
+                <p className="text-sm font-medium text-slate-900">
+                  Want to volunteer to check on neighbors? <a href="/contact" className="text-blue-600 hover:text-blue-800 underline">Contact us</a>.
                 </p>
               </div>
             </CardContent>
           </Card>
-        </div>
-      </section>
+        </section>
 
-      {/* Check-In Form */}
-      <section id="check-in-form" className="py-16 px-4 bg-background">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4 text-foreground flex items-center justify-center gap-2">
-              Request a Post-Disaster Check-In
-              <span className="text-red-500">❤</span>
-            </h2>
-            <p className="text-muted-foreground">
-              Do you live alone, have limited mobility, or care for someone who might need extra help? Let your neighbors know. Fill out this form so Cozy Corner volunteers can check on you after an emergency. Your info will stay private.
-            </p>
-          </div>
+        {/* Check-In Form */}
+        <section id="check-in-form">
+          <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-red-600 to-pink-600 text-white">
+              <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
+                Request a Post-Disaster Check-In
+                <span>❤</span>
+              </CardTitle>
+              <CardDescription className="text-red-100 text-center">
+                Do you live alone, have limited mobility, or care for someone who might need extra help? Let your neighbors know.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-8">
+              <p className="text-slate-700 leading-relaxed mb-6 text-center">
+                Fill out this form so Cozy Corner volunteers can check on you after an emergency. Your info will stay private.
+              </p>
 
-          {submitted ? (
-            <Card className="bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800">
-              <CardContent className="pt-6">
-                <div className="text-center space-y-4">
-                  <CheckCircle2 className="w-16 h-16 text-green-600 dark:text-green-400 mx-auto" />
-                  <h3 className="text-2xl font-bold text-green-800 dark:text-green-200">
-                    Thank You!
-                  </h3>
-                  <p className="text-green-700 dark:text-green-300">
-                    We'll check on you if a disaster hits. Stay safe – and check on your neighbors too!
-                  </p>
-                  <Button onClick={() => setSubmitted(false)} variant="outline">
-                    Submit Another Request
-                  </Button>
+              {submitted ? (
+                <div className="bg-green-50 border-2 border-green-200 rounded-xl p-8">
+                  <div className="text-center space-y-4">
+                    <CheckCircle2 className="w-16 h-16 text-green-600 mx-auto" />
+                    <h3 className="text-2xl font-bold text-green-800">
+                      Thank You!
+                    </h3>
+                    <p className="text-green-700">
+                      We'll check on you if a disaster hits. Stay safe – and check on your neighbors too!
+                    </p>
+                    <Button 
+                      onClick={() => setSubmitted(false)} 
+                      variant="outline"
+                      className="border-green-300 text-green-700 hover:bg-green-50 rounded-xl"
+                    >
+                      Submit Another Request
+                    </Button>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
-          ) : (
-            <Card>
-              <CardContent className="pt-6">
+              ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Name / 姓名 (Optional)</Label>
+                    <Label htmlFor="name" className="text-slate-900">Name / 姓名 (Optional)</Label>
                     <Input
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Your name"
+                      className="border-slate-300 rounded-xl"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="address">Address / 地址 <span className="text-red-500">*</span></Label>
+                    <Label htmlFor="address" className="text-slate-900">
+                      Address / 地址 <span className="text-red-600">*</span>
+                    </Label>
                     <Input
                       id="address"
                       required
                       value={formData.address}
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                       placeholder="Street address"
+                      className="border-slate-300 rounded-xl"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="contact">Preferred Contact / 聯絡方式 (Optional)</Label>
+                    <Label htmlFor="contact" className="text-slate-900">Preferred Contact / 聯絡方式 (Optional)</Label>
                     <Input
                       id="contact"
                       value={formData.contact_info}
                       onChange={(e) => setFormData({ ...formData, contact_info: e.target.value })}
                       placeholder="Phone, email, WeChat, etc."
+                      className="border-slate-300 rounded-xl"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="vulnerable_count">
-                      Number of people needing check-ins / 家中需要特別照顧的人數 <span className="text-red-500">*</span>
+                    <Label htmlFor="vulnerable_count" className="text-slate-900">
+                      Number of people needing check-ins / 家中需要特別照顧的人數 <span className="text-red-600">*</span>
                     </Label>
                     <Select 
                       value={formData.vulnerable_count}
                       onValueChange={(value) => setFormData({ ...formData, vulnerable_count: value })}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="border-slate-300 rounded-xl">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -314,23 +340,24 @@ const PrepTogether = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="specific_needs">Any specific needs? (Optional)</Label>
+                    <Label htmlFor="specific_needs" className="text-slate-900">Any specific needs? (Optional)</Label>
                     <Textarea
                       id="specific_needs"
                       value={formData.specific_needs}
                       onChange={(e) => setFormData({ ...formData, specific_needs: e.target.value })}
                       placeholder="Wheelchair access, medical devices, language support, etc."
                       rows={3}
+                      className="border-slate-300 rounded-xl"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="language">Language Preference</Label>
+                    <Label htmlFor="language" className="text-slate-900">Language Preference</Label>
                     <Select 
                       value={formData.language_preference}
                       onValueChange={(value) => setFormData({ ...formData, language_preference: value })}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="border-slate-300 rounded-xl">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -341,84 +368,92 @@ const PrepTogether = () => {
                     </Select>
                   </div>
 
-                  <div className="bg-muted p-4 rounded-lg text-sm text-muted-foreground">
+                  <div className="bg-slate-100 border border-slate-200 rounded-xl p-4 text-sm text-slate-700">
                     🔒 Your information will never be public. Only Cozy Corner volunteers will use it to check on you.
                   </div>
 
-                  <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-medium rounded-xl" 
+                    size="lg" 
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? "Signing Up..." : "Sign Up / 提交表格"}
                   </Button>
                 </form>
-              </CardContent>
-            </Card>
-          )}
+              )}
 
-          <p className="text-sm text-center text-muted-foreground mt-6">
-            Want to update or remove your info? <a href="/contact" className="text-primary hover:underline">Contact us</a>.
-          </p>
-        </div>
-      </section>
+              <p className="text-sm text-center text-slate-600 mt-6">
+                Want to update or remove your info? <a href="/contact" className="text-blue-600 hover:text-blue-800 underline">Contact us</a>.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
 
-      {/* Resources */}
-      <section className="py-16 px-4 bg-muted/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Resources & Links</h2>
-          
-          <div className="grid md:grid-cols-2 gap-4">
-            <a 
-              href="https://alertsf.org" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block p-4 bg-background hover:bg-accent rounded-lg border transition-colors"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-medium text-foreground">AlertSF Sign-Up</span>
-                <ExternalLink className="w-4 h-4 text-muted-foreground" />
+        {/* Resources */}
+        <section>
+          <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-slate-600 to-blue-600 text-white">
+              <CardTitle className="text-2xl text-center">Resources & Links</CardTitle>
+            </CardHeader>
+            <CardContent className="p-8">
+              <div className="grid md:grid-cols-2 gap-4">
+                <a 
+                  href="https://alertsf.org" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-slate-900">AlertSF Sign-Up</span>
+                    <ExternalLink className="w-4 h-4 text-slate-600" />
+                  </div>
+                </a>
+
+                <a 
+                  href="https://www.ready.gov/earthquakes" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-slate-900">Ready.gov Earthquake Guide</span>
+                    <ExternalLink className="w-4 h-4 text-slate-600" />
+                  </div>
+                </a>
+
+                <a 
+                  href="https://www.ready.gov/tsunamis" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-slate-900">Ready.gov Tsunami Guide</span>
+                    <ExternalLink className="w-4 h-4 text-slate-600" />
+                  </div>
+                </a>
+
+                <a 
+                  href="https://www.conservation.ca.gov/cgs/tsunami" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-slate-900">CA Tsunami Hazard Zones</span>
+                    <ExternalLink className="w-4 h-4 text-slate-600" />
+                  </div>
+                </a>
               </div>
-            </a>
 
-            <a 
-              href="https://www.ready.gov/earthquakes" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block p-4 bg-background hover:bg-accent rounded-lg border transition-colors"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-medium text-foreground">Ready.gov Earthquake Guide</span>
-                <ExternalLink className="w-4 h-4 text-muted-foreground" />
-              </div>
-            </a>
-
-            <a 
-              href="https://www.ready.gov/tsunamis" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block p-4 bg-background hover:bg-accent rounded-lg border transition-colors"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-medium text-foreground">Ready.gov Tsunami Guide</span>
-                <ExternalLink className="w-4 h-4 text-muted-foreground" />
-              </div>
-            </a>
-
-            <a 
-              href="https://www.conservation.ca.gov/cgs/tsunami" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block p-4 bg-background hover:bg-accent rounded-lg border transition-colors"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-medium text-foreground">CA Tsunami Hazard Zones</span>
-                <ExternalLink className="w-4 h-4 text-muted-foreground" />
-              </div>
-            </a>
-          </div>
-
-          <p className="text-sm text-center text-muted-foreground mt-8">
-            Information sources: FEMA, USGS, SF Department of Emergency Management, California Geological Survey
-          </p>
-        </div>
-      </section>
+              <p className="text-sm text-center text-slate-600 mt-8">
+                Information sources: FEMA, USGS, SF Department of Emergency Management, California Geological Survey
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+      </div>
     </div>
   );
 };
