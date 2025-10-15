@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MainNavigation } from "@/components/MainNavigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,9 +12,8 @@ import { AlertCircle, Waves, Home, Users, ExternalLink, CheckCircle2 } from "luc
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 const PrepTogether = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -93,23 +93,23 @@ const PrepTogether = () => {
           <div className="text-center mb-12">
             
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-800 via-slate-700 to-blue-600 bg-clip-text text-transparent mb-4 leading-tight">
-              Prep Together
+              {t('prep.title')}
             </h1>
             <p className="text-xl md:text-2xl text-slate-800 font-medium mb-6">
-              Stay Safe, Stay Connected
+              {t('prep.subtitle')}
             </p>
             
             {/* Welcome Message */}
             <div className="max-w-4xl mx-auto">
               <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
                 <p className="text-lg text-slate-900 leading-relaxed">
-                  Earthquakes and tsunamis are real risks in our neighborhood. By preparing together, we can protect each other.
+                  {t('prep.welcome')}
                 </p>
               </div>
             </div>
 
             <Button size="lg" onClick={scrollToForm} className="mt-8 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-medium rounded-xl text-base md:text-lg px-4 md:px-8">
-              Sign Up for a Post-Disaster Check-In ❤️
+              {t('prep.signup.button')}
             </Button>
           </div>
         </div>
@@ -121,7 +121,7 @@ const PrepTogether = () => {
         {/* Know Our Risks */}
         <section className="pt-12">
           <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-blue-800 via-slate-700 to-blue-600 bg-clip-text text-transparent mb-10 leading-tight">
-            Know Our Risks
+            {t('prep.risks.title')}
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -130,15 +130,15 @@ const PrepTogether = () => {
               <CardHeader className="bg-white/60">
                 <div className="flex items-center gap-2">
                   <AlertCircle className="w-6 h-6 text-orange-600" />
-                  <CardTitle className="text-xl text-slate-900">Earthquake Risks</CardTitle>
+                  <CardTitle className="text-xl text-slate-900">{t('prep.earthquake.title')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
                 <p className="text-slate-700 leading-relaxed">
-                  The Sunset sits on sandy soil that can act like quicksand in a quake. Experts say there's a 72% chance of a major earthquake (M6.7+) in the Bay Area by 2043.
+                  {t('prep.earthquake.description')}
                 </p>
                 <div className="bg-orange-50 rounded-xl p-4 border border-orange-200">
-                  <h4 className="font-semibold mb-2 text-orange-900">What you can do now:</h4>
+                  <h4 className="font-semibold mb-2 text-orange-900">{t('prep.earthquake.action')}</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm text-orange-800">
                     <li>Secure heavy furniture</li>
                     <li>Prepare a 72-hour emergency kit</li>
@@ -157,15 +157,15 @@ const PrepTogether = () => {
               <CardHeader className="bg-white/60">
                 <div className="flex items-center gap-2">
                   <Waves className="w-6 h-6 text-blue-600" />
-                  <CardTitle className="text-xl text-slate-900">Tsunami Risks</CardTitle>
+                  <CardTitle className="text-xl text-slate-900">{t('prep.tsunami.title')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
                 <p className="text-slate-700 leading-relaxed">
-                  Outer Sunset is in a tsunami hazard zone. In a worst-case quake offshore, waves could reach 20–30 feet and flood up to 46th Avenue.
+                  {t('prep.tsunami.description')}
                 </p>
                 <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
-                  <h4 className="font-semibold mb-2 text-blue-900">What you can do now:</h4>
+                  <h4 className="font-semibold mb-2 text-blue-900">{t('prep.tsunami.action')}</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm text-blue-800">
                     <li>Know evacuation routes uphill</li>
                     <li>If west of 46th Ave, be ready to evacuate</li>
@@ -187,17 +187,17 @@ const PrepTogether = () => {
             <CardHeader className="bg-gradient-to-r from-slate-600 to-blue-600 text-white">
               <div className="flex items-center justify-center gap-2">
                 <Users className="w-6 h-6" />
-                <CardTitle className="text-2xl">Neighbors Helping Neighbors</CardTitle>
+                <CardTitle className="text-2xl">{t('prep.neighbors.title')}</CardTitle>
               </div>
               <CardDescription className="text-blue-100 text-center text-lg">
-                Connection is Preparedness
+                {t('prep.neighbors.subtitle')}
               </CardDescription>
             </CardHeader>
             <CardContent className="p-8 space-y-6">
-              <p className="text-slate-700 leading-relaxed text-lg">Neighbors are the true first responders. Checking on each other saves lives. Together, we can make sure no one is left isolated.</p>
+              <p className="text-slate-700 leading-relaxed text-lg">{t('prep.neighbors.description')}</p>
               
               <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
-                <h4 className="font-semibold mb-4 text-slate-900 text-lg">Ways to connect:</h4>
+                <h4 className="font-semibold mb-4 text-slate-900 text-lg">{t('prep.neighbors.connect')}</h4>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
@@ -232,29 +232,29 @@ const PrepTogether = () => {
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-red-600 to-pink-600 text-white">
               <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
-                Request a Post-Disaster Check-In
+                {t('prep.form.title')}
                 <span>❤</span>
               </CardTitle>
               <CardDescription className="text-red-100 text-center">
-                Do you live alone, have limited mobility, or care for someone who might need extra help? Let your neighbors know.
+                {t('prep.form.subtitle')}
               </CardDescription>
             </CardHeader>
             <CardContent className="p-8">
               <p className="text-slate-700 leading-relaxed mb-6 text-center">
-                Fill out this form so Cozy Corner volunteers can check on you after an emergency. Your info will stay private.
+                {t('prep.form.description')}
               </p>
 
               {submitted ? <div className="bg-green-50 border-2 border-green-200 rounded-xl p-8">
                   <div className="text-center space-y-4">
                     <CheckCircle2 className="w-16 h-16 text-green-600 mx-auto" />
                     <h3 className="text-2xl font-bold text-green-800">
-                      Thank You!
+                      {t('prep.form.success.title')}
                     </h3>
                     <p className="text-green-700">
-                      We'll check on you if a disaster hits. Stay safe – and check on your neighbors too!
+                      {t('prep.form.success.message')}
                     </p>
                     <Button onClick={() => setSubmitted(false)} variant="outline" className="border-green-300 text-green-700 hover:bg-green-50 rounded-xl">
-                      Submit Another Request
+                      {t('prep.form.success.another')}
                     </Button>
                   </div>
                  </div> : <form onSubmit={handleSubmit} className="space-y-6">
@@ -270,90 +270,93 @@ const PrepTogether = () => {
                     />
                     <div className="space-y-1">
                       <Label htmlFor="on-behalf" className="text-slate-900 font-medium cursor-pointer">
-                        I'm completing this form on behalf of someone else
+                        {t('prep.form.onbehalf')}
                       </Label>
                       <p className="text-sm text-slate-600">
-                        (who has given consent)
+                        {t('prep.form.onbehalf.consent')}
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-slate-900">Name / 姓名 (Optional)</Label>
-                    <Input id="name" value={formData.name} onChange={e => setFormData({
-                  ...formData,
-                  name: e.target.value
-                })} placeholder="Your name" className="border-slate-300 rounded-xl" />
+                    <Label htmlFor="name" className="text-slate-900">
+                      {t('prep.form.name')} {t('prep.form.name.optional')}
+                    </Label>
+                    <Input 
+                      id="name" 
+                      value={formData.name} 
+                      onChange={e => setFormData({...formData, name: e.target.value})} 
+                      className="border-slate-300 rounded-xl" 
+                    />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="address" className="text-slate-900">
-                      Address / 地址 <span className="text-red-600">*</span>
+                      {t('prep.form.address')} <span className="text-red-600">*</span>
                     </Label>
-                    <Input id="address" required value={formData.address} onChange={e => setFormData({
-                  ...formData,
-                  address: e.target.value
-                })} placeholder="Street address" className="border-slate-300 rounded-xl" />
+                    <Input 
+                      id="address" 
+                      required 
+                      value={formData.address} 
+                      onChange={e => setFormData({...formData, address: e.target.value})} 
+                      className="border-slate-300 rounded-xl" 
+                    />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="contact" className="text-slate-900">Preferred Contact / 聯絡方式 (Optional)</Label>
-                    <Input id="contact" value={formData.contact_info} onChange={e => setFormData({
-                  ...formData,
-                  contact_info: e.target.value
-                })} placeholder="Phone, email, WeChat, etc." className="border-slate-300 rounded-xl" />
+                    <Label htmlFor="contact" className="text-slate-900">
+                      {t('prep.form.contact')} {t('prep.form.contact.optional')}
+                    </Label>
+                    <Input 
+                      id="contact" 
+                      value={formData.contact_info} 
+                      onChange={e => setFormData({...formData, contact_info: e.target.value})} 
+                      placeholder={t('prep.form.contact.placeholder')}
+                      className="border-slate-300 rounded-xl" 
+                    />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="vulnerable_count" className="text-slate-900">
-                      Number of people needing check-ins / 家中需要特別照顧的人數 <span className="text-red-600">*</span>
+                      {t('prep.form.vulnerable_count')} <span className="text-red-600">*</span>
                     </Label>
-                    <Select value={formData.vulnerable_count} onValueChange={value => setFormData({
-                  ...formData,
-                  vulnerable_count: value
-                })}>
+                    <Select 
+                      value={formData.vulnerable_count} 
+                      onValueChange={value => setFormData({...formData, vulnerable_count: value})}
+                    >
                       <SelectTrigger className="border-slate-300 rounded-xl">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => <SelectItem key={num} value={num.toString()}>
-                            {num} {num === 1 ? "person" : "people"}
-                          </SelectItem>)}
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                          <SelectItem key={num} value={num.toString()}>
+                            {num} {num === 1 ? t('prep.form.person') : t('prep.form.people')}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="specific_needs" className="text-slate-900">Any specific needs? (Optional)</Label>
-                    <Textarea id="specific_needs" value={formData.specific_needs} onChange={e => setFormData({
-                  ...formData,
-                  specific_needs: e.target.value
-                })} placeholder="Wheelchair access, medical devices, language support, etc." rows={3} className="border-slate-300 rounded-xl" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="language" className="text-slate-900">Language Preference</Label>
-                    <Select value={formData.language_preference} onValueChange={value => setFormData({
-                  ...formData,
-                  language_preference: value
-                })}>
-                      <SelectTrigger className="border-slate-300 rounded-xl">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="english">English</SelectItem>
-                        <SelectItem value="mandarin">Mandarin / 普通话</SelectItem>
-                        <SelectItem value="cantonese">Cantonese / 粵語</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Label htmlFor="specific_needs" className="text-slate-900">
+                      {t('prep.form.specific_needs')} {t('prep.form.specific_needs.optional')}
+                    </Label>
+                    <Textarea 
+                      id="specific_needs" 
+                      value={formData.specific_needs} 
+                      onChange={e => setFormData({...formData, specific_needs: e.target.value})} 
+                      placeholder={t('prep.form.specific_needs.placeholder')}
+                      rows={3} 
+                      className="border-slate-300 rounded-xl" 
+                    />
                   </div>
 
                   <div className="bg-slate-100 border border-slate-200 rounded-xl p-4 text-sm text-slate-700">
-                    🔒 Your information will never be public. Only Cozy Corner volunteers will use it to check on you.
+                    {t('prep.form.privacy')}
                   </div>
 
                   <Button type="submit" className="w-full bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-medium rounded-xl" size="lg" disabled={isSubmitting}>
-                    {isSubmitting ? "Signing Up..." : "Sign Up / 提交表格"}
+                    {isSubmitting ? t('prep.form.submitting') : t('prep.form.submit')}
                   </Button>
                 </form>}
 

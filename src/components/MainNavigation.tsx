@@ -1,9 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Handshake, Ticket, Mail } from "lucide-react";
+import { Home, Handshake, Ticket, Mail, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const MainNavigation = () => {
   const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
   
   const isActive = (path: string) => {
     if (path === "/" && location.pathname === "/") return true;
@@ -11,13 +14,13 @@ export const MainNavigation = () => {
     return false;
   };
 
-  const homeItem = { path: "/", label: "Home", icon: Home };
+  const homeItem = { path: "/", label: t('nav.home'), icon: Home };
   
   const rightNavItems = [
-    { path: "/prep-together", label: "Prep", icon: Handshake },
-    { path: "/block-party-2025", label: "Party", icon: "🎉" as const },
-    { path: "/coupons", label: "Coupons", icon: Ticket },
-    { path: "/contact", label: "Contact", icon: Mail },
+    { path: "/prep-together", label: t('nav.prep'), icon: Handshake },
+    { path: "/block-party-2025", label: t('nav.party'), icon: "🎉" as const },
+    { path: "/coupons", label: t('nav.coupons'), icon: Ticket },
+    { path: "/contact", label: t('nav.contact'), icon: Mail },
   ];
 
   return (
@@ -43,7 +46,21 @@ export const MainNavigation = () => {
           </Link>
 
           {/* Right navigation items */}
-          <div className="flex items-center gap-1 md:gap-2">
+          <div className="flex items-center gap-1 md:gap-3">
+            {/* Language selector */}
+            <Select value={language} onValueChange={(value) => setLanguage(value as 'en' | 'zh-CN' | 'zh-HK')}>
+              <SelectTrigger className="w-[50px] md:w-[140px] h-9 border-amber-200 bg-white/80 hover:bg-amber-50 rounded-xl">
+                <div className="flex items-center gap-1.5">
+                  <Languages className="h-4 w-4 text-amber-700" />
+                  <SelectValue className="hidden md:inline" />
+                </div>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="zh-CN">简体中文</SelectItem>
+                <SelectItem value="zh-HK">繁體中文</SelectItem>
+              </SelectContent>
+            </Select>
             {rightNavItems.map((item) => {
               const isEmoji = typeof item.icon === 'string';
               const Icon = isEmoji ? null : item.icon;
