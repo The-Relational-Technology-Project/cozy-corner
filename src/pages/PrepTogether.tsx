@@ -104,7 +104,7 @@ const PrepTogether = () => {
               </div>
             </div>
 
-            <Button size="lg" onClick={scrollToForm} className="mt-8 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-medium rounded-xl text-lg px-8">
+            <Button size="lg" onClick={scrollToForm} className="mt-8 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-medium rounded-xl text-base md:text-lg px-4 md:px-8">
               Sign Up for a Post-Disaster Check-In ❤️
             </Button>
           </div>
