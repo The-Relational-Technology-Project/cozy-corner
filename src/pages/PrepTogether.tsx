@@ -9,9 +9,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { AlertCircle, Waves, Home, Users, ExternalLink, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-
 const PrepTogether = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -20,41 +21,35 @@ const PrepTogether = () => {
     contact_info: "",
     vulnerable_count: "1",
     specific_needs: "",
-    language_preference: "english",
+    language_preference: "english"
   });
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!formData.address || !formData.vulnerable_count) {
       toast({
         title: "Required fields missing",
         description: "Please fill in your address and number of people needing check-ins.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     setIsSubmitting(true);
-
     try {
-      const { error } = await supabase
-        .from("disaster_check_ins")
-        .insert([{
-          name: formData.name || null,
-          address: formData.address,
-          contact_info: formData.contact_info || null,
-          vulnerable_count: parseInt(formData.vulnerable_count),
-          specific_needs: formData.specific_needs || null,
-          language_preference: formData.language_preference,
-        }]);
-
+      const {
+        error
+      } = await supabase.from("disaster_check_ins").insert([{
+        name: formData.name || null,
+        address: formData.address,
+        contact_info: formData.contact_info || null,
+        vulnerable_count: parseInt(formData.vulnerable_count),
+        specific_needs: formData.specific_needs || null,
+        language_preference: formData.language_preference
+      }]);
       if (error) throw error;
-
       setSubmitted(true);
       toast({
         title: "Successfully signed up!",
-        description: "Thank you! We'll check on you if a disaster hits. Stay safe – and check on your neighbors too!",
+        description: "Thank you! We'll check on you if a disaster hits. Stay safe – and check on your neighbors too!"
       });
 
       // Reset form
@@ -64,33 +59,32 @@ const PrepTogether = () => {
         contact_info: "",
         vulnerable_count: "1",
         specific_needs: "",
-        language_preference: "english",
+        language_preference: "english"
       });
     } catch (error) {
       console.error("Error submitting check-in request:", error);
       toast({
         title: "Submission failed",
         description: "There was an error signing up. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   const scrollToForm = () => {
-    document.getElementById("check-in-form")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("check-in-form")?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
+  return <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-orange-100">
       <MainNavigation />
 
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-cover bg-center" style={{
-          backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
-        }} />
+        backgroundImage: `url('/lovable-uploads/0adb7118-2975-4472-b850-5d0265be4e68.png')`
+      }} />
         <div className="relative px-4 py-16 mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <div className="flex justify-center gap-4 mb-6">
@@ -151,12 +145,7 @@ const PrepTogether = () => {
                     <li>Sign up for AlertSF</li>
                   </ul>
                 </div>
-                <a 
-                  href="https://www.ready.gov/earthquakes" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-orange-600 hover:text-orange-800 font-medium transition-colors"
-                >
+                <a href="https://www.ready.gov/earthquakes" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-orange-600 hover:text-orange-800 font-medium transition-colors">
                   Learn more at Ready.gov <ExternalLink className="w-4 h-4" />
                 </a>
               </CardContent>
@@ -183,12 +172,7 @@ const PrepTogether = () => {
                     <li>Talk with family about plans</li>
                   </ul>
                 </div>
-                <a 
-                  href="https://www.conservation.ca.gov/cgs/tsunami" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
-                >
+                <a href="https://www.conservation.ca.gov/cgs/tsunami" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors">
                   CA Geological Survey tsunami map <ExternalLink className="w-4 h-4" />
                 </a>
               </CardContent>
@@ -209,9 +193,7 @@ const PrepTogether = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="p-8 space-y-6">
-              <p className="text-slate-700 leading-relaxed text-lg">
-                Neighbors are the true first responders. Checking on each other saves lives. Imagine the day after a big quake: power is out, cell service is down. Who will knock on the door of the elderly couple nearby? Together, we can make sure no one is left isolated.
-              </p>
+              <p className="text-slate-700 leading-relaxed text-lg">Neighbors are the true first responders. Checking on each other saves lives. Together, we can make sure no one is left isolated.</p>
               
               <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
                 <h4 className="font-semibold mb-4 text-slate-900 text-lg">Ways to connect:</h4>
@@ -261,8 +243,7 @@ const PrepTogether = () => {
                 Fill out this form so Cozy Corner volunteers can check on you after an emergency. Your info will stay private.
               </p>
 
-              {submitted ? (
-                <div className="bg-green-50 border-2 border-green-200 rounded-xl p-8">
+              {submitted ? <div className="bg-green-50 border-2 border-green-200 rounded-xl p-8">
                   <div className="text-center space-y-4">
                     <CheckCircle2 className="w-16 h-16 text-green-600 mx-auto" />
                     <h3 className="text-2xl font-bold text-green-800">
@@ -271,92 +252,70 @@ const PrepTogether = () => {
                     <p className="text-green-700">
                       We'll check on you if a disaster hits. Stay safe – and check on your neighbors too!
                     </p>
-                    <Button 
-                      onClick={() => setSubmitted(false)} 
-                      variant="outline"
-                      className="border-green-300 text-green-700 hover:bg-green-50 rounded-xl"
-                    >
+                    <Button onClick={() => setSubmitted(false)} variant="outline" className="border-green-300 text-green-700 hover:bg-green-50 rounded-xl">
                       Submit Another Request
                     </Button>
                   </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                </div> : <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-slate-900">Name / 姓名 (Optional)</Label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Your name"
-                      className="border-slate-300 rounded-xl"
-                    />
+                    <Input id="name" value={formData.name} onChange={e => setFormData({
+                  ...formData,
+                  name: e.target.value
+                })} placeholder="Your name" className="border-slate-300 rounded-xl" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="address" className="text-slate-900">
                       Address / 地址 <span className="text-red-600">*</span>
                     </Label>
-                    <Input
-                      id="address"
-                      required
-                      value={formData.address}
-                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                      placeholder="Street address"
-                      className="border-slate-300 rounded-xl"
-                    />
+                    <Input id="address" required value={formData.address} onChange={e => setFormData({
+                  ...formData,
+                  address: e.target.value
+                })} placeholder="Street address" className="border-slate-300 rounded-xl" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="contact" className="text-slate-900">Preferred Contact / 聯絡方式 (Optional)</Label>
-                    <Input
-                      id="contact"
-                      value={formData.contact_info}
-                      onChange={(e) => setFormData({ ...formData, contact_info: e.target.value })}
-                      placeholder="Phone, email, WeChat, etc."
-                      className="border-slate-300 rounded-xl"
-                    />
+                    <Input id="contact" value={formData.contact_info} onChange={e => setFormData({
+                  ...formData,
+                  contact_info: e.target.value
+                })} placeholder="Phone, email, WeChat, etc." className="border-slate-300 rounded-xl" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="vulnerable_count" className="text-slate-900">
                       Number of people needing check-ins / 家中需要特別照顧的人數 <span className="text-red-600">*</span>
                     </Label>
-                    <Select 
-                      value={formData.vulnerable_count}
-                      onValueChange={(value) => setFormData({ ...formData, vulnerable_count: value })}
-                    >
+                    <Select value={formData.vulnerable_count} onValueChange={value => setFormData({
+                  ...formData,
+                  vulnerable_count: value
+                })}>
                       <SelectTrigger className="border-slate-300 rounded-xl">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
-                          <SelectItem key={num} value={num.toString()}>
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => <SelectItem key={num} value={num.toString()}>
                             {num} {num === 1 ? "person" : "people"}
-                          </SelectItem>
-                        ))}
+                          </SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="specific_needs" className="text-slate-900">Any specific needs? (Optional)</Label>
-                    <Textarea
-                      id="specific_needs"
-                      value={formData.specific_needs}
-                      onChange={(e) => setFormData({ ...formData, specific_needs: e.target.value })}
-                      placeholder="Wheelchair access, medical devices, language support, etc."
-                      rows={3}
-                      className="border-slate-300 rounded-xl"
-                    />
+                    <Textarea id="specific_needs" value={formData.specific_needs} onChange={e => setFormData({
+                  ...formData,
+                  specific_needs: e.target.value
+                })} placeholder="Wheelchair access, medical devices, language support, etc." rows={3} className="border-slate-300 rounded-xl" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="language" className="text-slate-900">Language Preference</Label>
-                    <Select 
-                      value={formData.language_preference}
-                      onValueChange={(value) => setFormData({ ...formData, language_preference: value })}
-                    >
+                    <Select value={formData.language_preference} onValueChange={value => setFormData({
+                  ...formData,
+                  language_preference: value
+                })}>
                       <SelectTrigger className="border-slate-300 rounded-xl">
                         <SelectValue />
                       </SelectTrigger>
@@ -372,16 +331,10 @@ const PrepTogether = () => {
                     🔒 Your information will never be public. Only Cozy Corner volunteers will use it to check on you.
                   </div>
 
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-medium rounded-xl" 
-                    size="lg" 
-                    disabled={isSubmitting}
-                  >
+                  <Button type="submit" className="w-full bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-medium rounded-xl" size="lg" disabled={isSubmitting}>
                     {isSubmitting ? "Signing Up..." : "Sign Up / 提交表格"}
                   </Button>
-                </form>
-              )}
+                </form>}
 
               <p className="text-sm text-center text-slate-600 mt-6">
                 Want to update or remove your info? <a href="/contact" className="text-blue-600 hover:text-blue-800 underline">Contact us</a>.
@@ -398,48 +351,28 @@ const PrepTogether = () => {
             </CardHeader>
             <CardContent className="p-8">
               <div className="grid md:grid-cols-2 gap-4">
-                <a 
-                  href="https://alertsf.org" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
-                >
+                <a href="https://alertsf.org" target="_blank" rel="noopener noreferrer" className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors">
                   <div className="flex items-center justify-between">
                     <span className="font-medium text-slate-900">AlertSF Sign-Up</span>
                     <ExternalLink className="w-4 h-4 text-slate-600" />
                   </div>
                 </a>
 
-                <a 
-                  href="https://www.ready.gov/earthquakes" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
-                >
+                <a href="https://www.ready.gov/earthquakes" target="_blank" rel="noopener noreferrer" className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors">
                   <div className="flex items-center justify-between">
                     <span className="font-medium text-slate-900">Ready.gov Earthquake Guide</span>
                     <ExternalLink className="w-4 h-4 text-slate-600" />
                   </div>
                 </a>
 
-                <a 
-                  href="https://www.ready.gov/tsunamis" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
-                >
+                <a href="https://www.ready.gov/tsunamis" target="_blank" rel="noopener noreferrer" className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors">
                   <div className="flex items-center justify-between">
                     <span className="font-medium text-slate-900">Ready.gov Tsunami Guide</span>
                     <ExternalLink className="w-4 h-4 text-slate-600" />
                   </div>
                 </a>
 
-                <a 
-                  href="https://www.conservation.ca.gov/cgs/tsunami" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors"
-                >
+                <a href="https://www.conservation.ca.gov/cgs/tsunami" target="_blank" rel="noopener noreferrer" className="block p-4 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200 transition-colors">
                   <div className="flex items-center justify-between">
                     <span className="font-medium text-slate-900">CA Tsunami Hazard Zones</span>
                     <ExternalLink className="w-4 h-4 text-slate-600" />
@@ -454,8 +387,6 @@ const PrepTogether = () => {
           </Card>
         </section>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default PrepTogether;
