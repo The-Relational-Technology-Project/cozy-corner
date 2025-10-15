@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Users, Ticket, Mail, Shield } from "lucide-react";
+import { Home, Handshake, Ticket, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const MainNavigation = () => {
@@ -14,9 +14,9 @@ export const MainNavigation = () => {
   const homeItem = { path: "/", label: "Home", icon: Home };
   
   const rightNavItems = [
-    { path: "/block-party-2025", label: "Block Party", icon: "🎉" as const },
+    { path: "/prep-together", label: "Prep", icon: Handshake },
+    { path: "/block-party-2025", label: "Party", icon: "🎉" as const },
     { path: "/coupons", label: "Coupons", icon: Ticket },
-    { path: "/prep-together", label: "Prep Together", icon: Shield },
     { path: "/contact", label: "Contact", icon: Mail },
   ];
 
