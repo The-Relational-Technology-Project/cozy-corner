@@ -75,6 +75,18 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
         if (insertError) throw insertError;
       }
 
+      // Send email notification
+      await supabase.functions.invoke('send-form-notification', {
+        body: {
+          formType: 'street_cleaning',
+          formData: {
+            email,
+            east_side: eastSide,
+            west_side: westSide
+          }
+        }
+      });
+
       const sides = [];
       if (eastSide) sides.push("East Side (City Side)");
       if (westSide) sides.push("West Side (Beach Side)");

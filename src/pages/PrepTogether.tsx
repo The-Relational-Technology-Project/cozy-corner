@@ -49,6 +49,15 @@ const PrepTogether = () => {
         completing_on_behalf: formData.completing_on_behalf
       }]);
       if (error) throw error;
+
+      // Send email notification
+      await supabase.functions.invoke('send-form-notification', {
+        body: {
+          formType: 'disaster_checkin',
+          formData: formData
+        }
+      });
+
       setSubmitted(true);
       toast({
         title: "Successfully signed up!",

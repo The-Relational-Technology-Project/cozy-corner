@@ -69,6 +69,21 @@ export const CouponsContributeTab = () => {
 
       if (error) throw error;
 
+      // Send email notification
+      await supabase.functions.invoke('send-form-notification', {
+        body: {
+          formType: 'coupon_contribute',
+          formData: {
+            title: formData.title,
+            description: formData.description,
+            icon: formData.icon,
+            availability: formData.availability,
+            contributor_name: formData.contributorName,
+            contributor_email: formData.contributorEmail
+          }
+        }
+      });
+
       toast({
         title: "Coupon Added!",
         description: "Your coupon has been added and will appear in the Redeem tab.",

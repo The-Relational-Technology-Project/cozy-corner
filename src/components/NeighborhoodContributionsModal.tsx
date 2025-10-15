@@ -86,6 +86,23 @@ export const NeighborhoodContributionsModal = ({ open, onOpenChange }: Neighborh
 
       if (error) throw error;
 
+      // Send email notification
+      await supabase.functions.invoke('send-form-notification', {
+        body: {
+          formType: 'neighborhood_contribution',
+          formData: {
+            contribution_type: contributionType,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            suggested_idea: formData.suggestedIdea,
+            existing_idea: formData.existingIdea,
+            message: formData.message,
+            availability: formData.availability
+          }
+        }
+      });
+
       toast({
         title: contributionType === "suggestion" ? "Idea submitted! 💡" : "Volunteer interest recorded! ❤️",
         description: contributionType === "suggestion" 

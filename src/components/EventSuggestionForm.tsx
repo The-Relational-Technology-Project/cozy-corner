@@ -59,6 +59,14 @@ const EventSuggestionForm = ({ isOpen, onClose }: EventSuggestionFormProps) => {
 
       if (error) throw error;
 
+      // Send email notification
+      await supabase.functions.invoke('send-form-notification', {
+        body: {
+          formType: 'event_suggestion',
+          formData: formData
+        }
+      });
+
       toast({
         title: "Event suggestion submitted! 🎉",
         description: "Thank you for helping make our neighborhood more vibrant. We'll review your suggestion and get back to you!"

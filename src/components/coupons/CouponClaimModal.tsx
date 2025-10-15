@@ -53,6 +53,18 @@ export const CouponClaimModal = ({ coupon, open, onOpenChange, onSuccess }: Coup
 
       if (error) throw error;
 
+      // Send email notification
+      await supabase.functions.invoke('send-form-notification', {
+        body: {
+          formType: 'coupon_claim',
+          formData: {
+            coupon_title: coupon.title,
+            claimer_name: formData.claimerName,
+            claimer_email: formData.claimerEmail
+          }
+        }
+      });
+
       onSuccess();
     } catch (error) {
       console.error('Error claiming coupon:', error);

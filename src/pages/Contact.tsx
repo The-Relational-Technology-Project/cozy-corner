@@ -71,6 +71,19 @@ const Contact = () => {
         });
         return;
       }
+
+      // Send email notification
+      await supabase.functions.invoke('send-form-notification', {
+        body: {
+          formType: 'contact',
+          formData: {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message
+          }
+        }
+      });
       
       toast({
         title: "Message sent!",
