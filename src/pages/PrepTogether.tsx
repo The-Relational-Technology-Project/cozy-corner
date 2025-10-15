@@ -204,7 +204,7 @@ const PrepTogether = () => {
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700">Organize a block coffee chat or annual meet-up</span>
+                    <span className="text-slate-700">Join an upcoming planning conversation in Josh N's garage</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
