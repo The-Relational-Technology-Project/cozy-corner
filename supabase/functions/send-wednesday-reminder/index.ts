@@ -17,8 +17,8 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending Wednesday reminder email...");
 
     const emailResponse = await resend.emails.send({
-      from: "Josh Nesbit <joshuanesbit@gmail.com>",
-      reply_to: "joshuanesbit@gmail.com",
+      from: "Relational Tech Project <humans@relationaltechproject.org>",
+      reply_to: "josh@relationaltechproject.org",
       to: ["jeffnesbit@gmail.com"],
       subject: "Wednesday Reminder",
       html: `
