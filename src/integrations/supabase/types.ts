@@ -429,16 +429,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      assign_admin_role: {
-        Args: { user_email: string }
-        Returns: boolean
-      }
-      get_block_party_ideas_count: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
+      assign_admin_role: { Args: { user_email: string }; Returns: boolean }
+      get_block_party_ideas_count: { Args: never; Returns: number }
       get_block_party_ideas_for_admin: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           created_at: string
           email: string
@@ -449,7 +443,7 @@ export type Database = {
         }[]
       }
       get_coupon_claims_for_admin: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           admin_notes: string
           claimer_email: string
@@ -464,7 +458,7 @@ export type Database = {
         }[]
       }
       get_disaster_check_ins_for_admin: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           address: string
           contact_info: string
@@ -477,12 +471,9 @@ export type Database = {
           vulnerable_count: number
         }[]
       }
-      get_event_suggestion_count: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
+      get_event_suggestion_count: { Args: never; Returns: number }
       get_event_suggestions_for_admin: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           contact_info: string
           created_at: string
@@ -496,7 +487,7 @@ export type Database = {
         }[]
       }
       get_neighborhood_contributions_count: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           suggestions_count: number
           total_contributions: number
@@ -504,7 +495,7 @@ export type Database = {
         }[]
       }
       get_neighborhood_contributions_for_admin: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           availability: string
           contribution_type: string
@@ -520,7 +511,7 @@ export type Database = {
         }[]
       }
       get_public_coupons: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           availability: string
           contributor_name: string
@@ -534,7 +525,7 @@ export type Database = {
         }[]
       }
       get_signup_counts: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           role_category: string
           role_name: string
@@ -542,7 +533,7 @@ export type Database = {
         }[]
       }
       get_subscription_stats: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           both_sides_count: number
           east_side_count: number
@@ -557,10 +548,7 @@ export type Database = {
         }
         Returns: boolean
       }
-      subscription_exists: {
-        Args: { check_email: string }
-        Returns: boolean
-      }
+      subscription_exists: { Args: { check_email: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "user"
