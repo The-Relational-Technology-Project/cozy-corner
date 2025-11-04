@@ -16,13 +16,13 @@ const NewIndex = () => {
 
   const upcomingEvents = [
     {
-      id: 2,
-      name: "Halloween Hangout",
-      date: "Friday, October 31st",
-      time: "4:00 PM - 5:00 PM",
+      id: 3,
+      name: "Neighborly Lunch Outside",
+      date: "Friday, November 21st",
+      time: "12:00 PM",
       location: "In front of Josh N's place",
       contact: "Community",
-      description: "Hang out before trick-or-treating!",
+      description: "Bring your own lunch for a quick hangout!",
       highlighted: true
     }
   ];
