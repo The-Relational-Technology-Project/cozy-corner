@@ -30,7 +30,7 @@ const NewIndex = () => {
   const newIdeas = [
     {
       title: "Annual block party",
-      status: "in progress",
+      status: "accomplished!",
       emoji: "🎉",
       description: "Bringing neighbors together for fun and community"
     },
@@ -190,6 +190,8 @@ const NewIndex = () => {
                                 ? 'bg-green-100 text-green-700' 
                                 : idea.status === "we're live!"
                                 ? 'bg-emerald-100 text-emerald-700'
+                                : idea.status === 'accomplished!'
+                                ? 'bg-purple-100 text-purple-700'
                                 : 'bg-blue-100 text-blue-700'
                             }`}>
                               {idea.status}
