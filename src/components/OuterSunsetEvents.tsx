@@ -3,19 +3,28 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Calendar, ExternalLink, Clock, MapPin, Loader2 } from 'lucide-react';
 
-interface Event {
+interface ApiEvent {
   id: string;
-  title: string;
-  start_date: string;
-  start_time?: string;
-  location?: string;
-  venue_name?: string;
-  category?: string;
-  source_url?: string;
+  name: string;
+  start: string;
+  end?: string;
+  description?: string;
+  category?: string[];
+  location?: {
+    name?: string;
+    neighborhood?: string;
+  };
+  url?: string;
+}
+
+interface ApiResponse {
+  meta: Record<string, unknown>;
+  events: ApiEvent[];
+  count: number;
 }
 
 export const OuterSunsetEvents = () => {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<ApiEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -36,8 +45,8 @@ export const OuterSunsetEvents = () => {
         throw new Error('Failed to fetch events');
       }
       
-      const data = await response.json();
-      setEvents(data || []);
+      const data: ApiResponse = await response.json();
+      setEvents(data.events || []);
       setLoading(false);
     } catch (err) {
       console.error('Error fetching events:', err);
@@ -46,39 +55,37 @@ export const OuterSunsetEvents = () => {
     }
   };
 
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr + 'T00:00:00');
+  const formatDate = (isoString: string) => {
+    const date = new Date(isoString);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const eventDate = new Date(date);
+    eventDate.setHours(0, 0, 0, 0);
 
-    if (date.getTime() === today.getTime()) {
+    if (eventDate.getTime() === today.getTime()) {
       return 'Today';
-    } else if (date.getTime() === tomorrow.getTime()) {
+    } else if (eventDate.getTime() === tomorrow.getTime()) {
       return 'Tomorrow';
     } else {
       return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     }
   };
 
-  const formatTime = (timeStr?: string) => {
-    if (!timeStr) return null;
-    try {
-      const [hours, minutes] = timeStr.split(':');
-      const hour = parseInt(hours, 10);
-      const ampm = hour >= 12 ? 'PM' : 'AM';
-      const hour12 = hour % 12 || 12;
-      return `${hour12}:${minutes} ${ampm}`;
-    } catch {
-      return timeStr;
-    }
+  const formatTime = (isoString: string) => {
+    const date = new Date(isoString);
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
   };
 
-  const getCategoryEmoji = (category?: string) => {
+  const getCategoryEmoji = (categories?: string[]) => {
+    if (!categories || categories.length === 0) return '📅';
+    const category = categories[0].toLowerCase();
     const categoryMap: Record<string, string> = {
       'music': '🎵',
       'food': '🍽️',
+      'market': '🥬',
       'farmers': '🥬',
       'community': '🤝',
       'art': '🎨',
@@ -86,7 +93,7 @@ export const OuterSunsetEvents = () => {
       'kids': '👶',
       'nature': '🌿',
     };
-    return category ? categoryMap[category.toLowerCase()] || '📅' : '📅';
+    return categoryMap[category] || '📅';
   };
 
   return (
@@ -145,7 +152,7 @@ export const OuterSunsetEvents = () => {
               {events.map((event) => (
                 <a
                   key={event.id}
-                  href={event.source_url || 'https://outersunset.today'}
+                  href={event.url || 'https://outersunset.today'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block group"
@@ -155,24 +162,22 @@ export const OuterSunsetEvents = () => {
                       <span className="text-2xl flex-shrink-0">{getCategoryEmoji(event.category)}</span>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-semibold text-foreground group-hover:text-ocean transition-colors line-clamp-1">
-                          {event.title}
+                          {event.name}
                         </h3>
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1.5 text-sm text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <Calendar className="w-3.5 h-3.5" />
-                            {formatDate(event.start_date)}
+                            {formatDate(event.start)}
                           </span>
-                          {event.start_time && (
-                            <span className="flex items-center gap-1">
-                              <Clock className="w-3.5 h-3.5" />
-                              {formatTime(event.start_time)}
-                            </span>
-                          )}
-                          {(event.venue_name || event.location) && (
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5" />
+                            {formatTime(event.start)}
+                          </span>
+                          {event.location?.name && (
                             <span className="flex items-center gap-1">
                               <MapPin className="w-3.5 h-3.5" />
                               <span className="truncate max-w-[150px]">
-                                {event.venue_name || event.location}
+                                {event.location.name}
                               </span>
                             </span>
                           )}
