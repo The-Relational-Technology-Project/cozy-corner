@@ -58,7 +58,7 @@ export const CouponsRedeemTab = () => {
   if (loading) {
     return (
       <div className="text-center py-8">
-        <p className="text-cozy-cream-foreground">Loading coupons...</p>
+        <p className="text-muted-foreground">Loading coupons...</p>
       </div>
     );
   }
@@ -66,7 +66,7 @@ export const CouponsRedeemTab = () => {
   return (
     <>
       <div className="mb-6">
-        <p className="text-cozy-cream-foreground italic text-center">
+        <p className="text-muted-foreground italic text-center">
           Pick a coupon to explore the neighborhood with a neighbor! When you claim one, 
           our block steward will make an intro.
         </p>
@@ -77,28 +77,28 @@ export const CouponsRedeemTab = () => {
           const isClaimed = claimedCoupons.includes(coupon.id);
           
           return (
-            <Card key={coupon.id} className="bg-white shadow-md hover:shadow-lg transition-shadow border-cozy-orange/20 h-full">
+            <Card key={coupon.id} className="bg-card shadow-md hover:shadow-lg transition-shadow border-ocean/20 h-full">
               <CardContent className="p-6 h-full flex flex-col">
                 <div className="text-center flex-1 flex flex-col">
                   <div className="text-4xl mb-3">{coupon.icon}</div>
-                  <h3 className="font-semibold text-lg mb-2 text-cozy-cream-foreground">
+                  <h3 className="font-semibold text-lg mb-2 text-foreground">
                     {coupon.title}
                   </h3>
-                  <p className="text-cozy-cream-foreground/80 mb-4 text-sm flex-1">
+                  <p className="text-muted-foreground mb-4 text-sm flex-1">
                     {coupon.description}
                   </p>
                   
                   <div className="mt-auto">
                     {isClaimed ? (
                       <div className="text-center py-2">
-                        <p className="text-green-600 font-medium text-sm">
+                        <p className="text-dune font-medium text-sm">
                           ✅ Pending steward intro
                         </p>
                       </div>
                     ) : (
                       <Button 
                         onClick={() => handleClaim(coupon)}
-                        className="w-full bg-cozy-orange hover:bg-cozy-orange-dark text-cozy-orange-foreground"
+                        className="w-full bg-ocean hover:bg-ocean-dark text-ocean-foreground"
                       >
                         Claim
                       </Button>

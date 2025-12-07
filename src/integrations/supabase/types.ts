@@ -74,6 +74,42 @@ export type Database = {
         }
         Relationships: []
       }
+      community_service_requests: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          service_type: string
+          suggested_service_name: string | null
+          suggested_service_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          service_type: string
+          suggested_service_name?: string | null
+          suggested_service_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          service_type?: string
+          suggested_service_name?: string | null
+          suggested_service_url?: string | null
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string
@@ -298,6 +334,39 @@ export type Database = {
           phone?: string | null
           suggested_idea?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      new_neighbor_signups: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          ideas: string | null
+          name: string
+          phone: string | null
+          wants_whatsapp: boolean
+          welcome_message: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          ideas?: string | null
+          name: string
+          phone?: string | null
+          wants_whatsapp?: boolean
+          welcome_message?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          ideas?: string | null
+          name?: string
+          phone?: string | null
+          wants_whatsapp?: boolean
+          welcome_message?: string | null
         }
         Relationships: []
       }

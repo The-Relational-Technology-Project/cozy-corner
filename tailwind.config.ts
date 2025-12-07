@@ -52,24 +52,6 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				'sunset-fog': {
-					DEFAULT: 'hsl(var(--sunset-fog))',
-					foreground: 'hsl(var(--sunset-fog-foreground))'
-				},
-				'brown-sand': {
-					DEFAULT: 'hsl(var(--brown-sand))',
-					foreground: 'hsl(var(--brown-sand-foreground))'
-				},
-				'cozy-orange': {
-					DEFAULT: 'hsl(var(--cozy-orange))',
-					foreground: 'hsl(var(--cozy-orange-foreground))',
-					light: 'hsl(var(--cozy-orange-light))',
-					dark: 'hsl(var(--cozy-orange-dark))'
-				},
-				'cozy-cream': {
-					DEFAULT: 'hsl(var(--cozy-cream))',
-					foreground: 'hsl(var(--cozy-cream-foreground))'
-				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -79,6 +61,43 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Outer Sunset Theme Colors
+				ocean: {
+					DEFAULT: 'hsl(var(--ocean))',
+					light: 'hsl(var(--ocean-light))',
+					dark: 'hsl(var(--ocean-dark))',
+					foreground: 'hsl(var(--ocean-foreground))'
+				},
+				sunset: {
+					DEFAULT: 'hsl(var(--sunset))',
+					light: 'hsl(var(--sunset-light))',
+					dark: 'hsl(var(--sunset-dark))',
+					foreground: 'hsl(var(--sunset-foreground))'
+				},
+				sand: {
+					DEFAULT: 'hsl(var(--sand))',
+					light: 'hsl(var(--sand-light))',
+					dark: 'hsl(var(--sand-dark))',
+					foreground: 'hsl(var(--sand-foreground))'
+				},
+				dune: {
+					DEFAULT: 'hsl(var(--dune))',
+					light: 'hsl(var(--dune-light))',
+					dark: 'hsl(var(--dune-dark))',
+					foreground: 'hsl(var(--dune-foreground))'
+				},
+				fog: {
+					DEFAULT: 'hsl(var(--fog))',
+					light: 'hsl(var(--fog-light))',
+					dark: 'hsl(var(--fog-dark))',
+					foreground: 'hsl(var(--fog-foreground))'
+				},
+				sky: {
+					DEFAULT: 'hsl(var(--sky))',
+					light: 'hsl(var(--sky-light))',
+					dark: 'hsl(var(--sky-dark))',
+					foreground: 'hsl(var(--sky-foreground))'
 				}
 			},
 			borderRadius: {
@@ -102,11 +121,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'wave': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'wave': 'wave 3s ease-in-out infinite',
+				'fade-in': 'fade-in 0.5s ease-out forwards'
 			}
 		}
 	},
