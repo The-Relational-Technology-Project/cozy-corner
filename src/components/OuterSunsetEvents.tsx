@@ -79,22 +79,6 @@ export const OuterSunsetEvents = () => {
     return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
   };
 
-  const getCategoryEmoji = (categories?: string[]) => {
-    if (!categories || categories.length === 0) return '📅';
-    const category = categories[0].toLowerCase();
-    const categoryMap: Record<string, string> = {
-      'music': '🎵',
-      'food': '🍽️',
-      'market': '🥬',
-      'farmers': '🥬',
-      'community': '🤝',
-      'art': '🎨',
-      'sports': '⚽',
-      'kids': '👶',
-      'nature': '🌿',
-    };
-    return categoryMap[category] || '📅';
-  };
 
   return (
     <Card className="bg-card/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
@@ -159,7 +143,6 @@ export const OuterSunsetEvents = () => {
                 >
                   <div className="bg-sand-light rounded-xl p-4 transition-all duration-200 group-hover:bg-sand group-hover:shadow-md">
                     <div className="flex items-start gap-3">
-                      <span className="text-2xl flex-shrink-0">{getCategoryEmoji(event.category)}</span>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-semibold text-foreground group-hover:text-ocean transition-colors line-clamp-1">
                           {event.name}
