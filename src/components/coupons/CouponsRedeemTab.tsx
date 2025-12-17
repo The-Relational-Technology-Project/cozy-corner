@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CouponClaimModal } from './CouponClaimModal';
 import { useToast } from '@/hooks/use-toast';
@@ -65,48 +64,46 @@ export const CouponsRedeemTab = () => {
 
   return (
     <>
-      <div className="mb-6">
-        <p className="text-muted-foreground italic text-center">
-          Pick a coupon to explore the neighborhood with a neighbor! When you claim one, 
-          our block steward will make an intro.
+      <div className="mb-4">
+        <p className="text-muted-foreground italic text-center text-sm">
+          Claim a coupon and our block steward will make an intro!
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="space-y-3">
         {coupons.map((coupon) => {
           const isClaimed = claimedCoupons.includes(coupon.id);
           
           return (
-            <Card key={coupon.id} className="bg-card shadow-md hover:shadow-lg transition-shadow border-ocean/20 h-full">
-              <CardContent className="p-6 h-full flex flex-col">
-                <div className="text-center flex-1 flex flex-col">
-                  <div className="text-4xl mb-3">{coupon.icon}</div>
-                  <h3 className="font-semibold text-lg mb-2 text-foreground">
-                    {coupon.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 text-sm flex-1">
-                    {coupon.description}
-                  </p>
-                  
-                  <div className="mt-auto">
-                    {isClaimed ? (
-                      <div className="text-center py-2">
-                        <p className="text-dune font-medium text-sm">
-                          ✅ Pending steward intro
-                        </p>
-                      </div>
-                    ) : (
-                      <Button 
-                        onClick={() => handleClaim(coupon)}
-                        className="w-full bg-ocean hover:bg-ocean-dark text-ocean-foreground"
-                      >
-                        Claim
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <div 
+              key={coupon.id} 
+              className="flex items-center gap-3 p-3 bg-card rounded-xl border border-border/50 hover:border-ocean/30 hover:shadow-sm transition-all"
+            >
+              <div className="text-2xl flex-shrink-0">{coupon.icon}</div>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-medium text-sm text-foreground leading-tight">
+                  {coupon.title}
+                </h3>
+                <p className="text-muted-foreground text-xs mt-0.5 line-clamp-1">
+                  {coupon.description}
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                {isClaimed ? (
+                  <span className="text-dune text-xs font-medium whitespace-nowrap">
+                    ✅ Claimed
+                  </span>
+                ) : (
+                  <Button 
+                    onClick={() => handleClaim(coupon)}
+                    size="sm"
+                    className="bg-ocean hover:bg-ocean-dark text-ocean-foreground h-8 px-3 text-xs"
+                  >
+                    Claim
+                  </Button>
+                )}
+              </div>
+            </div>
           );
         })}
       </div>
