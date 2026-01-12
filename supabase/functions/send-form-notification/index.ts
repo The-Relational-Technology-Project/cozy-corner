@@ -125,6 +125,19 @@ const handler = async (req: Request): Promise<Response> => {
         `;
         break;
 
+      case "new_neighbor_signup":
+        subject = "🏠 New Neighbor Signup!";
+        htmlContent = `
+          <h2>New Neighbor Signup</h2>
+          <p><strong>Name:</strong> ${formData.name}</p>
+          <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
+          <p><strong>Email:</strong> ${formData.email || 'Not provided'}</p>
+          <p><strong>Wants WhatsApp:</strong> ${formData.wants_whatsapp ? 'Yes' : 'No'}</p>
+          ${formData.welcome_message ? `<p><strong>Message to Josh:</strong> ${formData.welcome_message}</p>` : ''}
+          ${formData.ideas ? `<p><strong>Ideas:</strong> ${formData.ideas}</p>` : ''}
+        `;
+        break;
+
       default:
         throw new Error(`Unknown form type: ${formType}`);
     }
