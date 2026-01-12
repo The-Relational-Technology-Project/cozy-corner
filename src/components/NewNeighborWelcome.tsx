@@ -74,6 +74,21 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
 
       if (error) throw error;
 
+      // Send email notification
+      await supabase.functions.invoke('send-form-notification', {
+        body: {
+          formType: 'new_neighbor_signup',
+          formData: {
+            name: formData.name.trim(),
+            phone: formData.phone.trim() || null,
+            email: formData.email.trim() || null,
+            wants_whatsapp: formData.wantsWhatsapp,
+            welcome_message: formData.welcomeMessage.trim() || null,
+            ideas: formData.ideas.trim() || null
+          }
+        }
+      });
+
       setCurrentStep('complete');
     } catch (error) {
       console.error('Error submitting:', error);
