@@ -13,6 +13,27 @@ interface FormNotificationRequest {
   formData: Record<string, any>;
 }
 
+// HTML escape function to prevent XSS in email content
+const escapeHtml = (str: string | null | undefined): string => {
+  if (str === null || str === undefined) {
+    return '';
+  }
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
+// Helper to safely format a field value
+const safe = (value: any, fallback: string = 'Not provided'): string => {
+  if (value === null || value === undefined || value === '') {
+    return fallback;
+  }
+  return escapeHtml(String(value));
+};
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -31,11 +52,11 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "New Contact Form Submission";
         htmlContent = `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Subject:</strong> ${formData.subject}</p>
+          <p><strong>Name:</strong> ${safe(formData.name)}</p>
+          <p><strong>Email:</strong> ${safe(formData.email)}</p>
+          <p><strong>Subject:</strong> ${safe(formData.subject)}</p>
           <p><strong>Message:</strong></p>
-          <p>${formData.message}</p>
+          <p>${safe(formData.message)}</p>
         `;
         break;
 
@@ -43,12 +64,12 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "New Disaster Check-In Request";
         htmlContent = `
           <h2>New Disaster Check-In Request</h2>
-          <p><strong>Name:</strong> ${formData.name || 'Not provided'}</p>
-          <p><strong>Address:</strong> ${formData.address}</p>
-          <p><strong>Contact Info:</strong> ${formData.contact_info || 'Not provided'}</p>
-          <p><strong>Vulnerable Count:</strong> ${formData.vulnerable_count}</p>
-          <p><strong>Specific Needs:</strong> ${formData.specific_needs || 'None'}</p>
-          <p><strong>Language Preference:</strong> ${formData.language_preference}</p>
+          <p><strong>Name:</strong> ${safe(formData.name)}</p>
+          <p><strong>Address:</strong> ${safe(formData.address)}</p>
+          <p><strong>Contact Info:</strong> ${safe(formData.contact_info)}</p>
+          <p><strong>Vulnerable Count:</strong> ${safe(formData.vulnerable_count)}</p>
+          <p><strong>Specific Needs:</strong> ${safe(formData.specific_needs, 'None')}</p>
+          <p><strong>Language Preference:</strong> ${safe(formData.language_preference)}</p>
           <p><strong>Completing on behalf:</strong> ${formData.completing_on_behalf ? 'Yes' : 'No'}</p>
         `;
         break;
@@ -57,9 +78,9 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "New Coupon Claim";
         htmlContent = `
           <h2>New Coupon Claim</h2>
-          <p><strong>Coupon Title:</strong> ${formData.coupon_title}</p>
-          <p><strong>Claimer Name:</strong> ${formData.claimer_name || 'Not provided'}</p>
-          <p><strong>Claimer Email:</strong> ${formData.claimer_email || 'Not provided'}</p>
+          <p><strong>Coupon Title:</strong> ${safe(formData.coupon_title)}</p>
+          <p><strong>Claimer Name:</strong> ${safe(formData.claimer_name)}</p>
+          <p><strong>Claimer Email:</strong> ${safe(formData.claimer_email)}</p>
         `;
         break;
 
@@ -67,12 +88,12 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "New Coupon Contribution";
         htmlContent = `
           <h2>New Coupon Contribution</h2>
-          <p><strong>Title:</strong> ${formData.title}</p>
-          <p><strong>Description:</strong> ${formData.description}</p>
-          <p><strong>Icon:</strong> ${formData.icon}</p>
-          <p><strong>Availability:</strong> ${formData.availability || 'Not specified'}</p>
-          <p><strong>Contributor Name:</strong> ${formData.contributor_name || 'Anonymous'}</p>
-          <p><strong>Contributor Email:</strong> ${formData.contributor_email || 'Not provided'}</p>
+          <p><strong>Title:</strong> ${safe(formData.title)}</p>
+          <p><strong>Description:</strong> ${safe(formData.description)}</p>
+          <p><strong>Icon:</strong> ${safe(formData.icon)}</p>
+          <p><strong>Availability:</strong> ${safe(formData.availability, 'Not specified')}</p>
+          <p><strong>Contributor Name:</strong> ${safe(formData.contributor_name, 'Anonymous')}</p>
+          <p><strong>Contributor Email:</strong> ${safe(formData.contributor_email)}</p>
         `;
         break;
 
@@ -80,7 +101,7 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "New Street Cleaning Subscription";
         htmlContent = `
           <h2>New Street Cleaning Subscription</h2>
-          <p><strong>Email:</strong> ${formData.email}</p>
+          <p><strong>Email:</strong> ${safe(formData.email)}</p>
           <p><strong>East Side:</strong> ${formData.east_side ? 'Yes' : 'No'}</p>
           <p><strong>West Side:</strong> ${formData.west_side ? 'Yes' : 'No'}</p>
         `;
@@ -90,13 +111,13 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "New Event Suggestion";
         htmlContent = `
           <h2>New Event Suggestion</h2>
-          <p><strong>Event Title:</strong> ${formData.event_title}</p>
-          <p><strong>Event Description:</strong> ${formData.event_description || 'Not provided'}</p>
-          <p><strong>Suggested Date:</strong> ${formData.suggested_date || 'Not specified'}</p>
-          <p><strong>Suggested Location:</strong> ${formData.suggested_location || 'Not specified'}</p>
-          <p><strong>Name:</strong> ${formData.name || 'Anonymous'}</p>
-          <p><strong>Email:</strong> ${formData.email || 'Not provided'}</p>
-          <p><strong>Contact Info:</strong> ${formData.contact_info || 'Not provided'}</p>
+          <p><strong>Event Title:</strong> ${safe(formData.event_title)}</p>
+          <p><strong>Event Description:</strong> ${safe(formData.event_description)}</p>
+          <p><strong>Suggested Date:</strong> ${safe(formData.suggested_date, 'Not specified')}</p>
+          <p><strong>Suggested Location:</strong> ${safe(formData.suggested_location, 'Not specified')}</p>
+          <p><strong>Name:</strong> ${safe(formData.name, 'Anonymous')}</p>
+          <p><strong>Email:</strong> ${safe(formData.email)}</p>
+          <p><strong>Contact Info:</strong> ${safe(formData.contact_info)}</p>
         `;
         break;
 
@@ -104,9 +125,9 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "New Block Party Idea";
         htmlContent = `
           <h2>New Block Party Idea</h2>
-          <p><strong>Idea:</strong> ${formData.idea}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
+          <p><strong>Idea:</strong> ${safe(formData.idea)}</p>
+          <p><strong>Email:</strong> ${safe(formData.email)}</p>
+          <p><strong>Phone:</strong> ${safe(formData.phone)}</p>
         `;
         break;
 
@@ -114,14 +135,14 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "New Neighborhood Contribution";
         htmlContent = `
           <h2>New Neighborhood Contribution</h2>
-          <p><strong>Type:</strong> ${formData.contribution_type}</p>
-          <p><strong>Name:</strong> ${formData.name || 'Not provided'}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
-          ${formData.suggested_idea ? `<p><strong>Suggested Idea:</strong> ${formData.suggested_idea}</p>` : ''}
-          ${formData.existing_idea ? `<p><strong>Existing Idea:</strong> ${formData.existing_idea}</p>` : ''}
-          ${formData.message ? `<p><strong>Message:</strong> ${formData.message}</p>` : ''}
-          ${formData.availability ? `<p><strong>Availability:</strong> ${formData.availability}</p>` : ''}
+          <p><strong>Type:</strong> ${safe(formData.contribution_type)}</p>
+          <p><strong>Name:</strong> ${safe(formData.name)}</p>
+          <p><strong>Email:</strong> ${safe(formData.email)}</p>
+          <p><strong>Phone:</strong> ${safe(formData.phone)}</p>
+          ${formData.suggested_idea ? `<p><strong>Suggested Idea:</strong> ${safe(formData.suggested_idea)}</p>` : ''}
+          ${formData.existing_idea ? `<p><strong>Existing Idea:</strong> ${safe(formData.existing_idea)}</p>` : ''}
+          ${formData.message ? `<p><strong>Message:</strong> ${safe(formData.message)}</p>` : ''}
+          ${formData.availability ? `<p><strong>Availability:</strong> ${safe(formData.availability)}</p>` : ''}
         `;
         break;
 
@@ -129,12 +150,12 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "🏠 New Neighbor Signup!";
         htmlContent = `
           <h2>New Neighbor Signup</h2>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
-          <p><strong>Email:</strong> ${formData.email || 'Not provided'}</p>
+          <p><strong>Name:</strong> ${safe(formData.name)}</p>
+          <p><strong>Phone:</strong> ${safe(formData.phone)}</p>
+          <p><strong>Email:</strong> ${safe(formData.email)}</p>
           <p><strong>Wants WhatsApp:</strong> ${formData.wants_whatsapp ? 'Yes' : 'No'}</p>
-          ${formData.welcome_message ? `<p><strong>Message to Josh:</strong> ${formData.welcome_message}</p>` : ''}
-          ${formData.ideas ? `<p><strong>Ideas:</strong> ${formData.ideas}</p>` : ''}
+          ${formData.welcome_message ? `<p><strong>Message to Josh:</strong> ${safe(formData.welcome_message)}</p>` : ''}
+          ${formData.ideas ? `<p><strong>Ideas:</strong> ${safe(formData.ideas)}</p>` : ''}
         `;
         break;
 
