@@ -139,16 +139,11 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
         return (
           <div className="text-center space-y-6 animate-fade-in">
             <div className="text-6xl mb-4">🌊</div>
-            <h2 className="text-2xl font-bold text-foreground">Welcome to Cozy Corner!</h2>
+            <h2 className="text-2xl font-bold text-foreground">Welcome!</h2>
             <p className="text-muted-foreground leading-relaxed">
               We're your neighbors on 48th Ave between Lincoln & Irving in San Francisco's Outer Sunset. 
-              This site helps us share resources, connect, and look out for each other.
+              This site helps us share resources, plan parties, and look out for each other.
             </p>
-            <div className="bg-sand-light rounded-xl p-4 text-sand-foreground">
-              <p className="text-sm">
-                🏠 A small block with a big heart — where ocean breezes meet community spirit.
-              </p>
-            </div>
           </div>
         );
 
@@ -159,9 +154,9 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
               <div className="inline-flex items-center justify-center w-16 h-16 bg-dune-light rounded-full mb-4">
                 <Users className="w-8 h-8 text-dune" />
               </div>
-              <h2 className="text-2xl font-bold text-foreground">Join Our Block Group</h2>
+              <h2 className="text-2xl font-bold text-foreground">Join Our Group Chat</h2>
               <p className="text-muted-foreground mt-2">
-                Connect with neighbors on WhatsApp for quick updates, sharing, and community moments.
+                We use WhatsApp for quick updates and mutual support. It's a good vibe.
               </p>
             </div>
             
@@ -201,7 +196,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
             </div>
             
             <p className="text-xs text-muted-foreground text-center">
-              Skip if you'd rather browse first — you can always join later!
+              Totally optional — you can always join later!
             </p>
           </div>
         );
@@ -215,7 +210,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
               </div>
               <h2 className="text-2xl font-bold text-foreground">Neighbor Coupons</h2>
               <p className="text-muted-foreground mt-2">
-                Claim a coupon to connect with a neighbor! Each one is an invitation to share an experience.
+                Pick any of these to connect with a neighbor! Claim one and our block steward will make an intro.
               </p>
             </div>
             
@@ -234,7 +229,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
               </div>
               <h2 className="text-2xl font-bold text-foreground">Say Hello!</h2>
               <p className="text-muted-foreground mt-2">
-                Drop a note to Josh, who keeps this site running. Questions, introductions, or just a wave!
+                Optionally, drop a note to Josh, who keeps this site running. Questions, ideas, anything on your mind!
               </p>
             </div>
             
@@ -244,14 +239,11 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
                 id="message"
                 value={formData.welcomeMessage}
                 onChange={(e) => setFormData(prev => ({ ...prev, welcomeMessage: e.target.value }))}
-                placeholder="Hi Josh! I'm new to the block and..."
+                placeholder="Hi! I just moved to the block..."
                 className="mt-1.5 min-h-[120px]"
               />
             </div>
             
-            <p className="text-xs text-muted-foreground text-center">
-              This is optional — no pressure!
-            </p>
           </div>
         );
 
@@ -353,7 +345,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
               onClick={goNext}
               className="bg-ocean hover:bg-ocean-dark text-ocean-foreground"
             >
-              {currentStep === 'welcome' ? "Let's Go" : 'Continue'}
+              {currentStep === 'welcome' ? 'Next' : 'Continue'}
               <ChevronRight className="w-4 h-4 ml-1" />
             </Button>
           )}
