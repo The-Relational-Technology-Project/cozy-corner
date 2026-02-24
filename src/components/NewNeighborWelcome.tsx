@@ -151,13 +151,39 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
     switch (currentStep) {
       case 'welcome':
         return (
-          <div className="text-center space-y-6 animate-fade-in">
-            <div className="text-6xl mb-4">🌊</div>
-            <h2 className="text-2xl font-bold text-foreground">Welcome!</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              We're your neighbors on 48th Ave between Lincoln & Irving in San Francisco's Outer Sunset. 
-              This site helps us share resources, plan parties, and look out for each other.
-            </p>
+          <div className="space-y-6 animate-fade-in">
+            <div className="text-center">
+              <div className="text-6xl mb-4">🌊</div>
+              <h2 className="text-2xl font-bold text-foreground">Welcome!</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                We're your neighbors on 48th Ave between Lincoln & Irving in San Francisco's Outer Sunset. 
+                This site helps us share resources, plan parties, and look out for each other.
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="name">Your Name *</Label>
+                <Input
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder="How should neighbors know you?"
+                  className="mt-1.5"
+                />
+              </div>
+              <div>
+                <Label htmlFor="email">Email (optional)</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  placeholder="For occasional block updates"
+                  className="mt-1.5"
+                />
+              </div>
+            </div>
           </div>
         );
 
@@ -176,16 +202,6 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
             
             <div className="space-y-4">
               <div>
-                <Label htmlFor="name">Your Name *</Label>
-                <Input
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                  placeholder="How should neighbors know you?"
-                  className="mt-1.5"
-                />
-              </div>
-              <div>
                 <Label htmlFor="phone">Phone Number (for WhatsApp)</Label>
                 <Input
                   id="phone"
@@ -193,17 +209,6 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
                   value={formData.phone}
                   onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                   placeholder="We'll add you to the group"
-                  className="mt-1.5"
-                />
-              </div>
-              <div>
-                <Label htmlFor="email">Email (optional)</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="For occasional block updates"
                   className="mt-1.5"
                 />
               </div>
@@ -360,6 +365,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
           ) : (
             <Button
               onClick={goNext}
+              disabled={currentStep === 'welcome' && !formData.name.trim()}
               className="bg-ocean hover:bg-ocean-dark text-ocean-foreground"
             >
               {currentStep === 'welcome' ? 'Next' : 'Continue'}
