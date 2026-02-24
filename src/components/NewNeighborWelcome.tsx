@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { CouponsRedeemTab } from '@/components/coupons/CouponsRedeemTab';
+import { OnboardingCouponsList } from '@/components/coupons/OnboardingCouponsList';
 import { ChevronLeft, ChevronRight, Waves, MessageSquare, Users, Ticket, Lightbulb } from 'lucide-react';
 
 interface NewNeighborWelcomeProps {
@@ -28,6 +28,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
     welcomeMessage: '',
     ideas: ''
   });
+  const [selectedCouponIds, setSelectedCouponIds] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -74,6 +75,17 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
 
       if (error) throw error;
 
+      // Submit coupon claims inline
+      if (selectedCouponIds.length > 0) {
+        const claimInserts = selectedCouponIds.map(couponId => ({
+          coupon_id: couponId,
+          claimer_name: formData.name.trim(),
+          claimer_email: formData.email.trim() || null,
+          status: 'pending'
+        }));
+        await supabase.from('coupon_claims').insert(claimInserts);
+      }
+
       // Send email notification
       await supabase.functions.invoke('send-form-notification', {
         body: {
@@ -84,7 +96,8 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
             email: formData.email.trim() || null,
             wants_whatsapp: formData.wantsWhatsapp,
             welcome_message: formData.welcomeMessage.trim() || null,
-            ideas: formData.ideas.trim() || null
+            ideas: formData.ideas.trim() || null,
+            claimed_coupon_count: selectedCouponIds.length
           }
         }
       });
@@ -107,6 +120,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
     // Reset after closing
     setTimeout(() => {
       setCurrentStep('welcome');
+      setSelectedCouponIds([]);
       setFormData({
         name: '',
         phone: '',
@@ -215,7 +229,10 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
             </div>
             
             <div className="max-h-[40vh] overflow-y-auto -mx-2 px-2">
-              <CouponsRedeemTab />
+              <OnboardingCouponsList
+                selectedCouponIds={selectedCouponIds}
+                onSelectionChange={setSelectedCouponIds}
+              />
             </div>
           </div>
         );
