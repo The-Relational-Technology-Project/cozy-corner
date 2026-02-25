@@ -20,11 +20,11 @@ const handler = async (req: Request): Promise<Response> => {
       from: "Relational Tech Project <humans@relationaltechproject.org>",
       reply_to: "josh@relationaltechproject.org",
       to: ["jeffnesbit@gmail.com"],
-      subject: "Wednesday Reminder",
+      subject: "Tuesday Evening Reminder",
       html: `
-        <h2>Wednesday Reminder</h2>
-        <p>This is your automated Wednesday morning reminder.</p>
-        <p>Have a great day!</p>
+        <h2>Tuesday Evening Reminder</h2>
+        <p>This is your automated Tuesday evening reminder — don't forget about street cleaning tomorrow!</p>
+        <p>Have a great evening!</p>
         <br>
         <p>Best,<br>Josh</p>
       `,
