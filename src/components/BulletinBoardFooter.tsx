@@ -192,6 +192,14 @@ function PinnedCard({
       >
         {link.name}
       </p>
+      {link.domain && (
+        <p
+          className="mt-1.5 text-[11px] font-mono"
+          style={{ color: "hsl(var(--muted-foreground) / 0.6)" }}
+        >
+          {link.domain}
+        </p>
+      )}
     </Tag>
   );
 }
