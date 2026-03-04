@@ -210,6 +210,9 @@ const Index = () => {
 
       {/* Footer */}
       <BulletinBoardFooter />
+
+      {/* Modals */}
+      <NewNeighborWelcome
         open={showNewNeighborModal}
         onOpenChange={setShowNewNeighborModal}
       />
