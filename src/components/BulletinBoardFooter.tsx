@@ -373,18 +373,18 @@ export function BulletinBoardFooter() {
         >
           <div className="container mx-auto px-6 space-y-1">
             <p className="text-sm text-muted-foreground">
-              Made with 🌊 by neighbors, for neighbors
+              Made with ❤️ by neighbors, for neighbors.
             </p>
             <p className="text-sm text-muted-foreground/70">
               <a
-                href="https://studio.relationaltechproject.org"
+                href="https://studio.relationaltechproject.org/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:opacity-80 transition-opacity font-semibold text-muted-foreground/80"
               >
-                Relational Tech Project
+                Remix this
               </a>{" "}
-              · Community tools for real connection
+              for your block
             </p>
           </div>
         </div>
