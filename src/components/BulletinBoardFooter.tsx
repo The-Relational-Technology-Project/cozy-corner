@@ -24,6 +24,19 @@ interface CommunityLink {
 
 const COMMUNITY_LINKS: CommunityLink[] = [
   {
+    name: "Community Guide",
+    question: "Looking for local community?",
+    cardBg: "hsl(90, 20%, 92%)",
+    rotation: "-1.5deg",
+    borderRadius: "3px",
+    padding: "p-5 pt-10",
+    pinPosition: "left-[45%]",
+    pinColor: "#7a8a52",
+    type: "link",
+    url: "https://outersunset.us/",
+    domain: "outersunset.us",
+  },
+  {
     name: "Outer Sunset Field Guide",
     question: "Exploring the neighborhood?",
     cardBg: "hsl(210, 30%, 93%)",
