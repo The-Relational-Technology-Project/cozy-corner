@@ -17,11 +17,51 @@ interface CommunityLink {
   pinPosition: string;
   pinColor: string;
   type: "link" | "request";
+  domain?: string;
   url?: string;
   serviceType?: string;
 }
 
 const COMMUNITY_LINKS: CommunityLink[] = [
+  {
+    name: "Outer Sunset Field Guide",
+    question: "Exploring the neighborhood?",
+    cardBg: "hsl(210, 30%, 93%)",
+    rotation: "-2deg",
+    borderRadius: "2px",
+    padding: "p-5 pt-10",
+    pinPosition: "left-[35%]",
+    pinColor: "#3a6e9e",
+    type: "link",
+    url: "https://outersunset.place",
+    domain: "outersunset.place",
+  },
+  {
+    name: "Community Supplies",
+    question: "Want to share things with neighbors?",
+    cardBg: "#f5f0e6",
+    rotation: "1deg",
+    borderRadius: "3px",
+    padding: "p-6 pt-9",
+    pinPosition: "left-1/2 -translate-x-1/2",
+    pinColor: "#e8933a",
+    type: "link",
+    url: "https://communitysupplies.org",
+    domain: "communitysupplies.org",
+  },
+  {
+    name: "Outer Sunset Today",
+    question: "Curious what's happening today?",
+    cardBg: "hsl(210, 15%, 93%)",
+    rotation: "2deg",
+    borderRadius: "2px",
+    padding: "p-5 pt-10",
+    pinPosition: "right-5",
+    pinColor: "#5a7a52",
+    type: "link",
+    url: "https://outersunset.today",
+    domain: "outersunset.today",
+  },
   {
     name: "Outer Mamas",
     question: "Mom in the Outer Sunset?",
@@ -152,6 +192,14 @@ function PinnedCard({
       >
         {link.name}
       </p>
+      {link.domain && (
+        <p
+          className="mt-1.5 text-[11px] font-mono"
+          style={{ color: "hsl(var(--muted-foreground) / 0.6)" }}
+        >
+          {link.domain}
+        </p>
+      )}
     </Tag>
   );
 }
@@ -294,9 +342,9 @@ export function BulletinBoardFooter() {
           <div className="py-12 md:py-16 px-6">
             <div className="container mx-auto">
               <h2 className="text-center text-lg md:text-xl font-bold mb-8 md:mb-10 text-foreground">
-                🏖️ Community Board
+                Neighborhood Tools
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto">
                 {COMMUNITY_LINKS.map((link) => (
                   <PinnedCard
                     key={link.name}
@@ -325,18 +373,18 @@ export function BulletinBoardFooter() {
         >
           <div className="container mx-auto px-6 space-y-1">
             <p className="text-sm text-muted-foreground">
-              Made with 🌊 by neighbors, for neighbors
+              Made with ❤️ by neighbors, for neighbors.
             </p>
             <p className="text-sm text-muted-foreground/70">
               <a
-                href="https://studio.relationaltechproject.org"
+                href="https://studio.relationaltechproject.org/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:opacity-80 transition-opacity font-semibold text-muted-foreground/80"
               >
-                Relational Tech Project
+                Remix this
               </a>{" "}
-              · Community tools for real connection
+              for your block
             </p>
           </div>
         </div>
