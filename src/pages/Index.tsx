@@ -208,8 +208,8 @@ const Index = () => {
         </section>
       </div>
 
-      {/* Modals */}
-      <NewNeighborWelcome
+      {/* Footer */}
+      <BulletinBoardFooter />
         open={showNewNeighborModal}
         onOpenChange={setShowNewNeighborModal}
       />
