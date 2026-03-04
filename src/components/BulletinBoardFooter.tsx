@@ -17,6 +17,7 @@ interface CommunityLink {
   pinPosition: string;
   pinColor: string;
   type: "link" | "request";
+  domain?: string;
   url?: string;
   serviceType?: string;
 }
