@@ -342,9 +342,9 @@ export function BulletinBoardFooter() {
           <div className="py-12 md:py-16 px-6">
             <div className="container mx-auto">
               <h2 className="text-center text-lg md:text-xl font-bold mb-8 md:mb-10 text-foreground">
-                🏖️ Community Board
+                Neighborhood Tools
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto">
                 {COMMUNITY_LINKS.map((link) => (
                   <PinnedCard
                     key={link.name}
