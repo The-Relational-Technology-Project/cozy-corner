@@ -94,11 +94,6 @@ const Index = () => {
           <OuterSunsetEvents />
         </section>
 
-        {/* Community Services */}
-        <section>
-          <CommunityServices />
-        </section>
-
         {/* Street Cleaning Reminders */}
         <section>
           <div className="bg-card/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-fog/30 shadow-lg">
