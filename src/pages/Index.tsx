@@ -9,7 +9,7 @@ import { StreetCleaningModal } from "@/components/StreetCleaningModal";
 import { NeighborhoodContributionsModal } from "@/components/NeighborhoodContributionsModal";
 import { NewNeighborWelcome } from "@/components/NewNeighborWelcome";
 import { OuterSunsetEvents } from "@/components/OuterSunsetEvents";
-import { CommunityServices } from "@/components/CommunityServices";
+import { BulletinBoardFooter } from "@/components/BulletinBoardFooter";
 
 const Index = () => {
   const [showEventForm, setShowEventForm] = useState(false);
@@ -92,11 +92,6 @@ const Index = () => {
         {/* Events from Outer Sunset Today */}
         <section>
           <OuterSunsetEvents />
-        </section>
-
-        {/* Community Services */}
-        <section>
-          <CommunityServices />
         </section>
 
         {/* Street Cleaning Reminders */}
@@ -212,6 +207,9 @@ const Index = () => {
           </Card>
         </section>
       </div>
+
+      {/* Footer */}
+      <BulletinBoardFooter />
 
       {/* Modals */}
       <NewNeighborWelcome
