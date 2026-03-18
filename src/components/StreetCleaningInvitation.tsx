@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Clock } from "lucide-react";
+import { Clock, Mail, MessageSquare } from "lucide-react";
 
 interface StreetCleaningInvitationProps {
   onOpenModal: () => void;
@@ -32,8 +32,16 @@ export const StreetCleaningInvitation = ({ onOpenModal }: StreetCleaningInvitati
 
         <div className="text-center space-y-3">
           <p className="text-amber-800 text-sm">
-            Get friendly 8am email reminders on cleaning days for your side of 48th Ave.
+            Get friendly 8am reminders on cleaning days — by email, text, or both.
           </p>
+
+          <div className="flex items-center justify-center gap-3 text-amber-700 text-xs">
+            <span className="flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> Email</span>
+            <span className="text-amber-300">•</span>
+            <span className="flex items-center gap-1"><MessageSquare className="h-3.5 w-3.5" /> Text</span>
+            <span className="text-amber-300">•</span>
+            <span>Or both!</span>
+          </div>
           
           <Button 
             onClick={onOpenModal}
