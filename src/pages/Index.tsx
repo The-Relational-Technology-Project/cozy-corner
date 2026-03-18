@@ -18,32 +18,32 @@ const Index = () => {
   const [showNewNeighborModal, setShowNewNeighborModal] = useState(false);
 
   const newIdeas = [
-    {
-      title: "Annual block party",
-      status: "accomplished!",
-      emoji: "🎉",
-      description: "Bringing neighbors together for fun and community"
-    },
-    {
-      title: "Friday lunch outside",
-      status: "coming soon",
-      emoji: "🥪",
-      description: "Casual outdoor lunches to connect with neighbors"
-    },
-    {
-      title: "Neighborhood music jams",
-      status: "coming soon", 
-      emoji: "🎵",
-      description: "Informal music sessions for all skill levels"
-    },
-    {
-      title: "Neighbor coupons",
-      status: "we're live!",
-      emoji: "🎟️",
-      description: "Share skills and connect through friendly exchanges",
-      link: "/coupons"
-    }
-  ];
+  {
+    title: "Annual block party",
+    status: "accomplished!",
+    emoji: "🎉",
+    description: "Bringing neighbors together for fun and community"
+  },
+  {
+    title: "Friday lunch outside",
+    status: "coming soon",
+    emoji: "🥪",
+    description: "Casual outdoor lunches to connect with neighbors"
+  },
+  {
+    title: "Neighborhood music jams",
+    status: "coming soon",
+    emoji: "🎵",
+    description: "Informal music sessions for all skill levels"
+  },
+  {
+    title: "Neighbor coupons",
+    status: "we're live!",
+    emoji: "🎟️",
+    description: "Share skills and connect through friendly exchanges",
+    link: "/coupons"
+  }];
+
 
   return (
     <div className="min-h-screen bg-outer-sunset">
@@ -76,8 +76,8 @@ const Index = () => {
                 <Button
                   onClick={() => setShowNewNeighborModal(true)}
                   size="lg"
-                  className="bg-ocean hover:bg-ocean-dark text-ocean-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-lg px-8"
-                >
+                  className="bg-ocean hover:bg-ocean-dark text-ocean-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-lg px-8">
+                  
                   👋 New to the Block?
                 </Button>
               </div>
@@ -103,17 +103,17 @@ const Index = () => {
                 Street Cleaning Reminders
               </h3>
               <p className="text-muted-foreground text-sm mb-4">
-                Never miss moving your car again! Get friendly 8am email reminders on cleaning days.
+                Never miss moving your car again! Get friendly 8am reminders on cleaning days.
               </p>
               <div className="space-y-1 text-xs text-muted-foreground mb-4">
                 <div>East Side: 1st & 3rd Friday</div>
                 <div>West Side: 1st & 3rd Tuesday</div>
               </div>
-              <Button 
+              <Button
                 onClick={() => setShowStreetCleaningModal(true)}
                 size="sm"
-                className="bg-ocean hover:bg-ocean-dark text-ocean-foreground font-medium rounded-xl"
-              >
+                className="bg-ocean hover:bg-ocean-dark text-ocean-foreground font-medium rounded-xl">
+                
                 Set Up Reminders 🌊
               </Button>
             </div>
@@ -135,47 +135,47 @@ const Index = () => {
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {newIdeas.map((idea, index) => {
-                  const content = (
-                    <div className="bg-sand-light rounded-xl p-4 border border-sand/50 hover:bg-sand transition-colors duration-200 h-full">
+                  const content =
+                  <div className="bg-sand-light rounded-xl p-4 border border-sand/50 hover:bg-sand transition-colors duration-200 h-full">
                       <div className="flex items-start gap-3">
                         <span className="text-2xl">{idea.emoji}</span>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1 flex-wrap">
                             <h3 className="font-medium text-foreground">{idea.title}</h3>
                             <span className={`text-xs px-2 py-1 rounded-full ${
-                              idea.status === 'in progress' 
-                                ? 'bg-dune-light text-dune-dark' 
-                                : idea.status === "we're live!"
-                                ? 'bg-ocean-light text-ocean-dark'
-                                : idea.status === 'accomplished!'
-                                ? 'bg-sunset-light text-sunset-dark'
-                                : 'bg-sky-light text-sky-dark'
-                            }`}>
+                          idea.status === 'in progress' ?
+                          'bg-dune-light text-dune-dark' :
+                          idea.status === "we're live!" ?
+                          'bg-ocean-light text-ocean-dark' :
+                          idea.status === 'accomplished!' ?
+                          'bg-sunset-light text-sunset-dark' :
+                          'bg-sky-light text-sky-dark'}`
+                          }>
                               {idea.status}
                             </span>
                           </div>
                           <p className="text-sm text-muted-foreground">{idea.description}</p>
                         </div>
                       </div>
-                    </div>
-                  );
+                    </div>;
 
-                  return idea.link ? (
-                    <Link key={index} to={idea.link} className="block h-full">
+
+                  return idea.link ?
+                  <Link key={index} to={idea.link} className="block h-full">
                       {content}
-                    </Link>
-                  ) : (
-                    <div key={index} className="h-full">
+                    </Link> :
+
+                  <div key={index} className="h-full">
                       {content}
-                    </div>
-                  );
+                    </div>;
+
                 })}
               </div>
               
-              <Button 
+              <Button
                 onClick={() => setShowContributionsModal(true)}
-                className="w-full bg-dune hover:bg-dune-dark text-dune-foreground font-medium rounded-xl"
-              >
+                className="w-full bg-dune hover:bg-dune-dark text-dune-foreground font-medium rounded-xl">
+                
                 💡 Suggest an idea!
               </Button>
             </CardContent>
@@ -195,10 +195,10 @@ const Index = () => {
               </p>
               <div className="text-center">
                 <Link to="/contact">
-                  <Button 
-                    variant="outline" 
-                    className="border-fog-dark/30 text-foreground hover:bg-fog-light rounded-xl"
-                  >
+                  <Button
+                    variant="outline"
+                    className="border-fog-dark/30 text-foreground hover:bg-fog-light rounded-xl">
+                    
                     Get in Touch
                   </Button>
                 </Link>
@@ -214,27 +214,27 @@ const Index = () => {
       {/* Modals */}
       <NewNeighborWelcome
         open={showNewNeighborModal}
-        onOpenChange={setShowNewNeighborModal}
-      />
+        onOpenChange={setShowNewNeighborModal} />
+      
 
-      <StreetCleaningModal 
-        open={showStreetCleaningModal} 
-        onOpenChange={setShowStreetCleaningModal} 
-      />
+      <StreetCleaningModal
+        open={showStreetCleaningModal}
+        onOpenChange={setShowStreetCleaningModal} />
+      
 
-      {showEventForm && (
-        <EventSuggestionForm 
-          isOpen={showEventForm} 
-          onClose={() => setShowEventForm(false)} 
-        />
-      )}
+      {showEventForm &&
+      <EventSuggestionForm
+        isOpen={showEventForm}
+        onClose={() => setShowEventForm(false)} />
 
-      <NeighborhoodContributionsModal 
-        open={showContributionsModal} 
-        onOpenChange={setShowContributionsModal} 
-      />
-    </div>
-  );
+      }
+
+      <NeighborhoodContributionsModal
+        open={showContributionsModal}
+        onOpenChange={setShowContributionsModal} />
+      
+    </div>);
+
 };
 
 export default Index;
