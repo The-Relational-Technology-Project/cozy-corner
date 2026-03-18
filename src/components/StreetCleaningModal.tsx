@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Clock } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Clock, MessageSquare, Mail } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -13,8 +14,25 @@ interface StreetCleaningModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
+// Format phone for display: (XXX) XXX-XXXX
+const formatPhoneDisplay = (value: string): string => {
+  const digits = value.replace(/\D/g, '').slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+};
+
+// Convert display phone to E.164
+const toE164 = (value: string): string => {
+  const digits = value.replace(/\D/g, '');
+  if (digits.length === 10) return `+1${digits}`;
+  return '';
+};
+
 export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalProps) => {
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [smsEnabled, setSmsEnabled] = useState(false);
   const [eastSide, setEastSide] = useState(false);
   const [westSide, setWestSide] = useState(false);
   const [unsubscribeEmail, setUnsubscribeEmail] = useState("");
@@ -25,89 +43,96 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
-      toast({
-        title: "Email required",
-        description: "Please enter your email address to sign up for reminders.",
-        variant: "destructive"
-      });
+      toast({ title: "Email required", description: "Please enter your email address.", variant: "destructive" });
       return;
     }
     if (!eastSide && !westSide) {
-      toast({
-        title: "Select a side",
-        description: "Please select at least one side for street cleaning reminders.",
-        variant: "destructive"
-      });
+      toast({ title: "Select a side", description: "Please select at least one side for reminders.", variant: "destructive" });
       return;
     }
-    
+    if (smsEnabled && !toE164(phone)) {
+      toast({ title: "Valid phone required", description: "Please enter a 10-digit US phone number for SMS reminders.", variant: "destructive" });
+      return;
+    }
+
     setIsSubmitting(true);
-    
+
     try {
-      // First check if subscription exists
+      const e164Phone = smsEnabled ? toE164(phone) : null;
+
+      // Check if subscription exists
       const { data: exists, error: checkError } = await supabase
         .rpc('subscription_exists', { check_email: email });
-
       if (checkError) throw checkError;
 
       if (exists) {
-        // Update existing subscription
         const { error: updateError } = await supabase
           .from('street_cleaning_subscriptions')
           .update({
             east_side: eastSide,
             west_side: westSide,
+            phone: e164Phone,
+            sms_enabled: smsEnabled,
             updated_at: new Date().toISOString()
           })
           .eq('email', email);
-
         if (updateError) throw updateError;
       } else {
-        // Insert new subscription
         const { error: insertError } = await supabase
           .from('street_cleaning_subscriptions')
           .insert({
             email,
             east_side: eastSide,
-            west_side: westSide
+            west_side: westSide,
+            phone: e164Phone,
+            sms_enabled: smsEnabled
           });
-
         if (insertError) throw insertError;
       }
 
-      // Send email notification
+      // Send email notification to admin
       await supabase.functions.invoke('send-form-notification', {
         body: {
           formType: 'street_cleaning',
-          formData: {
-            email,
-            east_side: eastSide,
-            west_side: westSide
-          }
+          formData: { email, east_side: eastSide, west_side: westSide, sms_enabled: smsEnabled, phone: e164Phone }
         }
       });
+
+      // Send confirmation SMS if enabled
+      if (smsEnabled && e164Phone) {
+        try {
+          await supabase.functions.invoke('send-sms-reminder', {
+            body: {
+              action: 'send_confirmation',
+              phone: e164Phone,
+              message: { east_side: eastSide, west_side: westSide }
+            }
+          });
+        } catch (smsError) {
+          console.error("SMS confirmation failed:", smsError);
+          // Don't block signup if SMS fails
+        }
+      }
 
       const sides = [];
       if (eastSide) sides.push("East Side (City Side)");
       if (westSide) sides.push("West Side (Beach Side)");
-      
-      toast({
-        title: "Welcome to the neighborhood! 🏄‍♀️",
-        description: `You're signed up for ${sides.join(" and ")} reminders. We'll send you a friendly heads up at 8am on cleaning days!`
-      });
 
-      // Reset form and close modal
+      const desc = smsEnabled
+        ? `You're signed up for ${sides.join(" and ")} reminders via email + SMS! 📱`
+        : `You're signed up for ${sides.join(" and ")} reminders. We'll send you a friendly heads up at 8am on cleaning days!`;
+
+      toast({ title: "Welcome to the neighborhood! 🏄‍♀️", description: desc });
+
       setEmail("");
+      setPhone("");
+      setSmsEnabled(false);
       setEastSide(false);
       setWestSide(false);
       onOpenChange(false);
     } catch (error) {
       console.error("Error signing up:", error);
-      toast({
-        title: "Signup failed",
-        description: "There was an error signing you up. Please try again.",
-        variant: "destructive"
-      });
+      toast({ title: "Signup failed", description: "There was an error signing you up. Please try again.", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
@@ -116,48 +141,31 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
   const handleUnsubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!unsubscribeEmail) {
-      toast({
-        title: "Email required",
-        description: "Please enter your email address to unsubscribe.",
-        variant: "destructive"
-      });
+      toast({ title: "Email required", description: "Please enter your email address to unsubscribe.", variant: "destructive" });
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // First record the unsubscribe request
       const { error: unsubscribeError } = await supabase
         .from('street_cleaning_unsubscribes')
-        .insert({
-          email: unsubscribeEmail
-        });
-
+        .insert({ email: unsubscribeEmail });
       if (unsubscribeError) throw unsubscribeError;
 
-      // Then delete the subscription
       const { error: deleteError } = await supabase
         .from('street_cleaning_subscriptions')
         .delete()
         .eq('email', unsubscribeEmail);
-
       if (deleteError) throw deleteError;
 
-      toast({
-        title: "Unsubscribed",
-        description: "You've been removed from all street cleaning reminders."
-      });
+      toast({ title: "Unsubscribed", description: "You've been removed from all street cleaning reminders." });
       setUnsubscribeEmail("");
       setShowUnsubscribe(false);
       onOpenChange(false);
     } catch (error) {
       console.error("Error unsubscribing:", error);
-      toast({
-        title: "Unsubscribe failed",
-        description: "There was an error processing your request. Please try again.",
-        variant: "destructive"
-      });
+      toast({ title: "Unsubscribe failed", description: "There was an error processing your request. Please try again.", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
@@ -171,7 +179,7 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
             🧹 Street Cleaning Reminders
           </DialogTitle>
           <DialogDescription className="text-amber-700">
-            Get 8am email reminders on street cleaning days for your side of 48th Ave.
+            Get 8am reminders on street cleaning days for your side of 48th Ave.
           </DialogDescription>
         </DialogHeader>
 
@@ -200,18 +208,55 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Label htmlFor="email" className="text-amber-900 font-medium">
+                    <Mail className="h-3.5 w-3.5 inline mr-1" />
                     Email Address *
                   </Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    value={email} 
-                    onChange={e => setEmail(e.target.value)} 
-                    placeholder="neighbor@example.com" 
-                    className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl" 
-                    required 
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="neighbor@example.com"
+                    className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
+                    required
                     disabled={isSubmitting}
                   />
+                </div>
+
+                {/* SMS Toggle */}
+                <div className="bg-sky-50 rounded-xl p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="sms-toggle" className="text-sky-900 font-medium flex items-center gap-2 cursor-pointer">
+                      <MessageSquare className="h-4 w-4" />
+                      Also get SMS reminders 📱
+                    </Label>
+                    <Switch
+                      id="sms-toggle"
+                      checked={smsEnabled}
+                      onCheckedChange={setSmsEnabled}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+
+                  {smsEnabled && (
+                    <div className="pt-1">
+                      <Label htmlFor="phone" className="text-sky-800 text-sm">
+                        Phone Number (US) *
+                      </Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        value={phone}
+                        onChange={e => setPhone(formatPhoneDisplay(e.target.value))}
+                        placeholder="(415) 555-1234"
+                        className="mt-1 border-sky-200 focus:border-sky-500 focus:ring-sky-500 rounded-xl"
+                        disabled={isSubmitting}
+                      />
+                      <p className="text-xs text-sky-600 mt-1">
+                        Standard message rates apply. Reply STOP to unsubscribe from texts.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -220,8 +265,8 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                   </Label>
                   <div className="space-y-3">
                     <div className="flex items-center space-x-2">
-                      <Checkbox 
-                        id="eastSide" 
+                      <Checkbox
+                        id="eastSide"
                         checked={eastSide}
                         onCheckedChange={(checked) => setEastSide(checked as boolean)}
                         disabled={isSubmitting}
@@ -229,8 +274,8 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                       <Label htmlFor="eastSide" className="text-amber-800">East Side (City Side) - 1st & 3rd Friday</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Checkbox 
-                        id="westSide" 
+                      <Checkbox
+                        id="westSide"
                         checked={westSide}
                         onCheckedChange={(checked) => setWestSide(checked as boolean)}
                         disabled={isSubmitting}
@@ -240,8 +285,8 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                   </div>
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium py-3 rounded-xl transition-all duration-200"
                   disabled={isSubmitting}
                 >
@@ -249,10 +294,9 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                 </Button>
               </form>
 
-              {/* Toggle to Unsubscribe */}
               <div className="text-center">
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   onClick={() => setShowUnsubscribe(true)}
                   className="text-amber-600 hover:text-amber-700 text-sm"
                 >
@@ -262,7 +306,6 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
             </>
           ) : (
             <>
-              {/* Unsubscribe Form */}
               <div className="space-y-4">
                 <h3 className="font-medium text-amber-900">Unsubscribe from all reminders</h3>
                 <form onSubmit={handleUnsubscribe} className="space-y-4">
@@ -270,20 +313,20 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                     <Label htmlFor="unsubscribeEmail" className="text-amber-900 font-medium">
                       Email Address *
                     </Label>
-                    <Input 
+                    <Input
                       id="unsubscribeEmail"
-                      type="email" 
-                      value={unsubscribeEmail} 
-                      onChange={e => setUnsubscribeEmail(e.target.value)} 
-                      placeholder="your@email.com" 
+                      type="email"
+                      value={unsubscribeEmail}
+                      onChange={e => setUnsubscribeEmail(e.target.value)}
+                      placeholder="your@email.com"
                       className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
                       disabled={isSubmitting}
                       required
                     />
                   </div>
-                  <Button 
-                    type="submit" 
-                    variant="outline" 
+                  <Button
+                    type="submit"
+                    variant="outline"
                     className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl"
                     disabled={isSubmitting}
                   >
@@ -292,10 +335,9 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                 </form>
               </div>
 
-              {/* Toggle back to Sign Up */}
               <div className="text-center">
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   onClick={() => setShowUnsubscribe(false)}
                   className="text-amber-600 hover:text-amber-700 text-sm"
                 >
@@ -307,7 +349,7 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
 
           <div className="bg-amber-50 rounded-xl p-4 text-sm text-amber-800">
             <p className="leading-relaxed">
-              We only send street cleaning reminders for 48th Ave. We never share your info. 
+              We only send street cleaning reminders for 48th Ave. We never share your info.
               Reminders come at 8am on cleaning days.
             </p>
           </div>
