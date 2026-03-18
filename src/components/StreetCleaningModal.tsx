@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Switch } from "@/components/ui/switch";
 import { Clock, MessageSquare, Mail } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -14,7 +13,6 @@ interface StreetCleaningModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
-// Format phone for display: (XXX) XXX-XXXX
 const formatPhoneDisplay = (value: string): string => {
   const digits = value.replace(/\D/g, '').slice(0, 10);
   if (digits.length <= 3) return digits;
@@ -22,7 +20,6 @@ const formatPhoneDisplay = (value: string): string => {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 };
 
-// Convert display phone to E.164
 const toE164 = (value: string): string => {
   const digits = value.replace(/\D/g, '');
   if (digits.length === 10) return `+1${digits}`;
@@ -32,7 +29,8 @@ const toE164 = (value: string): string => {
 export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalProps) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [smsEnabled, setSmsEnabled] = useState(false);
+  const [wantEmail, setWantEmail] = useState(true);
+  const [wantSms, setWantSms] = useState(false);
   const [eastSide, setEastSide] = useState(false);
   const [westSide, setWestSide] = useState(false);
   const [unsubscribeEmail, setUnsubscribeEmail] = useState("");
@@ -42,64 +40,66 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) {
-      toast({ title: "Email required", description: "Please enter your email address.", variant: "destructive" });
+    if (!wantEmail && !wantSms) {
+      toast({ title: "Choose a reminder method", description: "Please select email, text, or both.", variant: "destructive" });
+      return;
+    }
+    if (wantEmail && !email) {
+      toast({ title: "Email required", description: "Please enter your email address for email reminders.", variant: "destructive" });
+      return;
+    }
+    if (wantSms && !toE164(phone)) {
+      toast({ title: "Valid phone required", description: "Please enter a 10-digit US phone number for text reminders.", variant: "destructive" });
       return;
     }
     if (!eastSide && !westSide) {
       toast({ title: "Select a side", description: "Please select at least one side for reminders.", variant: "destructive" });
       return;
     }
-    if (smsEnabled && !toE164(phone)) {
-      toast({ title: "Valid phone required", description: "Please enter a 10-digit US phone number for SMS reminders.", variant: "destructive" });
-      return;
-    }
 
     setIsSubmitting(true);
 
     try {
-      const e164Phone = smsEnabled ? toE164(phone) : null;
+      const e164Phone = wantSms ? toE164(phone) : null;
+      const subEmail = wantEmail ? email : (wantSms ? toE164(phone) : '');
 
       // Check if subscription exists
       const { data: exists, error: checkError } = await supabase
-        .rpc('subscription_exists', { check_email: email });
+        .rpc('subscription_exists', { check_email: subEmail });
       if (checkError) throw checkError;
+
+      const payload = {
+        east_side: eastSide,
+        west_side: westSide,
+        phone: e164Phone,
+        sms_enabled: wantSms,
+        email: subEmail,
+        updated_at: new Date().toISOString()
+      };
 
       if (exists) {
         const { error: updateError } = await supabase
           .from('street_cleaning_subscriptions')
-          .update({
-            east_side: eastSide,
-            west_side: westSide,
-            phone: e164Phone,
-            sms_enabled: smsEnabled,
-            updated_at: new Date().toISOString()
-          })
-          .eq('email', email);
+          .update(payload)
+          .eq('email', subEmail);
         if (updateError) throw updateError;
       } else {
         const { error: insertError } = await supabase
           .from('street_cleaning_subscriptions')
-          .insert({
-            email,
-            east_side: eastSide,
-            west_side: westSide,
-            phone: e164Phone,
-            sms_enabled: smsEnabled
-          });
+          .insert(payload);
         if (insertError) throw insertError;
       }
 
-      // Send email notification to admin
+      // Send admin notification
       await supabase.functions.invoke('send-form-notification', {
         body: {
           formType: 'street_cleaning',
-          formData: { email, east_side: eastSide, west_side: westSide, sms_enabled: smsEnabled, phone: e164Phone }
+          formData: { email: subEmail, east_side: eastSide, west_side: westSide, sms_enabled: wantSms, phone: e164Phone, email_enabled: wantEmail }
         }
       });
 
-      // Send confirmation SMS if enabled
-      if (smsEnabled && e164Phone) {
+      // Send confirmation SMS if opted in
+      if (wantSms && e164Phone) {
         try {
           await supabase.functions.invoke('send-sms-reminder', {
             body: {
@@ -110,25 +110,23 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
           });
         } catch (smsError) {
           console.error("SMS confirmation failed:", smsError);
-          // Don't block signup if SMS fails
         }
       }
 
       const sides = [];
-      if (eastSide) sides.push("East Side (City Side)");
-      if (westSide) sides.push("West Side (Beach Side)");
+      if (eastSide) sides.push("East Side");
+      if (westSide) sides.push("West Side");
+      const methods = [];
+      if (wantEmail) methods.push("email");
+      if (wantSms) methods.push("text");
 
-      const desc = smsEnabled
-        ? `You're signed up for ${sides.join(" and ")} reminders via email + SMS! 📱`
-        : `You're signed up for ${sides.join(" and ")} reminders. We'll send you a friendly heads up at 8am on cleaning days!`;
+      toast({
+        title: "Welcome to the neighborhood! 🏄‍♀️",
+        description: `You're signed up for ${sides.join(" & ")} reminders via ${methods.join(" & ")}!`
+      });
 
-      toast({ title: "Welcome to the neighborhood! 🏄‍♀️", description: desc });
-
-      setEmail("");
-      setPhone("");
-      setSmsEnabled(false);
-      setEastSide(false);
-      setWestSide(false);
+      setEmail(""); setPhone(""); setWantEmail(true); setWantSms(false);
+      setEastSide(false); setWestSide(false);
       onOpenChange(false);
     } catch (error) {
       console.error("Error signing up:", error);
@@ -144,9 +142,7 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
       toast({ title: "Email required", description: "Please enter your email address to unsubscribe.", variant: "destructive" });
       return;
     }
-
     setIsSubmitting(true);
-
     try {
       const { error: unsubscribeError } = await supabase
         .from('street_cleaning_unsubscribes')
@@ -165,7 +161,7 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
       onOpenChange(false);
     } catch (error) {
       console.error("Error unsubscribing:", error);
-      toast({ title: "Unsubscribe failed", description: "There was an error processing your request. Please try again.", variant: "destructive" });
+      toast({ title: "Unsubscribe failed", description: "There was an error processing your request.", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
@@ -179,12 +175,12 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
             🧹 Street Cleaning Reminders
           </DialogTitle>
           <DialogDescription className="text-amber-700">
-            Get 8am reminders on street cleaning days for your side of 48th Ave.
+            Get 8am reminders on cleaning days — by email, text, or both.
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* Street Cleaning Schedule */}
+          {/* Schedule */}
           <div className="bg-amber-50 rounded-xl p-4">
             <h3 className="font-semibold text-amber-900 mb-3 flex items-center gap-2">
               <Clock className="h-4 w-4" />
@@ -204,61 +200,79 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
 
           {!showUnsubscribe ? (
             <>
-              {/* Sign Up Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* How do you want to be reminded? */}
                 <div>
-                  <Label htmlFor="email" className="text-amber-900 font-medium">
-                    <Mail className="h-3.5 w-3.5 inline mr-1" />
-                    Email Address *
+                  <Label className="text-amber-900 font-medium mb-3 block">
+                    How do you want to be reminded?
                   </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="neighbor@example.com"
-                    className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
-                    required
-                    disabled={isSubmitting}
-                  />
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="wantEmail"
+                        checked={wantEmail}
+                        onCheckedChange={(checked) => setWantEmail(checked as boolean)}
+                        disabled={isSubmitting}
+                      />
+                      <Label htmlFor="wantEmail" className="text-amber-800 flex items-center gap-1.5 cursor-pointer">
+                        <Mail className="h-3.5 w-3.5" /> Email
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="wantSms"
+                        checked={wantSms}
+                        onCheckedChange={(checked) => setWantSms(checked as boolean)}
+                        disabled={isSubmitting}
+                      />
+                      <Label htmlFor="wantSms" className="text-amber-800 flex items-center gap-1.5 cursor-pointer">
+                        <MessageSquare className="h-3.5 w-3.5" /> Text message (SMS)
+                      </Label>
+                    </div>
+                  </div>
                 </div>
 
-                {/* SMS Toggle */}
-                <div className="bg-sky-50 rounded-xl p-4 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="sms-toggle" className="text-sky-900 font-medium flex items-center gap-2 cursor-pointer">
-                      <MessageSquare className="h-4 w-4" />
-                      Also get SMS reminders 📱
+                {/* Email field */}
+                {wantEmail && (
+                  <div>
+                    <Label htmlFor="email" className="text-amber-900 font-medium">
+                      Email Address *
                     </Label>
-                    <Switch
-                      id="sms-toggle"
-                      checked={smsEnabled}
-                      onCheckedChange={setSmsEnabled}
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder="neighbor@example.com"
+                      className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
+                      required={wantEmail}
                       disabled={isSubmitting}
                     />
                   </div>
+                )}
 
-                  {smsEnabled && (
-                    <div className="pt-1">
-                      <Label htmlFor="phone" className="text-sky-800 text-sm">
-                        Phone Number (US) *
-                      </Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        value={phone}
-                        onChange={e => setPhone(formatPhoneDisplay(e.target.value))}
-                        placeholder="(415) 555-1234"
-                        className="mt-1 border-sky-200 focus:border-sky-500 focus:ring-sky-500 rounded-xl"
-                        disabled={isSubmitting}
-                      />
-                      <p className="text-xs text-sky-600 mt-1">
-                        Standard message rates apply. Reply STOP to unsubscribe from texts.
-                      </p>
-                    </div>
-                  )}
-                </div>
+                {/* Phone field */}
+                {wantSms && (
+                  <div>
+                    <Label htmlFor="phone" className="text-amber-900 font-medium">
+                      Phone Number (US) *
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={phone}
+                      onChange={e => setPhone(formatPhoneDisplay(e.target.value))}
+                      placeholder="(415) 555-1234"
+                      className="mt-1 border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl"
+                      disabled={isSubmitting}
+                    />
+                    <p className="text-xs text-amber-600 mt-1">
+                      Standard message rates apply. Reply STOP to unsubscribe from texts.
+                    </p>
+                  </div>
+                )}
 
+                {/* Which side */}
                 <div>
                   <Label className="text-amber-900 font-medium mb-3 block">
                     Which side reminders do you want?
@@ -288,7 +302,7 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                 <Button
                   type="submit"
                   className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium py-3 rounded-xl transition-all duration-200"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || (!wantEmail && !wantSms)}
                 >
                   {isSubmitting ? "Signing Up..." : "Sign Me Up! 🌊"}
                 </Button>
@@ -334,7 +348,6 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                   </Button>
                 </form>
               </div>
-
               <div className="text-center">
                 <Button
                   variant="ghost"
