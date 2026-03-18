@@ -136,6 +136,8 @@ const handler = async (req: Request): Promise<Response> => {
           <p><strong>Email:</strong> ${safe(formData.email)}</p>
           <p><strong>East Side:</strong> ${formData.east_side ? 'Yes' : 'No'}</p>
           <p><strong>West Side:</strong> ${formData.west_side ? 'Yes' : 'No'}</p>
+          <p><strong>SMS Enabled:</strong> ${formData.sms_enabled ? 'Yes' : 'No'}</p>
+          ${formData.phone ? `<p><strong>Phone:</strong> ${safe(formData.phone)}</p>` : ''}
         `;
         break;
 
