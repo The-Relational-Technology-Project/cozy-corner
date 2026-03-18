@@ -400,6 +400,8 @@ export type Database = {
           east_side: boolean
           email: string
           id: string
+          phone: string | null
+          sms_enabled: boolean
           updated_at: string
           west_side: boolean
         }
@@ -408,6 +410,8 @@ export type Database = {
           east_side?: boolean
           email: string
           id?: string
+          phone?: string | null
+          sms_enabled?: boolean
           updated_at?: string
           west_side?: boolean
         }
@@ -416,6 +420,8 @@ export type Database = {
           east_side?: boolean
           email?: string
           id?: string
+          phone?: string | null
+          sms_enabled?: boolean
           updated_at?: string
           west_side?: boolean
         }
