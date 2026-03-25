@@ -74,6 +74,48 @@ export type Database = {
         }
         Relationships: []
       }
+      block_party_survey_2026: {
+        Row: {
+          committee_contact: string | null
+          created_at: string
+          id: string
+          name: string
+          participation_factors: string | null
+          party_ideas: string | null
+          potluck_ok: boolean
+          preferred_month: string | null
+          preferred_times: string[] | null
+          unavailable_weekends: string | null
+          wants_committee: boolean | null
+        }
+        Insert: {
+          committee_contact?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          participation_factors?: string | null
+          party_ideas?: string | null
+          potluck_ok: boolean
+          preferred_month?: string | null
+          preferred_times?: string[] | null
+          unavailable_weekends?: string | null
+          wants_committee?: boolean | null
+        }
+        Update: {
+          committee_contact?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          participation_factors?: string | null
+          party_ideas?: string | null
+          potluck_ok?: boolean
+          preferred_month?: string | null
+          preferred_times?: string[] | null
+          unavailable_weekends?: string | null
+          wants_committee?: boolean | null
+        }
+        Relationships: []
+      }
       community_service_requests: {
         Row: {
           created_at: string
