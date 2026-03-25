@@ -229,16 +229,18 @@ const BlockParty = () => {
                   <Label className="text-foreground font-medium">
                     In which month should we party? <span className="text-muted-foreground text-sm">(optional, select all you like)</span>
                   </Label>
-                  <RadioGroup value={preferredMonth} onValueChange={setPreferredMonth}>
-                    <div className="flex flex-wrap gap-4">
-                      {monthOptions.map((month) => (
-                        <div key={month} className="flex items-center space-x-2">
-                          <RadioGroupItem value={month} id={`month-${month}`} />
-                          <Label htmlFor={`month-${month}`} className="text-foreground cursor-pointer">{month}</Label>
-                        </div>
-                      ))}
-                    </div>
-                  </RadioGroup>
+                  <div className="flex flex-wrap gap-4">
+                    {monthOptions.map((month) => (
+                      <div key={month} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`month-${month}`}
+                          checked={preferredMonths.includes(month)}
+                          onCheckedChange={() => toggleMonth(month)}
+                        />
+                        <Label htmlFor={`month-${month}`} className="text-foreground cursor-pointer">{month}</Label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Unavailable weekends */}
