@@ -27,6 +27,7 @@ const App = () => (
         <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/block-party" element={<BlockParty />} />
           <Route path="/block-party-2025" element={<BlockParty2025 />} />
           <Route path="/coupons" element={<NeighborCoupons />} />
           <Route path="/prep-together" element={<PrepTogether />} />

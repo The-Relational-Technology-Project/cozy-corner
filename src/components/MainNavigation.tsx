@@ -24,7 +24,7 @@ export const MainNavigation = () => {
   
   const rightNavItems = [
     { path: "/prep-together", label: t('nav.prep'), icon: Handshake },
-    { path: "/block-party-2025", label: t('nav.party'), icon: "🎉" as const },
+    { path: "/block-party", label: t('nav.party'), icon: "🎉" as const },
     { path: "/contact", label: t('nav.contact'), icon: Mail },
   ];
 
