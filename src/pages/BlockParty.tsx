@@ -120,7 +120,7 @@ const BlockParty = () => {
     <div className="min-h-screen bg-background">
       <MainNavigation />
 
-      <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
+      <div className="max-w-3xl mx-auto px-4 py-12 space-y-8">
         {/* Header */}
         <div className="text-center space-y-3">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground flex items-center justify-center gap-3">
