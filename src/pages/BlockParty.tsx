@@ -200,7 +200,7 @@ const BlockParty = () => {
                 {/* Time preferences */}
                 <div className="space-y-3">
                   <Label className="text-foreground font-medium">
-                    What time works best, generally? <span className="text-muted-foreground text-sm">(optional, select all that apply)</span>
+                    What time works for you, generally? <span className="text-muted-foreground text-sm">(optional, select all that apply)</span>
                   </Label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {timeOptions.map((time) => (
