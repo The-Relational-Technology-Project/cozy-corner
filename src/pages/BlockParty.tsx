@@ -30,7 +30,7 @@ const BlockParty = () => {
   // Form state
   const [name, setName] = useState("");
   const [preferredTimes, setPreferredTimes] = useState<string[]>([]);
-  const [preferredMonth, setPreferredMonth] = useState("");
+  const [preferredMonths, setPreferredMonths] = useState<string[]>([]);
   const [unavailableWeekends, setUnavailableWeekends] = useState("");
   const [participationFactors, setParticipationFactors] = useState("");
   const [potluckOk, setPotluckOk] = useState<string>("");
@@ -49,6 +49,12 @@ const BlockParty = () => {
   const toggleTime = (time: string) => {
     setPreferredTimes((prev) =>
       prev.includes(time) ? prev.filter((t) => t !== time) : [...prev, time]
+    );
+  };
+
+  const toggleMonth = (month: string) => {
+    setPreferredMonths((prev) =>
+      prev.includes(month) ? prev.filter((m) => m !== month) : [...prev, month]
     );
   };
 
@@ -77,7 +83,7 @@ const BlockParty = () => {
       const { error } = await supabase.from("block_party_survey_2026" as any).insert({
         name: name.trim(),
         preferred_times: preferredTimes.length > 0 ? preferredTimes : null,
-        preferred_month: preferredMonth || null,
+        preferred_month: preferredMonths.length > 0 ? preferredMonths.join(', ') : null,
         unavailable_weekends: unavailableWeekends.trim() || null,
         participation_factors: participationFactors.trim() || null,
         potluck_ok: potluckOk === "yes",
@@ -95,7 +101,7 @@ const BlockParty = () => {
           formData: {
             name: name.trim(),
             preferred_times: preferredTimes,
-            preferred_month: preferredMonth,
+            preferred_months: preferredMonths,
             unavailable_weekends: unavailableWeekends.trim(),
             participation_factors: participationFactors.trim(),
             potluck_ok: potluckOk === "yes",
@@ -120,7 +126,7 @@ const BlockParty = () => {
     <div className="min-h-screen bg-background">
       <MainNavigation />
 
-      <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
+      <div className="max-w-3xl mx-auto px-4 py-12 space-y-8">
         {/* Header */}
         <div className="text-center space-y-3">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground flex items-center justify-center gap-3">
@@ -159,7 +165,7 @@ const BlockParty = () => {
                 setSubmitted(false);
                 setName("");
                 setPreferredTimes([]);
-                setPreferredMonth("");
+                setPreferredMonths([]);
                 setUnavailableWeekends("");
                 setParticipationFactors("");
                 setPotluckOk("");
@@ -200,7 +206,7 @@ const BlockParty = () => {
                 {/* Time preferences */}
                 <div className="space-y-3">
                   <Label className="text-foreground font-medium">
-                    What time works best, generally? <span className="text-muted-foreground text-sm">(optional, select all that apply)</span>
+                    What time works for you, generally? <span className="text-muted-foreground text-sm">(optional, select all that apply)</span>
                   </Label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {timeOptions.map((time) => (
@@ -221,18 +227,20 @@ const BlockParty = () => {
                 {/* Month */}
                 <div className="space-y-3">
                   <Label className="text-foreground font-medium">
-                    In which month should we party? <span className="text-muted-foreground text-sm">(optional)</span>
+                    In which month should we party? <span className="text-muted-foreground text-sm">(optional, select all you like)</span>
                   </Label>
-                  <RadioGroup value={preferredMonth} onValueChange={setPreferredMonth}>
-                    <div className="flex flex-wrap gap-4">
-                      {monthOptions.map((month) => (
-                        <div key={month} className="flex items-center space-x-2">
-                          <RadioGroupItem value={month} id={`month-${month}`} />
-                          <Label htmlFor={`month-${month}`} className="text-foreground cursor-pointer">{month}</Label>
-                        </div>
-                      ))}
-                    </div>
-                  </RadioGroup>
+                  <div className="flex flex-wrap gap-4">
+                    {monthOptions.map((month) => (
+                      <div key={month} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`month-${month}`}
+                          checked={preferredMonths.includes(month)}
+                          onCheckedChange={() => toggleMonth(month)}
+                        />
+                        <Label htmlFor={`month-${month}`} className="text-foreground cursor-pointer">{month}</Label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Unavailable weekends */}

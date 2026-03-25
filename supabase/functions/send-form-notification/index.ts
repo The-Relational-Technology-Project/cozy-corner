@@ -171,7 +171,7 @@ const handler = async (req: Request): Promise<Response> => {
           <h2>New Block Party 2026 Survey Response</h2>
           <p><strong>Name:</strong> ${safe(formData.name)}</p>
           <p><strong>Preferred Times:</strong> ${formData.preferred_times?.length ? escapeHtml(formData.preferred_times.join(', ')) : 'Not specified'}</p>
-          <p><strong>Preferred Month:</strong> ${safe(formData.preferred_month, 'Not specified')}</p>
+          <p><strong>Preferred Months:</strong> ${formData.preferred_months?.length ? escapeHtml(formData.preferred_months.join(', ')) : 'Not specified'}</p>
           <p><strong>Unavailable Weekends:</strong> ${safe(formData.unavailable_weekends, 'None listed')}</p>
           <p><strong>Participation Factors:</strong> ${safe(formData.participation_factors, 'None listed')}</p>
           <p><strong>Open to Potluck:</strong> ${formData.potluck_ok ? 'Yes' : 'No'}</p>
