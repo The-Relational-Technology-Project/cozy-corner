@@ -221,7 +221,7 @@ const BlockParty = () => {
                 {/* Month */}
                 <div className="space-y-3">
                   <Label className="text-foreground font-medium">
-                    In which month should we party? <span className="text-muted-foreground text-sm">(optional)</span>
+                    In which month should we party? <span className="text-muted-foreground text-sm">(optional, select all you like)</span>
                   </Label>
                   <RadioGroup value={preferredMonth} onValueChange={setPreferredMonth}>
                     <div className="flex flex-wrap gap-4">
