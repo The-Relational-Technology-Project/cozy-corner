@@ -101,7 +101,7 @@ const BlockParty = () => {
           formData: {
             name: name.trim(),
             preferred_times: preferredTimes,
-            preferred_month: preferredMonth,
+            preferred_months: preferredMonths,
             unavailable_weekends: unavailableWeekends.trim(),
             participation_factors: participationFactors.trim(),
             potluck_ok: potluckOk === "yes",
