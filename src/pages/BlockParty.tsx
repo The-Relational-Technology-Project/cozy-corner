@@ -83,7 +83,7 @@ const BlockParty = () => {
       const { error } = await supabase.from("block_party_survey_2026" as any).insert({
         name: name.trim(),
         preferred_times: preferredTimes.length > 0 ? preferredTimes : null,
-        preferred_month: preferredMonth || null,
+        preferred_month: preferredMonths.length > 0 ? preferredMonths.join(', ') : null,
         unavailable_weekends: unavailableWeekends.trim() || null,
         participation_factors: participationFactors.trim() || null,
         potluck_ok: potluckOk === "yes",
