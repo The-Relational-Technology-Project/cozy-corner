@@ -133,7 +133,7 @@ const BlockParty = () => {
             <PartyPopper className="h-8 w-8 text-primary" />
             Block Party 2026
           </h1>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg px-0 py-[30px]">
             Let's plan our next block party on 48th Ave! Fill out this quick 2-minute survey so we can find the best date, time, and vibe for everyone.
           </p>
         </div>
