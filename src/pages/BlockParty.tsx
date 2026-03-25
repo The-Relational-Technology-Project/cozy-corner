@@ -30,7 +30,7 @@ const BlockParty = () => {
   // Form state
   const [name, setName] = useState("");
   const [preferredTimes, setPreferredTimes] = useState<string[]>([]);
-  const [preferredMonth, setPreferredMonth] = useState("");
+  const [preferredMonths, setPreferredMonths] = useState<string[]>([]);
   const [unavailableWeekends, setUnavailableWeekends] = useState("");
   const [participationFactors, setParticipationFactors] = useState("");
   const [potluckOk, setPotluckOk] = useState<string>("");
