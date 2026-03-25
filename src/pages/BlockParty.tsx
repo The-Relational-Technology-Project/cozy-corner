@@ -52,6 +52,12 @@ const BlockParty = () => {
     );
   };
 
+  const toggleMonth = (month: string) => {
+    setPreferredMonths((prev) =>
+      prev.includes(month) ? prev.filter((m) => m !== month) : [...prev, month]
+    );
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
