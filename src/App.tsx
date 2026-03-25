@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
 import BlockParty2025 from "./pages/BlockParty2025";
+import BlockParty from "./pages/BlockParty";
 import NeighborCoupons from "./pages/NeighborCoupons";
 import Contact from "./pages/Contact";
 import PrepTogether from "./pages/PrepTogether";
@@ -26,6 +27,7 @@ const App = () => (
         <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/block-party" element={<BlockParty />} />
           <Route path="/block-party-2025" element={<BlockParty2025 />} />
           <Route path="/coupons" element={<NeighborCoupons />} />
           <Route path="/prep-together" element={<PrepTogether />} />

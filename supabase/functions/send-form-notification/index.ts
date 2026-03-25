@@ -165,6 +165,22 @@ const handler = async (req: Request): Promise<Response> => {
         `;
         break;
 
+      case "block_party_survey":
+        subject = "🎉 New Block Party 2026 Survey Response";
+        htmlContent = `
+          <h2>New Block Party 2026 Survey Response</h2>
+          <p><strong>Name:</strong> ${safe(formData.name)}</p>
+          <p><strong>Preferred Times:</strong> ${formData.preferred_times?.length ? escapeHtml(formData.preferred_times.join(', ')) : 'Not specified'}</p>
+          <p><strong>Preferred Month:</strong> ${safe(formData.preferred_month, 'Not specified')}</p>
+          <p><strong>Unavailable Weekends:</strong> ${safe(formData.unavailable_weekends, 'None listed')}</p>
+          <p><strong>Participation Factors:</strong> ${safe(formData.participation_factors, 'None listed')}</p>
+          <p><strong>Open to Potluck:</strong> ${formData.potluck_ok ? 'Yes' : 'No'}</p>
+          <p><strong>Party Ideas:</strong> ${safe(formData.party_ideas, 'None')}</p>
+          <p><strong>Wants to Join Committee:</strong> ${formData.wants_committee ? 'Yes' : 'No'}</p>
+          ${formData.wants_committee ? `<p><strong>Committee Contact:</strong> ${safe(formData.committee_contact)}</p>` : ''}
+        `;
+        break;
+
       case "neighborhood_contribution":
         subject = "New Neighborhood Contribution";
         htmlContent = `
