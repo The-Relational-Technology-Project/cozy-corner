@@ -165,7 +165,7 @@ const BlockParty = () => {
                 setSubmitted(false);
                 setName("");
                 setPreferredTimes([]);
-                setPreferredMonth("");
+                setPreferredMonths([]);
                 setUnavailableWeekends("");
                 setParticipationFactors("");
                 setPotluckOk("");
