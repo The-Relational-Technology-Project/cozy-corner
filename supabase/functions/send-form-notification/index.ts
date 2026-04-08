@@ -213,9 +213,21 @@ const handler = async (req: Request): Promise<Response> => {
         throw new Error(`Unknown form type: ${formType}`);
     }
 
+    const notificationEmail = Deno.env.get("NOTIFICATION_EMAIL");
+    if (!notificationEmail) {
+      console.error("NOTIFICATION_EMAIL environment variable is not set. Skipping email send.");
+      return new Response(
+        JSON.stringify({ error: "Notification email not configured" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     const emailResponse = await resend.emails.send({
       from: "Relational Tech Project <notifications@relationaltechproject.org>",
-      to: ["joshuanesbit@gmail.com"],
+      to: [notificationEmail],
       subject: subject,
       html: htmlContent,
     });

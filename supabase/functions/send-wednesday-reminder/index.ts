@@ -16,10 +16,22 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     console.log("Sending Wednesday reminder email...");
 
+    const reminderEmail = Deno.env.get("REMINDER_EMAIL");
+    if (!reminderEmail) {
+      console.error("REMINDER_EMAIL environment variable is not set. Skipping reminder send.");
+      return new Response(
+        JSON.stringify({ error: "Reminder email not configured" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     const emailResponse = await resend.emails.send({
       from: "Relational Tech Project <humans@relationaltechproject.org>",
       reply_to: "josh@relationaltechproject.org",
-      to: ["jeffnesbit@gmail.com"],
+      to: [reminderEmail],
       subject: "Tuesday Evening Reminder",
       html: `
         <h2>Tuesday Evening Reminder</h2>
