@@ -47,7 +47,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (action === 'send_reminder') {
       // Send an SMS reminder
-      const smsBody = message || "🧹 Street cleaning reminder! Don't forget to move your car today. — Your neighbors on 48th Ave";
+      const smsBody = message || "Ã°ÂÂ§Â¹ Street cleaning reminder! Don't forget to move your car today. Ã¢ÂÂ Your neighbors on 48th Ave";
 
       const response = await fetch(`${GATEWAY_URL}/Messages.json`, {
         method: 'POST',
@@ -80,7 +80,7 @@ const handler = async (req: Request): Promise<Response> => {
       if (message?.east_side) sides.push("East Side (1st & 3rd Friday)");
       if (message?.west_side) sides.push("West Side (1st & 3rd Tuesday)");
 
-      const confirmBody = `🌊 Welcome to 48th Ave street cleaning SMS reminders! You'll get a text at 8am on cleaning days for: ${sides.join(" & ")}. Reply STOP to unsubscribe.`;
+      const confirmBody = `Ã°ÂÂÂ Welcome to 48th Ave street cleaning SMS reminders! You'll get a text at 8am on cleaning days for: ${sides.join(" & ")}. Reply STOP to unsubscribe.`;
 
       const response = await fetch(`${GATEWAY_URL}/Messages.json`, {
         method: 'POST',

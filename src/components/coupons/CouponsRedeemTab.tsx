@@ -50,7 +50,7 @@ export const CouponsRedeemTab = () => {
     setSelectedCoupon(null);
     toast({
       title: "Coupon Claimed!",
-      description: "✅ Pending steward intro — you'll be connected soon!",
+      description: "Ã¢ÂÂ Pending steward intro Ã¢ÂÂ you'll be connected soon!",
     });
   };
 
@@ -91,7 +91,7 @@ export const CouponsRedeemTab = () => {
               <div className="flex-shrink-0">
                 {isClaimed ? (
                   <span className="text-dune text-xs font-medium whitespace-nowrap">
-                    ✅ Claimed
+                    Ã¢ÂÂ Claimed
                   </span>
                 ) : (
                   <Button 

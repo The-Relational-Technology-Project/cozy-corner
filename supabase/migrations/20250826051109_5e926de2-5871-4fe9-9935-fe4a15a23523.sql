@@ -5,7 +5,7 @@ CREATE TABLE public.neighbor_coupons (
   updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
   title TEXT NOT NULL,
   description TEXT NOT NULL,
-  icon TEXT NOT NULL DEFAULT '🎟️',
+  icon TEXT NOT NULL DEFAULT 'Ã°ÂÂÂÃ¯Â¸Â',
   availability TEXT,
   contributor_name TEXT,
   contributor_email TEXT,
@@ -58,18 +58,18 @@ EXECUTE FUNCTION public.update_updated_at_column();
 
 -- Insert example coupons
 INSERT INTO public.neighbor_coupons (title, description, icon, contributor_name, contributor_email) VALUES
-('Best Bike Route Buddy', 'Ride along safe local paths', '🚲', 'Cozy Corner', 'steward@cozycorner.place'),
-('Grocery Tour', 'Get shown around the local store or farmers market', '🛒', 'Cozy Corner', 'steward@cozycorner.place'),
-('Neighborhood History Chat', 'Coffee and stories about 48th Ave''s past', '🏡', 'Cozy Corner', 'steward@cozycorner.place'),
-('Hike Connector', 'Discover nearby trails with a neighbor', '🌳', 'Cozy Corner', 'steward@cozycorner.place'),
-('Walk & Wave', 'Meet neighbors up and down the block', '👋', 'Cozy Corner', 'steward@cozycorner.place'),
-('Dog Walk Together', 'Join a morning walk at Ocean Beach', '🐕', 'Cozy Corner', 'steward@cozycorner.place'),
-('Donut Run', 'Sample the best donuts within a mile', '🍩', 'Cozy Corner', 'steward@cozycorner.place'),
-('Art & Murals Walk', 'See hidden murals and street art', '🎨', 'Cozy Corner', 'steward@cozycorner.place'),
-('Book Swap', 'Bring a favorite book to exchange', '📚', 'Cozy Corner', 'steward@cozycorner.place'),
-('Kids Playdate', 'Meetup at the playground for families', '🪁', 'Cozy Corner', 'steward@cozycorner.place'),
-('Handy Neighbor', 'Basic home fix tips or tool borrowing intro', '🛠', 'Cozy Corner', 'steward@cozycorner.place'),
-('Sunset Tunes', 'Hang out for live music or jam session', '🎶', 'Cozy Corner', 'steward@cozycorner.place');
+('Best Bike Route Buddy', 'Ride along safe local paths', 'Ã°ÂÂÂ²', 'Cozy Corner', 'steward@cozycorner.place'),
+('Grocery Tour', 'Get shown around the local store or farmers market', 'Ã°ÂÂÂ', 'Cozy Corner', 'steward@cozycorner.place'),
+('Neighborhood History Chat', 'Coffee and stories about 48th Ave''s past', 'Ã°ÂÂÂ¡', 'Cozy Corner', 'steward@cozycorner.place'),
+('Hike Connector', 'Discover nearby trails with a neighbor', 'Ã°ÂÂÂ³', 'Cozy Corner', 'steward@cozycorner.place'),
+('Walk & Wave', 'Meet neighbors up and down the block', 'Ã°ÂÂÂ', 'Cozy Corner', 'steward@cozycorner.place'),
+('Dog Walk Together', 'Join a morning walk at Ocean Beach', 'Ã°ÂÂÂ', 'Cozy Corner', 'steward@cozycorner.place'),
+('Donut Run', 'Sample the best donuts within a mile', 'Ã°ÂÂÂ©', 'Cozy Corner', 'steward@cozycorner.place'),
+('Art & Murals Walk', 'See hidden murals and street art', 'Ã°ÂÂÂ¨', 'Cozy Corner', 'steward@cozycorner.place'),
+('Book Swap', 'Bring a favorite book to exchange', 'Ã°ÂÂÂ', 'Cozy Corner', 'steward@cozycorner.place'),
+('Kids Playdate', 'Meetup at the playground for families', 'Ã°ÂÂªÂ', 'Cozy Corner', 'steward@cozycorner.place'),
+('Handy Neighbor', 'Basic home fix tips or tool borrowing intro', 'Ã°ÂÂÂ ', 'Cozy Corner', 'steward@cozycorner.place'),
+('Sunset Tunes', 'Hang out for live music or jam session', 'Ã°ÂÂÂ¶', 'Cozy Corner', 'steward@cozycorner.place');
 
 -- Create admin functions
 CREATE OR REPLACE FUNCTION public.get_coupon_claims_for_admin()

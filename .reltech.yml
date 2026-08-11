@@ -1,0 +1,24 @@
+# .reltech.yml â see github.com/The-Relational-Technology-Project/watcher
+version: 2
+
+project:
+  name: "cozy-corner"
+  description: "Built with Relational Builder"
+
+lineage:
+  remixed_from_url: "https://github.com/The-Relational-Technology-Project/cozy-corner"
+  studio: "rt"
+  studio_name: "Relational Tech Studio"
+  note: "Imported from its own existing repo on 2026-08-11, built with Relational Builder."
+
+tags:
+  - community-tool
+
+watch:
+  branches: ["main"]
+  signals: ["releases", "prs", "commits"]
+  threshold: "minor"
+
+preferences:
+  summarize_commits: true
+  public_link: true

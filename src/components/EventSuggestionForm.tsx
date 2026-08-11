@@ -68,7 +68,7 @@ const EventSuggestionForm = ({ isOpen, onClose }: EventSuggestionFormProps) => {
       });
 
       toast({
-        title: "Event suggestion submitted! 🎉",
+        title: "Event suggestion submitted! Ã°ÂÂÂ",
         description: "Thank you for helping make our neighborhood more vibrant. We'll review your suggestion and get back to you!"
       });
 
@@ -99,7 +99,7 @@ const EventSuggestionForm = ({ isOpen, onClose }: EventSuggestionFormProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-amber-900">Suggest a Neighborhood Event 🎉</DialogTitle>
+          <DialogTitle className="text-amber-900">Suggest a Neighborhood Event Ã°ÂÂÂ</DialogTitle>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">

@@ -10,7 +10,7 @@ export const CouponsHowItWorksTab = () => {
         <CardContent className="space-y-6">
           <div className="space-y-4 text-cozy-cream-foreground">
             <div className="flex items-start space-x-3">
-              <div className="text-2xl">🔐</div>
+              <div className="text-2xl">Ã°ÂÂÂ</div>
               <div>
                 <h3 className="font-semibold mb-1">Safe, Steward-Mediated Introductions</h3>
                 <p>Coupons are safe, steward-mediated introductions. Your personal information stays private until you both agree to connect.</p>
@@ -18,7 +18,7 @@ export const CouponsHowItWorksTab = () => {
             </div>
 
             <div className="flex items-start space-x-3">
-              <div className="text-2xl">🤝</div>
+              <div className="text-2xl">Ã°ÂÂ¤Â</div>
               <div>
                 <h3 className="font-semibold mb-1">When You Claim a Coupon</h3>
                 <p>When you claim a coupon, the block steward checks with the neighbor who offered it and facilitates the introduction between you both.</p>
@@ -26,7 +26,7 @@ export const CouponsHowItWorksTab = () => {
             </div>
 
             <div className="flex items-start space-x-3">
-              <div className="text-2xl">🔒</div>
+              <div className="text-2xl">Ã°ÂÂÂ</div>
               <div>
                 <h3 className="font-semibold mb-1">No Contact Info Shared</h3>
                 <p>No contact information is shared on the site itself. All connections happen through the steward who ensures both parties are comfortable.</p>
@@ -34,7 +34,7 @@ export const CouponsHowItWorksTab = () => {
             </div>
 
             <div className="flex items-start space-x-3">
-              <div className="text-2xl">❤️</div>
+              <div className="text-2xl">Ã¢ÂÂ¤Ã¯Â¸Â</div>
               <div>
                 <h3 className="font-semibold mb-1">About Connection, Not Transactions</h3>
                 <p>This is about connection and warm welcomes, not transactions. The goal is to build community and help neighbors get to know each other.</p>

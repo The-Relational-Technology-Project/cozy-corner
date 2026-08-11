@@ -90,7 +90,7 @@ const SandAccumulation = () => {
       setShowClearButton(false);
       
       toast({
-        title: "Sand cleared! 🧹",
+        title: "Sand cleared! Ã°ÂÂ§Â¹",
         description: "Thanks for sweeping! The neighborhood appreciates it!",
       });
     } catch (error) {
@@ -182,7 +182,7 @@ const SandAccumulation = () => {
             disabled={isClearing}
             className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium text-sm px-3 py-2 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105"
           >
-            {isClearing ? "Clearing..." : "Clear the Sand! 🧹"}
+            {isClearing ? "Clearing..." : "Clear the Sand! Ã°ÂÂ§Â¹"}
           </Button>
         </div>
       )}
@@ -190,7 +190,7 @@ const SandAccumulation = () => {
       {/* Subtle sand count indicator */}
       {globalSandCount > 0 && (
         <div className="absolute bottom-4 left-4 text-xs text-amber-700/60 font-medium pointer-events-auto">
-          🏖️ {globalSandCount} grains
+          Ã°ÂÂÂÃ¯Â¸Â {globalSandCount} grains
         </div>
       )}
     </div>

@@ -166,7 +166,7 @@ const handler = async (req: Request): Promise<Response> => {
         break;
 
       case "block_party_survey":
-        subject = "🎉 New Block Party 2026 Survey Response";
+        subject = "Ã°ÂÂÂ New Block Party 2026 Survey Response";
         htmlContent = `
           <h2>New Block Party 2026 Survey Response</h2>
           <p><strong>Name:</strong> ${safe(formData.name)}</p>
@@ -197,7 +197,7 @@ const handler = async (req: Request): Promise<Response> => {
         break;
 
       case "new_neighbor_signup":
-        subject = "🏠 New Neighbor Signup!";
+        subject = "Ã°ÂÂÂ  New Neighbor Signup!";
         htmlContent = `
           <h2>New Neighbor Signup</h2>
           <p><strong>Name:</strong> ${safe(formData.name)}</p>

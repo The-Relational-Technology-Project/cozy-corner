@@ -61,7 +61,7 @@ const PrepTogether = () => {
       setSubmitted(true);
       toast({
         title: "Successfully signed up!",
-        description: "Thank you! We'll check on you if a disaster hits. Stay safe – and check on your neighbors too!"
+        description: "Thank you! We'll check on you if a disaster hits. Stay safe Ã¢ÂÂ and check on your neighbors too!"
       });
 
       // Reset form
@@ -242,7 +242,7 @@ const PrepTogether = () => {
             <CardHeader className="bg-gradient-to-r from-red-600 to-pink-600 text-white">
               <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
                 {t('prep.form.title')}
-                <span>❤</span>
+                <span>Ã¢ÂÂ¤</span>
               </CardTitle>
               <CardDescription className="text-red-100 text-center">
                 {t('prep.form.subtitle')}

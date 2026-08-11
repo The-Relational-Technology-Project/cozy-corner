@@ -23,13 +23,13 @@ const translations: Record<Language, Record<string, string>> = {
     'prep.title': 'Prep Together',
     'prep.subtitle': 'Stay Safe, Stay Connected',
     'prep.welcome': 'Earthquakes and tsunamis are real risks in our neighborhood. By preparing together, we can protect each other.',
-    'prep.signup.button': 'Sign Up for a Post-Disaster Check-In ❤️',
+    'prep.signup.button': 'Sign Up for a Post-Disaster Check-In Ã¢ÂÂ¤Ã¯Â¸Â',
     'prep.risks.title': 'Know Our Risks',
     'prep.earthquake.title': 'Earthquake Risks',
     'prep.earthquake.description': 'The Sunset sits on sandy soil that can act like quicksand in a quake. Experts say there\'s a 72% chance of a major earthquake (M6.7+) in the Bay Area by 2043.',
     'prep.earthquake.action': 'What you can do now:',
     'prep.tsunami.title': 'Tsunami Risks',
-    'prep.tsunami.description': 'Outer Sunset is in a tsunami hazard zone. In a worst-case quake offshore, waves could reach 20–30 feet and flood up to 46th Avenue.',
+    'prep.tsunami.description': 'Outer Sunset is in a tsunami hazard zone. In a worst-case quake offshore, waves could reach 20Ã¢ÂÂ30 feet and flood up to 46th Avenue.',
     'prep.tsunami.action': 'What you can do now:',
     'prep.neighbors.title': 'Neighbors Helping Neighbors',
     'prep.neighbors.subtitle': 'Connection is Preparedness',
@@ -52,108 +52,108 @@ const translations: Record<Language, Record<string, string>> = {
     'prep.form.specific_needs': 'Any specific needs?',
     'prep.form.specific_needs.optional': '(Optional)',
     'prep.form.specific_needs.placeholder': 'Wheelchair access, medical devices, language support, etc.',
-    'prep.form.privacy': '🔒 Your information will never be public. Only Cozy Corner volunteers will use it to check on you.',
+    'prep.form.privacy': 'Ã°ÂÂÂ Your information will never be public. Only Cozy Corner volunteers will use it to check on you.',
     'prep.form.submit': 'Submit',
     'prep.form.submitting': 'Submitting...',
     'prep.form.success.title': 'Thank You!',
-    'prep.form.success.message': 'We\'ll check on you if a disaster hits. Stay safe – and check on your neighbors too!',
+    'prep.form.success.message': 'We\'ll check on you if a disaster hits. Stay safe Ã¢ÂÂ and check on your neighbors too!',
     'prep.form.success.another': 'Submit Another Request',
   },
   'zh-CN': {
     // Navigation
-    'nav.home': '主页',
-    'nav.prep': '准备',
-    'nav.party': '派对',
-    'nav.coupons': '优惠券',
-    'nav.contact': '联系',
+    'nav.home': 'Ã¤Â¸Â»Ã©Â¡Âµ',
+    'nav.prep': 'Ã¥ÂÂÃ¥Â¤Â',
+    'nav.party': 'Ã¦Â´Â¾Ã¥Â¯Â¹',
+    'nav.coupons': 'Ã¤Â¼ÂÃ¦ÂÂ Ã¥ÂÂ¸',
+    'nav.contact': 'Ã¨ÂÂÃ§Â³Â»',
     
     // PrepTogether page
-    'prep.title': '共同准备',
-    'prep.subtitle': '安全相守，守望相助',
-    'prep.welcome': '地震和海啸是我们社区的真实风险。通过共同准备，我们可以互相保护。',
-    'prep.signup.button': '登记灾后探访 ❤️',
-    'prep.risks.title': '了解我们的风险',
-    'prep.earthquake.title': '地震风险',
-    'prep.earthquake.description': '日落区坐落在沙质土壤上，地震时可能像流沙一样。专家预测，到2043年湾区发生6.7级以上大地震的概率为72%。',
-    'prep.earthquake.action': '您现在可以做的：',
-    'prep.tsunami.title': '海啸风险',
-    'prep.tsunami.description': '外日落区位于海啸危险区。在最坏情况下的近海地震中，海浪可能达到20-30英尺，并淹没至46大道。',
-    'prep.tsunami.action': '您现在可以做的：',
-    'prep.neighbors.title': '邻里互助',
-    'prep.neighbors.subtitle': '联系就是准备',
-    'prep.neighbors.description': '邻居才是真正的第一响应者。互相探望能拯救生命。我们一起确保没有人被孤立。',
-    'prep.neighbors.connect': '联系方式：',
-    'prep.form.title': '申请灾后探访',
-    'prep.form.subtitle': '您是否独居、行动不便，或照顾可能需要额外帮助的人？请让邻居知道。',
-    'prep.form.description': '填写此表格，让温馨角落志愿者在紧急情况后能探访您。您的信息将保密。',
-    'prep.form.onbehalf': '我代表他人填写此表格',
-    'prep.form.onbehalf.consent': '（已获得同意）',
-    'prep.form.name': '姓名',
-    'prep.form.name.optional': '（可选）',
-    'prep.form.address': '地址',
-    'prep.form.contact': '首选联系方式',
-    'prep.form.contact.optional': '（可选）',
-    'prep.form.contact.placeholder': '电话、电子邮件、微信等',
-    'prep.form.vulnerable_count': '需要探访的人数',
-    'prep.form.people': '人',
-    'prep.form.person': '人',
-    'prep.form.specific_needs': '有什么特殊需求吗？',
-    'prep.form.specific_needs.optional': '（可选）',
-    'prep.form.specific_needs.placeholder': '轮椅通道、医疗设备、语言支持等',
-    'prep.form.privacy': '🔒 您的信息绝不会公开。只有温馨角落志愿者会使用它来探访您。',
-    'prep.form.submit': '提交',
-    'prep.form.submitting': '提交中...',
-    'prep.form.success.title': '谢谢！',
-    'prep.form.success.message': '如果发生灾难，我们会探访您。保持安全 - 也要探望您的邻居！',
-    'prep.form.success.another': '提交另一个申请',
+    'prep.title': 'Ã¥ÂÂ±Ã¥ÂÂÃ¥ÂÂÃ¥Â¤Â',
+    'prep.subtitle': 'Ã¥Â®ÂÃ¥ÂÂ¨Ã§ÂÂ¸Ã¥Â®ÂÃ¯Â¼ÂÃ¥Â®ÂÃ¦ÂÂÃ§ÂÂ¸Ã¥ÂÂ©',
+    'prep.welcome': 'Ã¥ÂÂ°Ã©ÂÂÃ¥ÂÂÃ¦ÂµÂ·Ã¥ÂÂ¸Ã¦ÂÂ¯Ã¦ÂÂÃ¤Â»Â¬Ã§Â¤Â¾Ã¥ÂÂºÃ§ÂÂÃ§ÂÂÃ¥Â®ÂÃ©Â£ÂÃ©ÂÂ©Ã£ÂÂÃ©ÂÂÃ¨Â¿ÂÃ¥ÂÂ±Ã¥ÂÂÃ¥ÂÂÃ¥Â¤ÂÃ¯Â¼ÂÃ¦ÂÂÃ¤Â»Â¬Ã¥ÂÂ¯Ã¤Â»Â¥Ã¤ÂºÂÃ§ÂÂ¸Ã¤Â¿ÂÃ¦ÂÂ¤Ã£ÂÂ',
+    'prep.signup.button': 'Ã§ÂÂ»Ã¨Â®Â°Ã§ÂÂ¾Ã¥ÂÂÃ¦ÂÂ¢Ã¨Â®Â¿ Ã¢ÂÂ¤Ã¯Â¸Â',
+    'prep.risks.title': 'Ã¤ÂºÂÃ¨Â§Â£Ã¦ÂÂÃ¤Â»Â¬Ã§ÂÂÃ©Â£ÂÃ©ÂÂ©',
+    'prep.earthquake.title': 'Ã¥ÂÂ°Ã©ÂÂÃ©Â£ÂÃ©ÂÂ©',
+    'prep.earthquake.description': 'Ã¦ÂÂ¥Ã¨ÂÂ½Ã¥ÂÂºÃ¥ÂÂÃ¨ÂÂ½Ã¥ÂÂ¨Ã¦Â²ÂÃ¨Â´Â¨Ã¥ÂÂÃ¥Â£Â¤Ã¤Â¸ÂÃ¯Â¼ÂÃ¥ÂÂ°Ã©ÂÂÃ¦ÂÂ¶Ã¥ÂÂ¯Ã¨ÂÂ½Ã¥ÂÂÃ¦ÂµÂÃ¦Â²ÂÃ¤Â¸ÂÃ¦Â Â·Ã£ÂÂÃ¤Â¸ÂÃ¥Â®Â¶Ã©Â¢ÂÃ¦ÂµÂÃ¯Â¼ÂÃ¥ÂÂ°2043Ã¥Â¹Â´Ã¦Â¹Â¾Ã¥ÂÂºÃ¥ÂÂÃ§ÂÂ6.7Ã§ÂºÂ§Ã¤Â»Â¥Ã¤Â¸ÂÃ¥Â¤Â§Ã¥ÂÂ°Ã©ÂÂÃ§ÂÂÃ¦Â¦ÂÃ§ÂÂÃ¤Â¸Âº72%Ã£ÂÂ',
+    'prep.earthquake.action': 'Ã¦ÂÂ¨Ã§ÂÂ°Ã¥ÂÂ¨Ã¥ÂÂ¯Ã¤Â»Â¥Ã¥ÂÂÃ§ÂÂÃ¯Â¼Â',
+    'prep.tsunami.title': 'Ã¦ÂµÂ·Ã¥ÂÂ¸Ã©Â£ÂÃ©ÂÂ©',
+    'prep.tsunami.description': 'Ã¥Â¤ÂÃ¦ÂÂ¥Ã¨ÂÂ½Ã¥ÂÂºÃ¤Â½ÂÃ¤ÂºÂÃ¦ÂµÂ·Ã¥ÂÂ¸Ã¥ÂÂ±Ã©ÂÂ©Ã¥ÂÂºÃ£ÂÂÃ¥ÂÂ¨Ã¦ÂÂÃ¥ÂÂÃ¦ÂÂÃ¥ÂÂµÃ¤Â¸ÂÃ§ÂÂÃ¨Â¿ÂÃ¦ÂµÂ·Ã¥ÂÂ°Ã©ÂÂÃ¤Â¸Â­Ã¯Â¼ÂÃ¦ÂµÂ·Ã¦ÂµÂªÃ¥ÂÂ¯Ã¨ÂÂ½Ã¨Â¾Â¾Ã¥ÂÂ°20-30Ã¨ÂÂ±Ã¥Â°ÂºÃ¯Â¼ÂÃ¥Â¹Â¶Ã¦Â·Â¹Ã¦Â²Â¡Ã¨ÂÂ³46Ã¥Â¤Â§Ã©ÂÂÃ£ÂÂ',
+    'prep.tsunami.action': 'Ã¦ÂÂ¨Ã§ÂÂ°Ã¥ÂÂ¨Ã¥ÂÂ¯Ã¤Â»Â¥Ã¥ÂÂÃ§ÂÂÃ¯Â¼Â',
+    'prep.neighbors.title': 'Ã©ÂÂ»Ã©ÂÂÃ¤ÂºÂÃ¥ÂÂ©',
+    'prep.neighbors.subtitle': 'Ã¨ÂÂÃ§Â³Â»Ã¥Â°Â±Ã¦ÂÂ¯Ã¥ÂÂÃ¥Â¤Â',
+    'prep.neighbors.description': 'Ã©ÂÂ»Ã¥Â±ÂÃ¦ÂÂÃ¦ÂÂ¯Ã§ÂÂÃ¦Â­Â£Ã§ÂÂÃ§Â¬Â¬Ã¤Â¸ÂÃ¥ÂÂÃ¥ÂºÂÃ¨ÂÂÃ£ÂÂÃ¤ÂºÂÃ§ÂÂ¸Ã¦ÂÂ¢Ã¦ÂÂÃ¨ÂÂ½Ã¦ÂÂ¯Ã¦ÂÂÃ§ÂÂÃ¥ÂÂ½Ã£ÂÂÃ¦ÂÂÃ¤Â»Â¬Ã¤Â¸ÂÃ¨ÂµÂ·Ã§Â¡Â®Ã¤Â¿ÂÃ¦Â²Â¡Ã¦ÂÂÃ¤ÂºÂºÃ¨Â¢Â«Ã¥Â­Â¤Ã§Â«ÂÃ£ÂÂ',
+    'prep.neighbors.connect': 'Ã¨ÂÂÃ§Â³Â»Ã¦ÂÂ¹Ã¥Â¼ÂÃ¯Â¼Â',
+    'prep.form.title': 'Ã§ÂÂ³Ã¨Â¯Â·Ã§ÂÂ¾Ã¥ÂÂÃ¦ÂÂ¢Ã¨Â®Â¿',
+    'prep.form.subtitle': 'Ã¦ÂÂ¨Ã¦ÂÂ¯Ã¥ÂÂ¦Ã§ÂÂ¬Ã¥Â±ÂÃ£ÂÂÃ¨Â¡ÂÃ¥ÂÂ¨Ã¤Â¸ÂÃ¤Â¾Â¿Ã¯Â¼ÂÃ¦ÂÂÃ§ÂÂ§Ã©Â¡Â¾Ã¥ÂÂ¯Ã¨ÂÂ½Ã©ÂÂÃ¨Â¦ÂÃ©Â¢ÂÃ¥Â¤ÂÃ¥Â¸Â®Ã¥ÂÂ©Ã§ÂÂÃ¤ÂºÂºÃ¯Â¼ÂÃ¨Â¯Â·Ã¨Â®Â©Ã©ÂÂ»Ã¥Â±ÂÃ§ÂÂ¥Ã©ÂÂÃ£ÂÂ',
+    'prep.form.description': 'Ã¥Â¡Â«Ã¥ÂÂÃ¦Â­Â¤Ã¨Â¡Â¨Ã¦Â Â¼Ã¯Â¼ÂÃ¨Â®Â©Ã¦Â¸Â©Ã©Â¦Â¨Ã¨Â§ÂÃ¨ÂÂ½Ã¥Â¿ÂÃ¦ÂÂ¿Ã¨ÂÂÃ¥ÂÂ¨Ã§Â´Â§Ã¦ÂÂ¥Ã¦ÂÂÃ¥ÂÂµÃ¥ÂÂÃ¨ÂÂ½Ã¦ÂÂ¢Ã¨Â®Â¿Ã¦ÂÂ¨Ã£ÂÂÃ¦ÂÂ¨Ã§ÂÂÃ¤Â¿Â¡Ã¦ÂÂ¯Ã¥Â°ÂÃ¤Â¿ÂÃ¥Â¯ÂÃ£ÂÂ',
+    'prep.form.onbehalf': 'Ã¦ÂÂÃ¤Â»Â£Ã¨Â¡Â¨Ã¤Â»ÂÃ¤ÂºÂºÃ¥Â¡Â«Ã¥ÂÂÃ¦Â­Â¤Ã¨Â¡Â¨Ã¦Â Â¼',
+    'prep.form.onbehalf.consent': 'Ã¯Â¼ÂÃ¥Â·Â²Ã¨ÂÂ·Ã¥Â¾ÂÃ¥ÂÂÃ¦ÂÂÃ¯Â¼Â',
+    'prep.form.name': 'Ã¥Â§ÂÃ¥ÂÂ',
+    'prep.form.name.optional': 'Ã¯Â¼ÂÃ¥ÂÂ¯Ã©ÂÂÃ¯Â¼Â',
+    'prep.form.address': 'Ã¥ÂÂ°Ã¥ÂÂ',
+    'prep.form.contact': 'Ã©Â¦ÂÃ©ÂÂÃ¨ÂÂÃ§Â³Â»Ã¦ÂÂ¹Ã¥Â¼Â',
+    'prep.form.contact.optional': 'Ã¯Â¼ÂÃ¥ÂÂ¯Ã©ÂÂÃ¯Â¼Â',
+    'prep.form.contact.placeholder': 'Ã§ÂÂµÃ¨Â¯ÂÃ£ÂÂÃ§ÂÂµÃ¥Â­ÂÃ©ÂÂ®Ã¤Â»Â¶Ã£ÂÂÃ¥Â¾Â®Ã¤Â¿Â¡Ã§Â­Â',
+    'prep.form.vulnerable_count': 'Ã©ÂÂÃ¨Â¦ÂÃ¦ÂÂ¢Ã¨Â®Â¿Ã§ÂÂÃ¤ÂºÂºÃ¦ÂÂ°',
+    'prep.form.people': 'Ã¤ÂºÂº',
+    'prep.form.person': 'Ã¤ÂºÂº',
+    'prep.form.specific_needs': 'Ã¦ÂÂÃ¤Â»ÂÃ¤Â¹ÂÃ§ÂÂ¹Ã¦Â®ÂÃ©ÂÂÃ¦Â±ÂÃ¥ÂÂÃ¯Â¼Â',
+    'prep.form.specific_needs.optional': 'Ã¯Â¼ÂÃ¥ÂÂ¯Ã©ÂÂÃ¯Â¼Â',
+    'prep.form.specific_needs.placeholder': 'Ã¨Â½Â®Ã¦Â¤ÂÃ©ÂÂÃ©ÂÂÃ£ÂÂÃ¥ÂÂ»Ã§ÂÂÃ¨Â®Â¾Ã¥Â¤ÂÃ£ÂÂÃ¨Â¯Â­Ã¨Â¨ÂÃ¦ÂÂ¯Ã¦ÂÂÃ§Â­Â',
+    'prep.form.privacy': 'Ã°ÂÂÂ Ã¦ÂÂ¨Ã§ÂÂÃ¤Â¿Â¡Ã¦ÂÂ¯Ã§Â»ÂÃ¤Â¸ÂÃ¤Â¼ÂÃ¥ÂÂ¬Ã¥Â¼ÂÃ£ÂÂÃ¥ÂÂªÃ¦ÂÂÃ¦Â¸Â©Ã©Â¦Â¨Ã¨Â§ÂÃ¨ÂÂ½Ã¥Â¿ÂÃ¦ÂÂ¿Ã¨ÂÂÃ¤Â¼ÂÃ¤Â½Â¿Ã§ÂÂ¨Ã¥Â®ÂÃ¦ÂÂ¥Ã¦ÂÂ¢Ã¨Â®Â¿Ã¦ÂÂ¨Ã£ÂÂ',
+    'prep.form.submit': 'Ã¦ÂÂÃ¤ÂºÂ¤',
+    'prep.form.submitting': 'Ã¦ÂÂÃ¤ÂºÂ¤Ã¤Â¸Â­...',
+    'prep.form.success.title': 'Ã¨Â°Â¢Ã¨Â°Â¢Ã¯Â¼Â',
+    'prep.form.success.message': 'Ã¥Â¦ÂÃ¦ÂÂÃ¥ÂÂÃ§ÂÂÃ§ÂÂ¾Ã©ÂÂ¾Ã¯Â¼ÂÃ¦ÂÂÃ¤Â»Â¬Ã¤Â¼ÂÃ¦ÂÂ¢Ã¨Â®Â¿Ã¦ÂÂ¨Ã£ÂÂÃ¤Â¿ÂÃ¦ÂÂÃ¥Â®ÂÃ¥ÂÂ¨ - Ã¤Â¹ÂÃ¨Â¦ÂÃ¦ÂÂ¢Ã¦ÂÂÃ¦ÂÂ¨Ã§ÂÂÃ©ÂÂ»Ã¥Â±ÂÃ¯Â¼Â',
+    'prep.form.success.another': 'Ã¦ÂÂÃ¤ÂºÂ¤Ã¥ÂÂ¦Ã¤Â¸ÂÃ¤Â¸ÂªÃ§ÂÂ³Ã¨Â¯Â·',
   },
   'zh-HK': {
     // Navigation
-    'nav.home': '主頁',
-    'nav.prep': '準備',
-    'nav.party': '派對',
-    'nav.coupons': '優惠券',
-    'nav.contact': '聯絡',
+    'nav.home': 'Ã¤Â¸Â»Ã©Â Â',
+    'nav.prep': 'Ã¦ÂºÂÃ¥ÂÂ',
+    'nav.party': 'Ã¦Â´Â¾Ã¥Â°Â',
+    'nav.coupons': 'Ã¥ÂÂªÃ¦ÂÂ Ã¥ÂÂ¸',
+    'nav.contact': 'Ã¨ÂÂ¯Ã§ÂµÂ¡',
     
     // PrepTogether page
-    'prep.title': '共同準備',
-    'prep.subtitle': '安全相守，守望相助',
-    'prep.welcome': '地震同海嘯係我哋社區嘅真實風險。透過共同準備，我哋可以互相保護。',
-    'prep.signup.button': '登記災後探訪 ❤️',
-    'prep.risks.title': '了解我哋嘅風險',
-    'prep.earthquake.title': '地震風險',
-    'prep.earthquake.description': '日落區座落喺沙質土壤上，地震時可能會似流沙咁。專家預測，到2043年灣區發生6.7級以上大地震嘅機率係72%。',
-    'prep.earthquake.action': '你而家可以做嘅：',
-    'prep.tsunami.title': '海嘯風險',
-    'prep.tsunami.description': '外日落區位於海嘯危險區。喺最壞情況下嘅近海地震中，海浪可能達到20-30英尺，並淹沒至46大道。',
-    'prep.tsunami.action': '你而家可以做嘅：',
-    'prep.neighbors.title': '鄰里互助',
-    'prep.neighbors.subtitle': '聯繫就係準備',
-    'prep.neighbors.description': '鄰居先係真正嘅第一響應者。互相探望能拯救生命。我哋一齊確保冇人被孤立。',
-    'prep.neighbors.connect': '聯絡方式：',
-    'prep.form.title': '申請災後探訪',
-    'prep.form.subtitle': '你係咪獨居、行動不便，或者照顧可能需要額外幫助嘅人？請俾鄰居知道。',
-    'prep.form.description': '填寫呢個表格，等溫馨角落義工喺緊急情況後能探訪你。你嘅資料會保密。',
-    'prep.form.onbehalf': '我代表其他人填寫呢個表格',
-    'prep.form.onbehalf.consent': '（已獲得同意）',
-    'prep.form.name': '姓名',
-    'prep.form.name.optional': '（可選）',
-    'prep.form.address': '地址',
-    'prep.form.contact': '首選聯絡方式',
-    'prep.form.contact.optional': '（可選）',
-    'prep.form.contact.placeholder': '電話、電郵、微信等',
-    'prep.form.vulnerable_count': '需要探訪嘅人數',
-    'prep.form.people': '人',
-    'prep.form.person': '人',
-    'prep.form.specific_needs': '有咩特殊需要？',
-    'prep.form.specific_needs.optional': '（可選）',
-    'prep.form.specific_needs.placeholder': '輪椅通道、醫療設備、語言支援等',
-    'prep.form.privacy': '🔒 你嘅資料絕不會公開。只有溫馨角落義工會用嚟探訪你。',
-    'prep.form.submit': '提交',
-    'prep.form.submitting': '提交緊...',
-    'prep.form.success.title': '多謝！',
-    'prep.form.success.message': '如果發生災難，我哋會探訪你。保持安全 - 亦要探望你嘅鄰居！',
-    'prep.form.success.another': '提交另一個申請',
+    'prep.title': 'Ã¥ÂÂ±Ã¥ÂÂÃ¦ÂºÂÃ¥ÂÂ',
+    'prep.subtitle': 'Ã¥Â®ÂÃ¥ÂÂ¨Ã§ÂÂ¸Ã¥Â®ÂÃ¯Â¼ÂÃ¥Â®ÂÃ¦ÂÂÃ§ÂÂ¸Ã¥ÂÂ©',
+    'prep.welcome': 'Ã¥ÂÂ°Ã©ÂÂÃ¥ÂÂÃ¦ÂµÂ·Ã¥ÂÂ¯Ã¤Â¿ÂÃ¦ÂÂÃ¥ÂÂÃ§Â¤Â¾Ã¥ÂÂÃ¥ÂÂÃ§ÂÂÃ¥Â¯Â¦Ã©Â¢Â¨Ã©ÂÂªÃ£ÂÂÃ©ÂÂÃ©ÂÂÃ¥ÂÂ±Ã¥ÂÂÃ¦ÂºÂÃ¥ÂÂÃ¯Â¼ÂÃ¦ÂÂÃ¥ÂÂÃ¥ÂÂ¯Ã¤Â»Â¥Ã¤ÂºÂÃ§ÂÂ¸Ã¤Â¿ÂÃ¨Â­Â·Ã£ÂÂ',
+    'prep.signup.button': 'Ã§ÂÂ»Ã¨Â¨ÂÃ§ÂÂ½Ã¥Â¾ÂÃ¦ÂÂ¢Ã¨Â¨Âª Ã¢ÂÂ¤Ã¯Â¸Â',
+    'prep.risks.title': 'Ã¤ÂºÂÃ¨Â§Â£Ã¦ÂÂÃ¥ÂÂÃ¥ÂÂÃ©Â¢Â¨Ã©ÂÂª',
+    'prep.earthquake.title': 'Ã¥ÂÂ°Ã©ÂÂÃ©Â¢Â¨Ã©ÂÂª',
+    'prep.earthquake.description': 'Ã¦ÂÂ¥Ã¨ÂÂ½Ã¥ÂÂÃ¥ÂºÂ§Ã¨ÂÂ½Ã¥ÂÂºÃ¦Â²ÂÃ¨Â³ÂªÃ¥ÂÂÃ¥Â£Â¤Ã¤Â¸ÂÃ¯Â¼ÂÃ¥ÂÂ°Ã©ÂÂÃ¦ÂÂÃ¥ÂÂ¯Ã¨ÂÂ½Ã¦ÂÂÃ¤Â¼Â¼Ã¦ÂµÂÃ¦Â²ÂÃ¥ÂÂÃ£ÂÂÃ¥Â°ÂÃ¥Â®Â¶Ã©Â ÂÃ¦Â¸Â¬Ã¯Â¼ÂÃ¥ÂÂ°2043Ã¥Â¹Â´Ã§ÂÂ£Ã¥ÂÂÃ§ÂÂ¼Ã§ÂÂ6.7Ã§Â´ÂÃ¤Â»Â¥Ã¤Â¸ÂÃ¥Â¤Â§Ã¥ÂÂ°Ã©ÂÂÃ¥ÂÂÃ¦Â©ÂÃ§ÂÂÃ¤Â¿Â72%Ã£ÂÂ',
+    'prep.earthquake.action': 'Ã¤Â½Â Ã¨ÂÂÃ¥Â®Â¶Ã¥ÂÂ¯Ã¤Â»Â¥Ã¥ÂÂÃ¥ÂÂÃ¯Â¼Â',
+    'prep.tsunami.title': 'Ã¦ÂµÂ·Ã¥ÂÂ¯Ã©Â¢Â¨Ã©ÂÂª',
+    'prep.tsunami.description': 'Ã¥Â¤ÂÃ¦ÂÂ¥Ã¨ÂÂ½Ã¥ÂÂÃ¤Â½ÂÃ¦ÂÂ¼Ã¦ÂµÂ·Ã¥ÂÂ¯Ã¥ÂÂ±Ã©ÂÂªÃ¥ÂÂÃ£ÂÂÃ¥ÂÂºÃ¦ÂÂÃ¥Â£ÂÃ¦ÂÂÃ¦Â³ÂÃ¤Â¸ÂÃ¥ÂÂÃ¨Â¿ÂÃ¦ÂµÂ·Ã¥ÂÂ°Ã©ÂÂÃ¤Â¸Â­Ã¯Â¼ÂÃ¦ÂµÂ·Ã¦ÂµÂªÃ¥ÂÂ¯Ã¨ÂÂ½Ã©ÂÂÃ¥ÂÂ°20-30Ã¨ÂÂ±Ã¥Â°ÂºÃ¯Â¼ÂÃ¤Â¸Â¦Ã¦Â·Â¹Ã¦Â²ÂÃ¨ÂÂ³46Ã¥Â¤Â§Ã©ÂÂÃ£ÂÂ',
+    'prep.tsunami.action': 'Ã¤Â½Â Ã¨ÂÂÃ¥Â®Â¶Ã¥ÂÂ¯Ã¤Â»Â¥Ã¥ÂÂÃ¥ÂÂÃ¯Â¼Â',
+    'prep.neighbors.title': 'Ã©ÂÂ°Ã©ÂÂÃ¤ÂºÂÃ¥ÂÂ©',
+    'prep.neighbors.subtitle': 'Ã¨ÂÂ¯Ã§Â¹Â«Ã¥Â°Â±Ã¤Â¿ÂÃ¦ÂºÂÃ¥ÂÂ',
+    'prep.neighbors.description': 'Ã©ÂÂ°Ã¥Â±ÂÃ¥ÂÂÃ¤Â¿ÂÃ§ÂÂÃ¦Â­Â£Ã¥ÂÂÃ§Â¬Â¬Ã¤Â¸ÂÃ©ÂÂ¿Ã¦ÂÂÃ¨ÂÂÃ£ÂÂÃ¤ÂºÂÃ§ÂÂ¸Ã¦ÂÂ¢Ã¦ÂÂÃ¨ÂÂ½Ã¦ÂÂ¯Ã¦ÂÂÃ§ÂÂÃ¥ÂÂ½Ã£ÂÂÃ¦ÂÂÃ¥ÂÂÃ¤Â¸ÂÃ©Â½ÂÃ§Â¢ÂºÃ¤Â¿ÂÃ¥ÂÂÃ¤ÂºÂºÃ¨Â¢Â«Ã¥Â­Â¤Ã§Â«ÂÃ£ÂÂ',
+    'prep.neighbors.connect': 'Ã¨ÂÂ¯Ã§ÂµÂ¡Ã¦ÂÂ¹Ã¥Â¼ÂÃ¯Â¼Â',
+    'prep.form.title': 'Ã§ÂÂ³Ã¨Â«ÂÃ§ÂÂ½Ã¥Â¾ÂÃ¦ÂÂ¢Ã¨Â¨Âª',
+    'prep.form.subtitle': 'Ã¤Â½Â Ã¤Â¿ÂÃ¥ÂÂªÃ§ÂÂ¨Ã¥Â±ÂÃ£ÂÂÃ¨Â¡ÂÃ¥ÂÂÃ¤Â¸ÂÃ¤Â¾Â¿Ã¯Â¼ÂÃ¦ÂÂÃ¨ÂÂÃ§ÂÂ§Ã©Â¡Â§Ã¥ÂÂ¯Ã¨ÂÂ½Ã©ÂÂÃ¨Â¦ÂÃ©Â¡ÂÃ¥Â¤ÂÃ¥Â¹Â«Ã¥ÂÂ©Ã¥ÂÂÃ¤ÂºÂºÃ¯Â¼ÂÃ¨Â«ÂÃ¤Â¿Â¾Ã©ÂÂ°Ã¥Â±ÂÃ§ÂÂ¥Ã©ÂÂÃ£ÂÂ',
+    'prep.form.description': 'Ã¥Â¡Â«Ã¥Â¯Â«Ã¥ÂÂ¢Ã¥ÂÂÃ¨Â¡Â¨Ã¦Â Â¼Ã¯Â¼ÂÃ§Â­ÂÃ¦ÂºÂ«Ã©Â¦Â¨Ã¨Â§ÂÃ¨ÂÂ½Ã§Â¾Â©Ã¥Â·Â¥Ã¥ÂÂºÃ§Â·ÂÃ¦ÂÂ¥Ã¦ÂÂÃ¦Â³ÂÃ¥Â¾ÂÃ¨ÂÂ½Ã¦ÂÂ¢Ã¨Â¨ÂªÃ¤Â½Â Ã£ÂÂÃ¤Â½Â Ã¥ÂÂÃ¨Â³ÂÃ¦ÂÂÃ¦ÂÂÃ¤Â¿ÂÃ¥Â¯ÂÃ£ÂÂ',
+    'prep.form.onbehalf': 'Ã¦ÂÂÃ¤Â»Â£Ã¨Â¡Â¨Ã¥ÂÂ¶Ã¤Â»ÂÃ¤ÂºÂºÃ¥Â¡Â«Ã¥Â¯Â«Ã¥ÂÂ¢Ã¥ÂÂÃ¨Â¡Â¨Ã¦Â Â¼',
+    'prep.form.onbehalf.consent': 'Ã¯Â¼ÂÃ¥Â·Â²Ã§ÂÂ²Ã¥Â¾ÂÃ¥ÂÂÃ¦ÂÂÃ¯Â¼Â',
+    'prep.form.name': 'Ã¥Â§ÂÃ¥ÂÂ',
+    'prep.form.name.optional': 'Ã¯Â¼ÂÃ¥ÂÂ¯Ã©ÂÂ¸Ã¯Â¼Â',
+    'prep.form.address': 'Ã¥ÂÂ°Ã¥ÂÂ',
+    'prep.form.contact': 'Ã©Â¦ÂÃ©ÂÂ¸Ã¨ÂÂ¯Ã§ÂµÂ¡Ã¦ÂÂ¹Ã¥Â¼Â',
+    'prep.form.contact.optional': 'Ã¯Â¼ÂÃ¥ÂÂ¯Ã©ÂÂ¸Ã¯Â¼Â',
+    'prep.form.contact.placeholder': 'Ã©ÂÂ»Ã¨Â©Â±Ã£ÂÂÃ©ÂÂ»Ã©ÂÂµÃ£ÂÂÃ¥Â¾Â®Ã¤Â¿Â¡Ã§Â­Â',
+    'prep.form.vulnerable_count': 'Ã©ÂÂÃ¨Â¦ÂÃ¦ÂÂ¢Ã¨Â¨ÂªÃ¥ÂÂÃ¤ÂºÂºÃ¦ÂÂ¸',
+    'prep.form.people': 'Ã¤ÂºÂº',
+    'prep.form.person': 'Ã¤ÂºÂº',
+    'prep.form.specific_needs': 'Ã¦ÂÂÃ¥ÂÂ©Ã§ÂÂ¹Ã¦Â®ÂÃ©ÂÂÃ¨Â¦ÂÃ¯Â¼Â',
+    'prep.form.specific_needs.optional': 'Ã¯Â¼ÂÃ¥ÂÂ¯Ã©ÂÂ¸Ã¯Â¼Â',
+    'prep.form.specific_needs.placeholder': 'Ã¨Â¼ÂªÃ¦Â¤ÂÃ©ÂÂÃ©ÂÂÃ£ÂÂÃ©ÂÂ«Ã§ÂÂÃ¨Â¨Â­Ã¥ÂÂÃ£ÂÂÃ¨ÂªÂÃ¨Â¨ÂÃ¦ÂÂ¯Ã¦ÂÂ´Ã§Â­Â',
+    'prep.form.privacy': 'Ã°ÂÂÂ Ã¤Â½Â Ã¥ÂÂÃ¨Â³ÂÃ¦ÂÂÃ§ÂµÂÃ¤Â¸ÂÃ¦ÂÂÃ¥ÂÂ¬Ã©ÂÂÃ£ÂÂÃ¥ÂÂªÃ¦ÂÂÃ¦ÂºÂ«Ã©Â¦Â¨Ã¨Â§ÂÃ¨ÂÂ½Ã§Â¾Â©Ã¥Â·Â¥Ã¦ÂÂÃ§ÂÂ¨Ã¥ÂÂÃ¦ÂÂ¢Ã¨Â¨ÂªÃ¤Â½Â Ã£ÂÂ',
+    'prep.form.submit': 'Ã¦ÂÂÃ¤ÂºÂ¤',
+    'prep.form.submitting': 'Ã¦ÂÂÃ¤ÂºÂ¤Ã§Â·Â...',
+    'prep.form.success.title': 'Ã¥Â¤ÂÃ¨Â¬ÂÃ¯Â¼Â',
+    'prep.form.success.message': 'Ã¥Â¦ÂÃ¦ÂÂÃ§ÂÂ¼Ã§ÂÂÃ§ÂÂ½Ã©ÂÂ£Ã¯Â¼ÂÃ¦ÂÂÃ¥ÂÂÃ¦ÂÂÃ¦ÂÂ¢Ã¨Â¨ÂªÃ¤Â½Â Ã£ÂÂÃ¤Â¿ÂÃ¦ÂÂÃ¥Â®ÂÃ¥ÂÂ¨ - Ã¤ÂºÂ¦Ã¨Â¦ÂÃ¦ÂÂ¢Ã¦ÂÂÃ¤Â½Â Ã¥ÂÂÃ©ÂÂ°Ã¥Â±ÂÃ¯Â¼Â',
+    'prep.form.success.another': 'Ã¦ÂÂÃ¤ÂºÂ¤Ã¥ÂÂ¦Ã¤Â¸ÂÃ¥ÂÂÃ§ÂÂ³Ã¨Â«Â',
   },
 };
 

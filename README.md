@@ -4,16 +4,16 @@ A hyper-local neighborhood hub for residents of 48th Ave in the Outer Sunset, Sa
 
 ## What is this?
 
-Cozy Corner is a small, block-level community tool that surfaces the things neighbors actually need to know — upcoming events, street cleaning schedules, skill-sharing opportunities, and emergency prep resources — all in one friendly page.
+Cozy Corner is a small, block-level community tool that surfaces the things neighbors actually need to know Ã¢ÂÂ upcoming events, street cleaning schedules, skill-sharing opportunities, and emergency prep resources Ã¢ÂÂ all in one friendly page.
 
 ## Features
 
-- **Local events feed** — Upcoming happenings pulled from the Outer Sunset events calendar
-- **Street cleaning reminders** — Know when to move your car
-- **Neighbor coupons** — A skill-sharing exchange where neighbors offer what they know
-- **Block party info** — Planning tools and details for neighborhood gatherings
-- **Emergency prep** — Resources for block-level disaster readiness
-- **New neighbor welcome** — Onboarding flow for people who just moved in
+- **Local events feed** Ã¢ÂÂ Upcoming happenings pulled from the Outer Sunset events calendar
+- **Street cleaning reminders** Ã¢ÂÂ Know when to move your car
+- **Neighbor coupons** Ã¢ÂÂ A skill-sharing exchange where neighbors offer what they know
+- **Block party info** Ã¢ÂÂ Planning tools and details for neighborhood gatherings
+- **Emergency prep** Ã¢ÂÂ Resources for block-level disaster readiness
+- **New neighbor welcome** Ã¢ÂÂ Onboarding flow for people who just moved in
 
 ## Tech stack
 
@@ -22,4 +22,4 @@ Cozy Corner is a small, block-level community tool that surfaces the things neig
 
 ## Part of the Relational Technology Project
 
-Built as part of the [Relational Technology Project](https://relationaltechproject.org) — open-source neighborhood tech made in the Outer Sunset, for neighborhoods everywhere.
+Built as part of the [Relational Technology Project](https://relationaltechproject.org) Ã¢ÂÂ open-source neighborhood tech made in the Outer Sunset, for neighborhoods everywhere.

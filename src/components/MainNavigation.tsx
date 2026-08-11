@@ -10,8 +10,8 @@ export const MainNavigation = () => {
   
   const languageAbbreviations = {
     'en': 'EN',
-    'zh-CN': '简',
-    'zh-HK': '繁'
+    'zh-CN': 'Ã§Â®Â',
+    'zh-HK': 'Ã§Â¹Â'
   };
   
   const isActive = (path: string) => {
@@ -24,7 +24,7 @@ export const MainNavigation = () => {
   
   const rightNavItems = [
     { path: "/prep-together", label: t('nav.prep'), icon: Handshake },
-    { path: "/block-party", label: t('nav.party'), icon: "🎉" as const },
+    { path: "/block-party", label: t('nav.party'), icon: "Ã°ÂÂÂ" as const },
     { path: "/contact", label: t('nav.contact'), icon: Mail },
   ];
 
@@ -64,8 +64,8 @@ export const MainNavigation = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="en">English</SelectItem>
-                <SelectItem value="zh-CN">简体中文</SelectItem>
-                <SelectItem value="zh-HK">繁體中文</SelectItem>
+                <SelectItem value="zh-CN">Ã§Â®ÂÃ¤Â½ÂÃ¤Â¸Â­Ã¦ÂÂ</SelectItem>
+                <SelectItem value="zh-HK">Ã§Â¹ÂÃ©Â«ÂÃ¤Â¸Â­Ã¦ÂÂ</SelectItem>
               </SelectContent>
             </Select>
             {rightNavItems.map((item) => {

@@ -46,7 +46,7 @@ const Admin = () => {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-cozy-cream-foreground">
-              🏠 Cozy Corner Admin Panel
+              Ã°ÂÂÂ  Cozy Corner Admin Panel
             </h1>
             {user && (
               <p className="text-cozy-cream-foreground/70 mt-1">

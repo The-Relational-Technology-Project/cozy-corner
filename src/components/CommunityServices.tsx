@@ -264,7 +264,7 @@ export const CommunityServices = () => {
   const services = [
     {
       name: 'Outer Sunset Today',
-      description: 'Neighborhood events calendar — find out what\'s happening nearby',
+      description: 'Neighborhood events calendar Ã¢ÂÂ find out what\'s happening nearby',
       icon: Calendar,
       color: 'bg-ocean-light text-ocean-dark',
       iconColor: 'text-ocean',
@@ -273,7 +273,7 @@ export const CommunityServices = () => {
     },
     {
       name: 'Community Supplies',
-      description: 'Neighborhood sharing library — borrow tools, gear & more',
+      description: 'Neighborhood sharing library Ã¢ÂÂ borrow tools, gear & more',
       icon: Package,
       color: 'bg-dune-light text-dune-dark',
       iconColor: 'text-dune',

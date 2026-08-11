@@ -15,7 +15,7 @@ export const CouponsContributeTab = () => {
     availability: '',
     contributorName: '',
     contributorEmail: '',
-    icon: '🎟️'
+    icon: 'Ã°ÂÂÂÃ¯Â¸Â'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -29,7 +29,7 @@ export const CouponsContributeTab = () => {
     'Place the best Hook Fish order',
     'Plan a hike or backpacking trip',
     'Bring some baked goods!',
-    'Tour of Other Avenues Co–op',
+    'Tour of Other Avenues CoÃ¢ÂÂop',
     'Talk about local daycares',
     'Talk about local preschools',
     'Talk about local schools',
@@ -39,8 +39,8 @@ export const CouponsContributeTab = () => {
   ];
 
   const iconOptions = [
-    '🎟️', '🚲', '🛒', '🏡', '🌳', '👋', '🐕', '🍩', '🎨', '📚', '🪁', '🛠', '🎶', 
-    '☕', '🧘', '🌅', '🍞', '🎲', '💻', '🌱', '🏄', '🎭'
+    'Ã°ÂÂÂÃ¯Â¸Â', 'Ã°ÂÂÂ²', 'Ã°ÂÂÂ', 'Ã°ÂÂÂ¡', 'Ã°ÂÂÂ³', 'Ã°ÂÂÂ', 'Ã°ÂÂÂ', 'Ã°ÂÂÂ©', 'Ã°ÂÂÂ¨', 'Ã°ÂÂÂ', 'Ã°ÂÂªÂ', 'Ã°ÂÂÂ ', 'Ã°ÂÂÂ¶', 
+    'Ã¢ÂÂ', 'Ã°ÂÂ§Â', 'Ã°ÂÂÂ', 'Ã°ÂÂÂ', 'Ã°ÂÂÂ²', 'Ã°ÂÂÂ»', 'Ã°ÂÂÂ±', 'Ã°ÂÂÂ', 'Ã°ÂÂÂ­'
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -96,7 +96,7 @@ export const CouponsContributeTab = () => {
         availability: '',
         contributorName: '',
         contributorEmail: '',
-        icon: '🎟️'
+        icon: 'Ã°ÂÂÂÃ¯Â¸Â'
       });
     } catch (error) {
       console.error('Error adding coupon:', error);
@@ -114,7 +114,7 @@ export const CouponsContributeTab = () => {
     <div className="space-y-8">
       <div className="mb-6">
         <p className="text-cozy-cream-foreground italic text-center">
-          Want to share something you love about the neighborhood? Add it here — it doesn't need 
+          Want to share something you love about the neighborhood? Add it here Ã¢ÂÂ it doesn't need 
           to be big. The steward will help connect you when someone claims it.
         </p>
       </div>
@@ -123,7 +123,7 @@ export const CouponsContributeTab = () => {
       <Card className="bg-white/80 border-cozy-orange/20">
         <CardHeader>
           <CardTitle className="text-cozy-cream-foreground text-center">
-            💡 You could offer...
+            Ã°ÂÂÂ¡ You could offer...
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -226,7 +226,7 @@ export const CouponsContributeTab = () => {
             </div>
 
             <div className="text-sm text-cozy-cream-foreground/80 bg-cozy-orange-light p-3 rounded-lg">
-              <p className="font-medium mb-1">🔒 Privacy Note</p>
+              <p className="font-medium mb-1">Ã°ÂÂÂ Privacy Note</p>
               <p>Your name and email are necessary but only shared with the block steward to facilitate connections. They won't appear publicly on the site.</p>
             </div>
 

@@ -21,25 +21,25 @@ const Index = () => {
   {
     title: "Annual block party",
     status: "accomplished!",
-    emoji: "🎉",
+    emoji: "Ã°ÂÂÂ",
     description: "Bringing neighbors together for fun and community"
   },
   {
     title: "Friday lunch outside",
     status: "coming soon",
-    emoji: "🥪",
+    emoji: "Ã°ÂÂ¥Âª",
     description: "Casual outdoor lunches to connect with neighbors"
   },
   {
     title: "Neighborhood music jams",
     status: "coming soon",
-    emoji: "🎵",
+    emoji: "Ã°ÂÂÂµ",
     description: "Informal music sessions for all skill levels"
   },
   {
     title: "Neighbor coupons",
     status: "we're live!",
-    emoji: "🎟️",
+    emoji: "Ã°ÂÂÂÃ¯Â¸Â",
     description: "Share skills and connect through friendly exchanges",
     link: "/coupons"
   }];
@@ -62,14 +62,14 @@ const Index = () => {
               <Waves className="w-8 h-8 text-ocean animate-wave" style={{ animationDelay: '0.5s' }} />
             </div>
             <p className="text-lg md:text-xl lg:text-2xl text-ocean-dark font-medium mb-6">
-              48th Ave Neighbor Hub • Outer Sunset, SF
+              48th Ave Neighbor Hub Ã¢ÂÂ¢ Outer Sunset, SF
             </p>
             
             {/* Welcome Message */}
             <div className="max-w-4xl mx-auto mb-8">
               <div className="bg-card/70 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-fog/30">
                 <p className="text-base md:text-lg text-foreground leading-relaxed mb-6">
-                  Welcome! We're neighbors on 48th Ave between Lincoln & Irving. This site helps us share resources, connect, and look out for each other. 🌊
+                  Welcome! We're neighbors on 48th Ave between Lincoln & Irving. This site helps us share resources, connect, and look out for each other. Ã°ÂÂÂ
                 </p>
                 
                 {/* New Neighbor CTA */}
@@ -78,7 +78,7 @@ const Index = () => {
                   size="lg"
                   className="bg-ocean hover:bg-ocean-dark text-ocean-foreground rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-lg px-8">
                   
-                  👋 New to the Block?
+                  Ã°ÂÂÂ New to the Block?
                 </Button>
               </div>
             </div>
@@ -114,7 +114,7 @@ const Index = () => {
                 size="sm"
                 className="bg-ocean hover:bg-ocean-dark text-ocean-foreground font-medium rounded-xl">
                 
-                Set Up Reminders 🌊
+                Set Up Reminders Ã°ÂÂÂ
               </Button>
             </div>
           </div>
@@ -176,7 +176,7 @@ const Index = () => {
                 onClick={() => setShowContributionsModal(true)}
                 className="w-full bg-dune hover:bg-dune-dark text-dune-foreground font-medium rounded-xl">
                 
-                💡 Suggest an idea!
+                Ã°ÂÂÂ¡ Suggest an idea!
               </Button>
             </CardContent>
           </Card>
@@ -186,7 +186,7 @@ const Index = () => {
         <section>
           <Card className="bg-card/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-fog to-fog-dark text-fog-foreground">
-              <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
+              <CardTitle className="text-xl">Ã°ÂÂÂ  About Cozy Corner</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="text-foreground leading-relaxed mb-4">

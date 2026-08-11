@@ -121,7 +121,7 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
       if (wantSms) methods.push("text");
 
       toast({
-        title: "Welcome to the neighborhood! 🏄‍♀️",
+        title: "Welcome to the neighborhood! Ã°ÂÂÂÃ¢ÂÂÃ¢ÂÂÃ¯Â¸Â",
         description: `You're signed up for ${sides.join(" & ")} reminders via ${methods.join(" & ")}!`
       });
 
@@ -172,10 +172,10 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl flex items-center gap-2 text-amber-900">
-            🧹 Street Cleaning Reminders
+            Ã°ÂÂ§Â¹ Street Cleaning Reminders
           </DialogTitle>
           <DialogDescription className="text-amber-700">
-            Get 8am reminders on cleaning days — by email, text, or both.
+            Get 8am reminders on cleaning days Ã¢ÂÂ by email, text, or both.
           </DialogDescription>
         </DialogHeader>
 
@@ -304,7 +304,7 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                   className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium py-3 rounded-xl transition-all duration-200"
                   disabled={isSubmitting || (!wantEmail && !wantSms)}
                 >
-                  {isSubmitting ? "Signing Up..." : "Sign Me Up! 🌊"}
+                  {isSubmitting ? "Signing Up..." : "Sign Me Up! Ã°ÂÂÂ"}
                 </Button>
               </form>
 
@@ -354,7 +354,7 @@ export const StreetCleaningModal = ({ open, onOpenChange }: StreetCleaningModalP
                   onClick={() => setShowUnsubscribe(false)}
                   className="text-amber-600 hover:text-amber-700 text-sm"
                 >
-                  ← Back to sign up
+                  Ã¢ÂÂ Back to sign up
                 </Button>
               </div>
             </>

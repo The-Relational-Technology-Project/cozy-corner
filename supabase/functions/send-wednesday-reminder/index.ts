@@ -35,7 +35,7 @@ const handler = async (req: Request): Promise<Response> => {
       subject: "Tuesday Evening Reminder",
       html: `
         <h2>Tuesday Evening Reminder</h2>
-        <p>This is your automated Tuesday evening reminder — don't forget about street cleaning tomorrow!</p>
+        <p>This is your automated Tuesday evening reminder Ã¢ÂÂ don't forget about street cleaning tomorrow!</p>
         <p>Have a great evening!</p>
         <br>
         <p>Best,<br>Josh</p>

@@ -11,7 +11,7 @@ export const StreetCleaningInvitation = ({ onOpenModal }: StreetCleaningInvitati
     <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300">
       <CardHeader className="bg-gradient-to-r from-amber-600 to-orange-600 text-white pb-4">
         <CardTitle className="text-xl flex items-center gap-2">
-          🧹 Street Cleaning Reminders
+          Ã°ÂÂ§Â¹ Street Cleaning Reminders
         </CardTitle>
         <CardDescription className="text-amber-100">
           Never miss moving your car again
@@ -32,14 +32,14 @@ export const StreetCleaningInvitation = ({ onOpenModal }: StreetCleaningInvitati
 
         <div className="text-center space-y-3">
           <p className="text-amber-800 text-sm">
-            Get friendly 8am reminders on cleaning days — by email, text, or both.
+            Get friendly 8am reminders on cleaning days Ã¢ÂÂ by email, text, or both.
           </p>
 
           <div className="flex items-center justify-center gap-3 text-amber-700 text-xs">
             <span className="flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> Email</span>
-            <span className="text-amber-300">•</span>
+            <span className="text-amber-300">Ã¢ÂÂ¢</span>
             <span className="flex items-center gap-1"><MessageSquare className="h-3.5 w-3.5" /> Text</span>
-            <span className="text-amber-300">•</span>
+            <span className="text-amber-300">Ã¢ÂÂ¢</span>
             <span>Or both!</span>
           </div>
           
@@ -47,11 +47,11 @@ export const StreetCleaningInvitation = ({ onOpenModal }: StreetCleaningInvitati
             onClick={onOpenModal}
             className="w-full bg-gradient-to-r from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600 text-white font-medium py-3 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
           >
-            Set Up Reminders 🌊
+            Set Up Reminders Ã°ÂÂÂ
           </Button>
 
           <div className="text-xs text-amber-600">
-            Free • No spam • Easy unsubscribe
+            Free Ã¢ÂÂ¢ No spam Ã¢ÂÂ¢ Easy unsubscribe
           </div>
         </div>
       </CardContent>

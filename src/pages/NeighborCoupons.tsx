@@ -16,10 +16,10 @@ const NeighborCoupons = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4 leading-tight">
-            🎟️ Neighbor Coupons
+            Ã°ÂÂÂÃ¯Â¸Â Neighbor Coupons
           </h1>
           <p className="text-xl text-amber-800 leading-relaxed max-w-2xl mx-auto">
-            Open invitations to connect with your neighbors 🤗
+            Open invitations to connect with your neighbors Ã°ÂÂ¤Â
           </p>
         </div>
 

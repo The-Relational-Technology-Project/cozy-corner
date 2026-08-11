@@ -100,7 +100,7 @@ const COMMUNITY_LINKS: CommunityLink[] = [
     serviceType: "outer_dadas",
   },
   {
-    name: "SF Mutual Aid – Sunset Pod",
+    name: "SF Mutual Aid Ã¢ÂÂ Sunset Pod",
     question: "Need a hand or want to help?",
     cardBg: "hsl(45, 30%, 92%)",
     rotation: "-1deg",
@@ -386,7 +386,7 @@ export function BulletinBoardFooter() {
         >
           <div className="container mx-auto px-6 space-y-1">
             <p className="text-sm text-muted-foreground">
-              Made with ❤️ by neighbors, for neighbors.
+              Made with Ã¢ÂÂ¤Ã¯Â¸Â by neighbors, for neighbors.
             </p>
             <p className="text-sm text-muted-foreground/70">
               <a

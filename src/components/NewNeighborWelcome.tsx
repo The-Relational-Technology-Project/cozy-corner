@@ -153,7 +153,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
         return (
           <div className="space-y-6 animate-fade-in">
             <div className="text-center">
-              <div className="text-6xl mb-4">🌊</div>
+              <div className="text-6xl mb-4">Ã°ÂÂÂ</div>
               <h2 className="text-2xl font-bold text-foreground">Welcome!</h2>
               <p className="text-muted-foreground leading-relaxed">
                 We're your neighbors on 48th Ave between Lincoln & Irving in San Francisco's Outer Sunset. 
@@ -215,7 +215,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
             </div>
             
             <p className="text-xs text-muted-foreground text-center">
-              Totally optional — you can always join later!
+              Totally optional Ã¢ÂÂ you can always join later!
             </p>
           </div>
         );
@@ -298,7 +298,7 @@ export const NewNeighborWelcome = ({ open, onOpenChange }: NewNeighborWelcomePro
       case 'complete':
         return (
           <div className="text-center space-y-6 animate-fade-in">
-            <div className="text-6xl mb-4">🎉</div>
+            <div className="text-6xl mb-4">Ã°ÂÂÂ</div>
             <h2 className="text-2xl font-bold text-foreground">Welcome to the Block!</h2>
             <p className="text-muted-foreground leading-relaxed">
               Thanks for introducing yourself, {formData.name}! 

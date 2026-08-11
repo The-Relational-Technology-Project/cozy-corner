@@ -70,7 +70,7 @@ const BlockParty = () => {
       return;
     }
     if (parseInt(captchaAnswer) !== captcha.answer) {
-      toast({ title: "Math answer is incorrect — please try again!", variant: "destructive" });
+      toast({ title: "Math answer is incorrect Ã¢ÂÂ please try again!", variant: "destructive" });
       return;
     }
     if (wantsCommittee === "yes" && !committeeContact.trim()) {
@@ -113,7 +113,7 @@ const BlockParty = () => {
       });
 
       setSubmitted(true);
-      toast({ title: "🎉 Thanks for your input!", description: "Your survey response has been recorded." });
+      toast({ title: "Ã°ÂÂÂ Thanks for your input!", description: "Your survey response has been recorded." });
     } catch (err) {
       console.error(err);
       toast({ title: "Something went wrong", description: "Please try again.", variant: "destructive" });
@@ -143,7 +143,7 @@ const BlockParty = () => {
           <Card className="border-primary/20 hover:border-primary/40 transition-colors cursor-pointer">
             <CardContent className="flex items-center justify-between p-4">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">🎉</span>
+                <span className="text-2xl">Ã°ÂÂÂ</span>
                 <div>
                   <p className="font-semibold text-foreground">2025 Block Party Retrospective</p>
                   <p className="text-sm text-muted-foreground">See photos and highlights from last year's party</p>
@@ -158,7 +158,7 @@ const BlockParty = () => {
         {submitted ? (
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-8 text-center space-y-4">
-              <span className="text-5xl">🎉</span>
+              <span className="text-5xl">Ã°ÂÂÂ</span>
               <h2 className="text-2xl font-bold text-foreground">Thank you!</h2>
               <p className="text-muted-foreground">Your responses have been recorded. We'll use this to plan the best block party ever!</p>
               <Button variant="outline" onClick={() => {
@@ -354,7 +354,7 @@ const BlockParty = () => {
                 </div>
 
                 <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? "Submitting..." : "Submit Survey 🎉"}
+                  {submitting ? "Submitting..." : "Submit Survey Ã°ÂÂÂ"}
                 </Button>
               </form>
             </CardContent>

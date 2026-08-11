@@ -104,7 +104,7 @@ export const NeighborhoodContributionsModal = ({ open, onOpenChange }: Neighborh
       });
 
       toast({
-        title: contributionType === "suggestion" ? "Idea submitted! 💡" : "Volunteer interest recorded! ❤️",
+        title: contributionType === "suggestion" ? "Idea submitted! Ã°ÂÂÂ¡" : "Volunteer interest recorded! Ã¢ÂÂ¤Ã¯Â¸Â",
         description: contributionType === "suggestion" 
           ? "Thanks for sharing your idea! We'll be in touch if we move forward with it."
           : "Thanks for volunteering! We'll reach out when we start organizing this activity."
@@ -151,7 +151,7 @@ export const NeighborhoodContributionsModal = ({ open, onOpenChange }: Neighborh
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl flex items-center gap-2 text-amber-900">
-            🌟 Help Shape Our Neighborhood
+            Ã°ÂÂÂ Help Shape Our Neighborhood
           </DialogTitle>
           <DialogDescription className="text-amber-700">
             Share your ideas or volunteer to help make our community even better!
@@ -300,12 +300,12 @@ export const NeighborhoodContributionsModal = ({ open, onOpenChange }: Neighborh
             className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium py-3 rounded-xl transition-all duration-200"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Submitting..." : contributionType === "suggestion" ? "Submit Idea 💡" : "Sign Me Up! ❤️"}
+            {isSubmitting ? "Submitting..." : contributionType === "suggestion" ? "Submit Idea Ã°ÂÂÂ¡" : "Sign Me Up! Ã¢ÂÂ¤Ã¯Â¸Â"}
           </Button>
 
           <div className="bg-amber-50 rounded-xl p-4 text-sm text-amber-800">
             <p className="leading-relaxed">
-              We'll review all contributions and reach out when we're ready to move forward. Thanks for helping make our neighborhood amazing! 🌟
+              We'll review all contributions and reach out when we're ready to move forward. Thanks for helping make our neighborhood amazing! Ã°ÂÂÂ
             </p>
           </div>
         </form>

@@ -70,7 +70,7 @@ export const OnboardingCouponsList = ({ selectedCouponIds, onSelectionChange }: 
             </div>
             <div className="flex-shrink-0 text-xs font-medium">
               {isSelected ? (
-                <span className="text-ocean-dark">✅ Picked</span>
+                <span className="text-ocean-dark">Ã¢ÂÂ Picked</span>
               ) : (
                 <span className="text-muted-foreground">Tap to pick</span>
               )}

@@ -95,7 +95,7 @@ const AdminAuth = () => {
         <Card className="bg-white shadow-lg border-cozy-orange/20">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold text-cozy-cream-foreground">
-              🏠 Admin Access
+              Ã°ÂÂÂ  Admin Access
             </CardTitle>
             <CardDescription className="text-cozy-cream-foreground/80">
               Sign in to manage community data
@@ -142,7 +142,7 @@ const AdminAuth = () => {
                 onClick={() => navigate('/')}
                 className="text-cozy-cream-foreground/60 hover:text-cozy-cream-foreground"
               >
-                ← Back to Home
+                Ã¢ÂÂ Back to Home
               </Button>
             </div>
           </CardContent>

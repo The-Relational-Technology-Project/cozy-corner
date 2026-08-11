@@ -23,7 +23,7 @@ const Index = () => {
       time: "10:00 AM",
       location: "On our block!",
       contact: "Community",
-      description: "We're in planning mode – please reach out with ideas!",
+      description: "We're in planning mode Ã¢ÂÂ please reach out with ideas!",
       highlighted: true
     }
   ];
@@ -51,7 +51,7 @@ const Index = () => {
           {/* Welcome Message */}
           <div className="max-w-4xl mx-auto text-center mb-8">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-              <p className="text-lg text-amber-900 leading-relaxed">Welcome! We're neighbors on 48th Ave between Lincoln & Irving. This site is meant to help bring care and joy to our little corner of San Francisco. 🌊</p>
+              <p className="text-lg text-amber-900 leading-relaxed">Welcome! We're neighbors on 48th Ave between Lincoln & Irving. This site is meant to help bring care and joy to our little corner of San Francisco. Ã°ÂÂÂ</p>
             </div>
           </div>
 
@@ -63,8 +63,8 @@ const Index = () => {
                   <div className="flex items-center justify-center gap-3 text-sunset-fog-foreground">
                     <Sparkles className="w-6 h-6" />
                     <div>
-                      <h3 className="text-xl font-bold mb-1">🎉 Block Party 2025!</h3>
-                      <p className="text-sunset-fog-foreground/80">Saturday, September 27 • Sign up to help make magic!</p>
+                      <h3 className="text-xl font-bold mb-1">Ã°ÂÂÂ Block Party 2025!</h3>
+                      <p className="text-sunset-fog-foreground/80">Saturday, September 27 Ã¢ÂÂ¢ Sign up to help make magic!</p>
                     </div>
                     <Sparkles className="w-6 h-6" />
                   </div>
@@ -134,7 +134,7 @@ const Index = () => {
         <div className="grid md:grid-cols-2 gap-8 mt-8">
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
-              <CardTitle className="text-xl">🔮 Coming Soon</CardTitle>
+              <CardTitle className="text-xl">Ã°ÂÂÂ® Coming Soon</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="space-y-3 text-amber-800 mb-6">
@@ -171,14 +171,14 @@ const Index = () => {
                     className="w-full bg-gradient-to-r from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600 text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg"
                     onClick={() => setShowContributionsModal(true)}
                   >
-                    💡 Suggest a new idea
+                    Ã°ÂÂÂ¡ Suggest a new idea
                   </Button>
                   <Button 
                     variant="outline" 
                     className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 rounded-xl text-sm transition-all duration-200"
                     onClick={() => setShowContributionsModal(true)}
                   >
-                    ❤️ Volunteer to help
+                    Ã¢ÂÂ¤Ã¯Â¸Â Volunteer to help
                   </Button>
                 </div>
               </div>
@@ -187,7 +187,7 @@ const Index = () => {
           {/* About Section */}
           <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
-              <CardTitle className="text-xl">🏠 About Cozy Corner</CardTitle>
+              <CardTitle className="text-xl">Ã°ÂÂÂ  About Cozy Corner</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="text-amber-800 leading-relaxed">This site is a tiny mutual support and connection hub built by neighbors for neighbors. We will keep things simple, respect privacy, and aim to support real community connections.</p>
@@ -199,7 +199,7 @@ const Index = () => {
         <div className="mt-16 text-center">
           <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 max-w-2xl mx-auto">
             <p className="text-amber-700 text-sm leading-relaxed">
-              Made with 💛 by neighbors on 48th Ave. Questions or ideas? 
+              Made with Ã°ÂÂÂ by neighbors on 48th Ave. Questions or ideas? 
               Reach out in our group chat or reach out to Josh!
             </p>
           </div>

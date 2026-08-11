@@ -2,6 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --- Tailwind v4 bridge -------------------------------------------------
+   The Builder preview compiles Tailwind CSS-first and does not read
+   tailwind.config.ts, so tokens defined there ("border", "ocean", "dune",
+   "cozy-orange"...) came up as unknown utility classes. This block
+   re-registers the same names against the CSS variables already declared
+   in :root below — no color values are changed here, dark-mode overrides
+   still apply, and the v3 build in the repo ignores unknown at-rules. */
+@theme inline {
+  /* shadcn core tokens */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Outer Sunset palette */
+  --color-ocean: hsl(var(--ocean));
+  --color-ocean-light: hsl(var(--ocean-light, var(--ocean)));
+  --color-ocean-dark: hsl(var(--ocean-dark, var(--ocean)));
+  --color-ocean-foreground: hsl(var(--ocean-foreground, var(--background)));
+
+  --color-sky: hsl(var(--sky));
+  --color-sky-light: hsl(var(--sky-light, var(--sky)));
+  --color-sky-dark: hsl(var(--sky-dark, var(--sky)));
+  --color-sky-foreground: hsl(var(--sky-foreground, var(--foreground)));
+
+  --color-sand: hsl(var(--sand));
+  --color-sand-light: hsl(var(--sand-light, var(--sand)));
+  --color-sand-dark: hsl(var(--sand-dark, var(--sand)));
+  --color-sand-foreground: hsl(var(--sand-foreground, var(--foreground)));
+
+  --color-dune: hsl(var(--dune));
+  --color-dune-light: hsl(var(--dune-light, var(--dune)));
+  --color-dune-dark: hsl(var(--dune-dark, var(--dune)));
+  --color-dune-foreground: hsl(var(--dune-foreground, var(--background)));
+
+  --color-sunset: hsl(var(--sunset));
+  --color-sunset-light: hsl(var(--sunset-light, var(--sunset)));
+  --color-sunset-dark: hsl(var(--sunset-dark, var(--sunset)));
+  --color-sunset-foreground: hsl(var(--sunset-foreground, var(--background)));
+
+  --color-fog: hsl(var(--fog));
+  --color-fog-light: hsl(var(--fog-light, var(--fog)));
+  --color-fog-dark: hsl(var(--fog-dark, var(--fog)));
+  --color-fog-foreground: hsl(var(--fog-foreground, var(--foreground)));
+
+  /* Cozy Corner legacy tokens (admin, coupons, older pages) */
+  --color-cozy-cream: hsl(var(--cozy-cream, var(--background)));
+  --color-cozy-cream-foreground: hsl(var(--cozy-cream-foreground, var(--foreground)));
+  --color-cozy-orange: hsl(var(--cozy-orange, var(--sunset)));
+  --color-cozy-orange-light: hsl(var(--cozy-orange-light, var(--sunset-light)));
+  --color-cozy-orange-dark: hsl(var(--cozy-orange-dark, var(--sunset-dark)));
+  --color-cozy-orange-foreground: hsl(var(--cozy-orange-foreground, var(--background)));
+  --color-brown-sand: hsl(var(--brown-sand, var(--sand-dark)));
+  --color-brown-sand-foreground: hsl(var(--brown-sand-foreground, var(--background)));
+  --color-sunset-fog: hsl(var(--sunset-fog, var(--fog)));
+  --color-sunset-fog-foreground: hsl(var(--sunset-fog-foreground, var(--fog-foreground)));
+
+  /* sidebar (shadcn sidebar component) */
+  --color-sidebar: hsl(var(--sidebar-background, var(--background)));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground, var(--foreground)));
+  --color-sidebar-primary: hsl(var(--sidebar-primary, var(--primary)));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground, var(--primary-foreground)));
+  --color-sidebar-accent: hsl(var(--sidebar-accent, var(--accent)));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground, var(--accent-foreground)));
+  --color-sidebar-border: hsl(var(--sidebar-border, var(--border)));
+  --color-sidebar-ring: hsl(var(--sidebar-ring, var(--ring)));
+
+  /* radii + animations that lived in tailwind.config.ts */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-wave: wave 3s ease-in-out infinite;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(-6deg); }
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes caret-blink {
+  0%, 70%, 100% { opacity: 1; }
+  20%, 50% { opacity: 0; }
+}
+
+/* Fallback for the `bg-outer-sunset` background image defined in
+   tailwind.config.ts. Sits in the base layer, so the real utility from the
+   config still wins wherever the config is read (your live build). */
+@layer base {
+  .bg-outer-sunset {
+    background-image: linear-gradient(
+      to bottom,
+      hsl(var(--sky-light, var(--background))) 0%,
+      hsl(var(--background)) 45%,
+      hsl(var(--sand-light, var(--background))) 100%
+    );
+    background-attachment: fixed;
+  }
+}
+
 @layer base {
   :root {
     --background: 210 25% 97%;

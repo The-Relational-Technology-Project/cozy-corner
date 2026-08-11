@@ -10,159 +10,159 @@ import oslLogo from "@/assets/osl-logo.png";
 
 // Role data structure - all roles now filled!
 const roles = [{
-  category: "🏗️ Setup & Safety",
+  category: "Ã°ÂÂÂÃ¯Â¸Â Setup & Safety",
   items: [{
-    emoji: "🚧",
+    emoji: "Ã°ÂÂÂ§",
     name: "Barricade Setup",
     time: "9:30am",
     spots: 2,
     filled: 2
   }, {
-    emoji: "🛡️",
+    emoji: "Ã°ÂÂÂ¡Ã¯Â¸Â",
     name: "Adult Monitor and Greeter: Lincoln",
     time: "all day, shift ok",
     spots: 2,
     filled: 2
   }, {
-    emoji: "🛡️",
+    emoji: "Ã°ÂÂÂ¡Ã¯Â¸Â",
     name: "Adult Monitor and Greeter: Irving",
     time: "all day, shift ok",
     spots: 2,
     filled: 2
   }, {
-    emoji: "🧹",
+    emoji: "Ã°ÂÂ§Â¹",
     name: "Street Sweep",
     time: "end of day",
     spots: 2,
     filled: 2
   }]
 }, {
-  category: "🍽️ Food & Snacks",
+  category: "Ã°ÂÂÂ½Ã¯Â¸Â Food & Snacks",
   items: [{
-    emoji: "🥐",
+    emoji: "Ã°ÂÂ¥Â",
     name: "Morning setup and takedown",
     time: "food provided",
     spots: 4,
     filled: 4
   }, {
-    emoji: "🍕",
+    emoji: "Ã°ÂÂÂ",
     name: "Pizza setup and takedown",
     time: "food provided",
     spots: 3,
     filled: 3
   }, {
-    emoji: "🌮",
+    emoji: "Ã°ÂÂÂ®",
     name: "Lunch setup and takedown",
     time: "food provided",
     spots: 3,
     filled: 3
   }, {
-    emoji: "☕",
+    emoji: "Ã¢ÂÂ",
     name: "Greet sidewalk talk and mutual aid groups",
     time: "11am",
     spots: 1,
     filled: 1
   }]
 }, {
-  category: "🎨 Activities & Stations",
+  category: "Ã°ÂÂÂ¨ Activities & Stations",
   items: [{
-    emoji: "🧼",
+    emoji: "Ã°ÂÂ§Â¼",
     name: "Bounce House Overseers",
     time: "equipment provided",
     spots: 2,
     filled: 2
   }, {
-    emoji: "🎭",
+    emoji: "Ã°ÂÂÂ­",
     name: "Dress-Up Zone Helper",
     time: "",
     spots: 1,
     filled: 1
   }, {
-    emoji: "🎨",
+    emoji: "Ã°ÂÂÂ¨",
     name: "Art Supplies Host",
     time: "",
     spots: 1,
     filled: 1
   }, {
-    emoji: "💃",
+    emoji: "Ã°ÂÂÂ",
     name: "Dance Class Rally Team",
     time: "instruction provided, 12:30pm",
     spots: 2,
     filled: 2
   }, {
-    emoji: "🎧",
+    emoji: "Ã°ÂÂÂ§",
     name: "Musicians",
     time: "beginners welcome!, 11am",
     spots: 5,
     filled: 5
   }, {
-    emoji: "🌞",
+    emoji: "Ã°ÂÂÂ",
     name: "Mutual Aid Table Hosts",
     time: "11am",
     spots: 2,
     filled: 2
   }]
 }, {
-  category: "💬 Support & Fun",
+  category: "Ã°ÂÂÂ¬ Support & Fun",
   items: [{
-    emoji: "🎤",
+    emoji: "Ã°ÂÂÂ¤",
     name: "Emcee On Demand",
     time: "welcome, transitions",
     spots: 1,
     filled: 1
   }, {
-    emoji: "🎒",
+    emoji: "Ã°ÂÂÂ",
     name: "Supplies Prepper",
     time: "tape, sunscreen, bandaids",
     spots: 1,
     filled: 1
   }, {
-    emoji: "📸",
+    emoji: "Ã°ÂÂÂ¸",
     name: "Photographers",
     time: "",
     spots: 2,
     filled: 2
   }, {
-    emoji: "📢",
+    emoji: "Ã°ÂÂÂ¢",
     name: "Spread the word",
     time: "to neighbors",
     spots: 5,
     filled: 5
   }]
 }, {
-  category: "🎪 Party Supplies & Equipment",
+  category: "Ã°ÂÂÂª Party Supplies & Equipment",
   items: [{
-    emoji: "🪑",
+    emoji: "Ã°ÂÂªÂ",
     name: "Folding tables",
     time: "loan for party",
     spots: 10,
     filled: 10
   }, {
-    emoji: "💺",
+    emoji: "Ã°ÂÂÂº",
     name: "Outdoor chairs",
     time: "loan for party",
     spots: 50,
     filled: 50
   }, {
-    emoji: "👗",
+    emoji: "Ã°ÂÂÂ",
     name: "Kids dress up supplies",
     time: "loan for party",
     spots: 10,
     filled: 10
   }, {
-    emoji: "🎨",
+    emoji: "Ã°ÂÂÂ¨",
     name: "Chalk and art supplies",
     time: "loan for party",
     spots: 10,
     filled: 10
   }, {
-    emoji: "🔊",
+    emoji: "Ã°ÂÂÂ",
     name: "Speakers for music",
     time: "loan for party",
     spots: 2,
     filled: 2
   }, {
-    emoji: "✨",
+    emoji: "Ã¢ÂÂ¨",
     name: "Something else we need!",
     time: "loan for party",
     spots: 10,
@@ -181,7 +181,7 @@ const BlockParty2025 = () => {
         <div className="relative px-4 py-16 mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4 leading-tight">
-              🎉 48th Ave Block Party 2025
+              Ã°ÂÂÂ 48th Ave Block Party 2025
             </h1>
             <div className="flex flex-wrap justify-center items-center gap-4 text-lg text-amber-800 mb-6">
               <div className="flex items-center gap-2">
@@ -204,7 +204,7 @@ const BlockParty2025 = () => {
       <div className="px-4 pb-12 mx-auto max-w-6xl">
         <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden mb-12">
           <CardHeader className="bg-gradient-to-r from-amber-600 to-orange-600 text-white">
-            <CardTitle className="text-2xl text-center">📸 Celebrating Our First Block Party</CardTitle>
+            <CardTitle className="text-2xl text-center">Ã°ÂÂÂ¸ Celebrating Our First Block Party</CardTitle>
           </CardHeader>
           <CardContent className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -248,7 +248,7 @@ const BlockParty2025 = () => {
         {/* Site Plan Section */}
         <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden mb-12">
           <CardHeader className="bg-gradient-to-r from-amber-600 to-orange-600 text-white">
-            <CardTitle className="text-2xl text-center">📍 Site Plan</CardTitle>
+            <CardTitle className="text-2xl text-center">Ã°ÂÂÂ Site Plan</CardTitle>
           </CardHeader>
           <CardContent className="p-6">
             <div className="text-center">
@@ -263,7 +263,7 @@ const BlockParty2025 = () => {
         {/* Volunteer Roles - All Filled! */}
         <div id="volunteers-section">
           <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-amber-800 via-orange-700 to-amber-600 bg-clip-text text-transparent mb-4 leading-tight">
-            🙋‍♀️ Thank You Volunteers!
+            Ã°ÂÂÂÃ¢ÂÂÃ¢ÂÂÃ¯Â¸Â Thank You Volunteers!
           </h2>
           <p className="text-center text-amber-900 mb-8 max-w-2xl mx-auto">
             Every role was filled by amazing neighbors who stepped up to make this event happen. Thank you to everyone who contributed!
@@ -287,7 +287,7 @@ const BlockParty2025 = () => {
                             </p>}
                           <div className="flex items-center justify-center gap-1 text-xs text-green-700 font-medium">
                             <Users className="w-3 h-3" />
-                            ✓ All {role.spots} spots filled!
+                            Ã¢ÂÂ All {role.spots} spots filled!
                           </div>
                         </div>
                       </CardContent>
@@ -301,7 +301,7 @@ const BlockParty2025 = () => {
         <div className="mt-16">
           <Card className="bg-gradient-to-br from-amber-100 to-orange-100 shadow-xl border-0 rounded-2xl overflow-hidden">
             <CardContent className="p-8 text-center">
-              <div className="text-4xl mb-4">🎊</div>
+              <div className="text-4xl mb-4">Ã°ÂÂÂ</div>
               <h3 className="text-2xl font-bold text-amber-900 mb-3">
                 Stay Tuned for Next Year!
               </h3>
@@ -316,7 +316,7 @@ const BlockParty2025 = () => {
         <div className="mt-16 text-center">
           <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 max-w-2xl mx-auto">
             <p className="text-amber-700 text-sm leading-relaxed mb-4">
-              Made with 💛 by neighbors on 48th Ave. Questions about future block parties? 
+              Made with Ã°ÂÂÂ by neighbors on 48th Ave. Questions about future block parties? 
               Reach out in our group chat or reach out to Josh!
             </p>
             <Link to="/" className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-800 transition-colors duration-200 text-sm font-medium">
