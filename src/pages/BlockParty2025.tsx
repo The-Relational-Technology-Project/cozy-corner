@@ -3,7 +3,6 @@ import { MainNavigation } from "@/components/MainNavigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, MapPin, Home, Heart } from "lucide-react";
 import blockPartyAerial from "@/assets/block-party-aerial.png";
-import blockPartyChalk from "@/assets/block-party-chalk.png";
 import blockPartyMusic from "@/assets/block-party-music.png";
 import civicJoyLogo from "@/assets/civic-joy-fund-logo.png";
 import oslLogo from "@/assets/osl-logo.png";
