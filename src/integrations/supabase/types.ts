@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      block_party_2026_signups: {
+        Row: {
+          contact: string
+          created_at: string
+          id: string
+          name: string
+          potluck_item: string | null
+          questions: string | null
+          updated_at: string
+          volunteer_roles: string[] | null
+        }
+        Insert: {
+          contact: string
+          created_at?: string
+          id?: string
+          name: string
+          potluck_item?: string | null
+          questions?: string | null
+          updated_at?: string
+          volunteer_roles?: string[] | null
+        }
+        Update: {
+          contact?: string
+          created_at?: string
+          id?: string
+          name?: string
+          potluck_item?: string | null
+          questions?: string | null
+          updated_at?: string
+          volunteer_roles?: string[] | null
+        }
+        Relationships: []
+      }
       block_party_ideas: {
         Row: {
           created_at: string

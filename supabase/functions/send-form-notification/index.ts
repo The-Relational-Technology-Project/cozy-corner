@@ -181,6 +181,18 @@ const handler = async (req: Request): Promise<Response> => {
         `;
         break;
 
+      case "block_party_2026_signup":
+        subject = "🎉 New Block Party Sign-Up (Oct 17)";
+        htmlContent = `
+          <h2>New Block Party Sign-Up</h2>
+          <p><strong>Name:</strong> ${safe(formData.name)}</p>
+          <p><strong>Contact:</strong> ${safe(formData.contact)}</p>
+          <p><strong>Potluck dish/drinks:</strong> ${safe(formData.potluck_item, 'None')}</p>
+          <p><strong>Volunteer roles:</strong> ${formData.volunteer_roles?.length ? escapeHtml(formData.volunteer_roles.join(', ')) : 'None'}</p>
+          <p><strong>Questions:</strong> ${safe(formData.questions, 'None')}</p>
+        `;
+        break;
+
       case "neighborhood_contribution":
         subject = "New Neighborhood Contribution";
         htmlContent = `
