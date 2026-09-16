@@ -13,14 +13,14 @@ import { PartyPopper, ArrowRight, UtensilsCrossed, HandHeart, Clock, Map, Check 
 import sitePlan from "@/assets/block-party-2026-site-plan.jpg.asset.json";
 
 const volunteerRoles = [
-  "Barricades setup",
-  "Roaming welcome committee",
-  "Bounce house monitor",
-  "Art station monitor",
-  "Potluck setup and takedown",
-  "Pet parade facilitator",
-  "Band support crew",
-  "Clean-up crew",
+  { emoji: "🚧", label: "Barricades setup" },
+  { emoji: "👋", label: "Roaming welcome committee" },
+  { emoji: "🏰", label: "Bounce house monitor" },
+  { emoji: "🎨", label: "Art station monitor" },
+  { emoji: "🍽️", label: "Potluck setup and takedown" },
+  { emoji: "🐕", label: "Pet parade facilitator" },
+  { emoji: "🎸", label: "Band support crew" },
+  { emoji: "🧹", label: "Clean-up crew" },
 ];
 
 const schedule = [
@@ -152,9 +152,9 @@ const BlockParty = () => {
                 <div className="space-y-2">
                   <Label htmlFor="potluck" className="text-foreground font-medium flex items-center gap-2">
                     <UtensilsCrossed className="h-4 w-4 text-primary" />
-                    Potluck sign-up
+                    🥘 Potluck sign-up
                   </Label>
-                  <p className="text-sm text-muted-foreground">What dish or drinks can you bring? (optional)</p>
+                  <p className="text-sm text-muted-foreground">What dish or drinks can you bring? 🍋🍰 (optional)</p>
                   <Textarea
                     id="potluck"
                     value={potluckItem}
@@ -168,19 +168,19 @@ const BlockParty = () => {
                 <div className="space-y-3">
                   <Label className="text-foreground font-medium flex items-center gap-2">
                     <HandHeart className="h-4 w-4 text-primary" />
-                    Volunteer sign-ups
+                    🙌 Volunteer sign-ups
                   </Label>
                   <p className="text-sm text-muted-foreground">
                     Pick one or more roles — we'll make this happen together! (optional)
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {volunteerRoles.map((role) => {
-                      const active = roles.includes(role);
+                      const active = roles.includes(role.label);
                       return (
                         <button
                           type="button"
-                          key={role}
-                          onClick={() => toggleRole(role)}
+                          key={role.label}
+                          onClick={() => toggleRole(role.label)}
                           aria-pressed={active}
                           className={`flex items-center justify-between gap-2 rounded-lg border p-3 text-left text-sm transition-colors ${
                             active
@@ -188,7 +188,10 @@ const BlockParty = () => {
                               : "border-border bg-card text-foreground hover:border-primary/40"
                           }`}
                         >
-                          <span>{role}</span>
+                          <span className="flex items-center gap-2">
+                            <span className="text-lg leading-none" aria-hidden="true">{role.emoji}</span>
+                            {role.label}
+                          </span>
                           {active && <Check className="h-4 w-4 text-primary shrink-0" />}
                         </button>
                       );
@@ -199,7 +202,7 @@ const BlockParty = () => {
                 {/* Questions */}
                 <div className="space-y-2">
                   <Label htmlFor="questions" className="text-foreground font-medium">
-                    Any questions about the block party? <span className="text-sm text-muted-foreground">(optional)</span>
+                    🤔 Any questions about the block party? <span className="text-sm text-muted-foreground">(optional)</span>
                   </Label>
                   <Textarea
                     id="questions"
@@ -214,7 +217,7 @@ const BlockParty = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-foreground font-medium">
-                      First name <span className="text-destructive">*</span>
+                      🙋 First name <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="name"
@@ -227,7 +230,7 @@ const BlockParty = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="contact" className="text-foreground font-medium">
-                      Email or phone <span className="text-destructive">*</span>
+                      📬 Email or phone <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="contact"
