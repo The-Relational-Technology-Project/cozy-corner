@@ -152,9 +152,9 @@ const BlockParty = () => {
                 <div className="space-y-2">
                   <Label htmlFor="potluck" className="text-foreground font-medium flex items-center gap-2">
                     <UtensilsCrossed className="h-4 w-4 text-primary" />
-                    Potluck sign-up
+                    🥘 Potluck sign-up
                   </Label>
-                  <p className="text-sm text-muted-foreground">What dish or drinks can you bring? (optional)</p>
+                  <p className="text-sm text-muted-foreground">What dish or drinks can you bring? 🍋🍰 (optional)</p>
                   <Textarea
                     id="potluck"
                     value={potluckItem}
@@ -168,7 +168,7 @@ const BlockParty = () => {
                 <div className="space-y-3">
                   <Label className="text-foreground font-medium flex items-center gap-2">
                     <HandHeart className="h-4 w-4 text-primary" />
-                    Volunteer sign-ups
+                    🙌 Volunteer sign-ups
                   </Label>
                   <p className="text-sm text-muted-foreground">
                     Pick one or more roles — we'll make this happen together! (optional)
@@ -202,7 +202,7 @@ const BlockParty = () => {
                 {/* Questions */}
                 <div className="space-y-2">
                   <Label htmlFor="questions" className="text-foreground font-medium">
-                    Any questions about the block party? <span className="text-sm text-muted-foreground">(optional)</span>
+                    🤔 Any questions about the block party? <span className="text-sm text-muted-foreground">(optional)</span>
                   </Label>
                   <Textarea
                     id="questions"
@@ -217,7 +217,7 @@ const BlockParty = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-foreground font-medium">
-                      First name <span className="text-destructive">*</span>
+                      🙋 First name <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="name"
@@ -230,7 +230,7 @@ const BlockParty = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="contact" className="text-foreground font-medium">
-                      Email or phone <span className="text-destructive">*</span>
+                      📬 Email or phone <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="contact"
