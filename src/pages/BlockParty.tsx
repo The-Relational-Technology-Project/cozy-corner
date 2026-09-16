@@ -8,35 +8,37 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import { PartyPopper, ArrowRight, UtensilsCrossed, HandHeart, Clock, Map, Check } from "lucide-react";
 import sitePlan from "@/assets/block-party-2026-site-plan.jpg.asset.json";
 
 const volunteerRoles = [
-  { emoji: "🚧", label: "Barricades setup" },
-  { emoji: "👋", label: "Roaming welcome committee" },
-  { emoji: "🏰", label: "Bounce house monitor" },
-  { emoji: "🎨", label: "Art station monitor" },
-  { emoji: "🍽️", label: "Potluck setup and takedown" },
-  { emoji: "🐕", label: "Pet parade facilitator" },
-  { emoji: "🎸", label: "Band support crew" },
-  { emoji: "🧹", label: "Clean-up crew" },
+  { emoji: "🚧", key: "bp.role.barricades", label: "Barricades setup" },
+  { emoji: "👋", key: "bp.role.welcome", label: "Roaming welcome committee" },
+  { emoji: "🏰", key: "bp.role.bounce", label: "Bounce house monitor" },
+  { emoji: "🎨", key: "bp.role.art", label: "Art station monitor" },
+  { emoji: "🍽️", key: "bp.role.potluck", label: "Potluck setup and takedown" },
+  { emoji: "🐕", key: "bp.role.pets", label: "Pet parade facilitator" },
+  { emoji: "🎸", key: "bp.role.band", label: "Band support crew" },
+  { emoji: "🧹", key: "bp.role.cleanup", label: "Clean-up crew" },
 ];
 
 const schedule = [
-  { time: "1:30pm", what: "Setup begins" },
-  { time: "2:00pm", what: "Bounce house, games, and neighbor music jam" },
-  { time: "3:00pm", what: "Coffee and treats, pet parade" },
-  { time: "4:00pm", what: "First live band" },
-  { time: "4:30pm", what: "Tables and dishes out" },
-  { time: "5:00pm", what: "Neighbor potluck" },
-  { time: "5:30pm", what: "Second band" },
-  { time: "6:00pm", what: "Hang out" },
-  { time: "6:30pm", what: "Close and cleanup" },
+  { time: "1:30pm", key: "bp.schedule.1" },
+  { time: "2:00pm", key: "bp.schedule.2" },
+  { time: "3:00pm", key: "bp.schedule.3" },
+  { time: "4:00pm", key: "bp.schedule.4" },
+  { time: "4:30pm", key: "bp.schedule.5" },
+  { time: "5:00pm", key: "bp.schedule.6" },
+  { time: "5:30pm", key: "bp.schedule.7" },
+  { time: "6:00pm", key: "bp.schedule.8" },
+  { time: "6:30pm", key: "bp.schedule.9" },
 ];
 
 const BlockParty = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -54,11 +56,11 @@ const BlockParty = () => {
     e.preventDefault();
 
     if (!name.trim()) {
-      toast({ title: "Please add your first name", variant: "destructive" });
+      toast({ title: t('bp.toast.name'), variant: "destructive" });
       return;
     }
     if (!contact.trim()) {
-      toast({ title: "Please add an email or phone number", variant: "destructive" });
+      toast({ title: t('bp.toast.contact'), variant: "destructive" });
       return;
     }
 
@@ -88,10 +90,10 @@ const BlockParty = () => {
       });
 
       setSubmitted(true);
-      toast({ title: "🎉 You're signed up!" });
+      toast({ title: t('bp.toast.success') });
     } catch (err) {
       console.error(err);
-      toast({ title: "Something went wrong", description: "Please try again.", variant: "destructive" });
+      toast({ title: t('bp.toast.error'), description: t('bp.toast.error.desc'), variant: "destructive" });
     } finally {
       setSubmitting(false);
     }
@@ -106,11 +108,10 @@ const BlockParty = () => {
         <div className="text-center space-y-4">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground flex items-center justify-center gap-3">
             <PartyPopper className="h-8 w-8 text-primary" />
-            Block Party 2026
+            {t('bp.title')}
           </h1>
           <p className="text-muted-foreground text-lg py-[24px]">
-            We are partying as a block on Saturday, October 17th, 2–6:30pm! We'll close the street but cars can
-            still be parked in their usual spots, and we'll help neighbors come and go safely as needed.
+            {t('bp.intro')}
           </p>
         </div>
 
@@ -119,10 +120,8 @@ const BlockParty = () => {
           <Card className="border-primary/30 bg-primary/5">
             <CardContent className="p-8 text-center space-y-4">
               <span className="text-5xl">🎉</span>
-              <h2 className="text-2xl font-bold text-foreground">Thank you!</h2>
-              <p className="text-muted-foreground">
-                Stay tuned for the day-of schedule and reach out to our neighbor group chat with any questions.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground">{t('bp.thanks.title')}</h2>
+              <p className="text-muted-foreground">{t('bp.thanks.message')}</p>
               <Button
                 variant="outline"
                 onClick={() => {
@@ -134,7 +133,7 @@ const BlockParty = () => {
                   setContact("");
                 }}
               >
-                Sign up someone else
+                {t('bp.thanks.another')}
               </Button>
             </CardContent>
           </Card>
@@ -143,7 +142,7 @@ const BlockParty = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <HandHeart className="h-5 w-5 text-primary" />
-                Sign up for October 17th
+                {t('bp.signup.title')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -152,14 +151,14 @@ const BlockParty = () => {
                 <div className="space-y-2">
                   <Label htmlFor="potluck" className="text-foreground font-medium flex items-center gap-2">
                     <UtensilsCrossed className="h-4 w-4 text-primary" />
-                    🥘 Potluck sign-up
+                    {t('bp.potluck.label')}
                   </Label>
-                  <p className="text-sm text-muted-foreground">What dish or drinks can you bring? 🍋🍰 (optional)</p>
+                  <p className="text-sm text-muted-foreground">{t('bp.potluck.help')}</p>
                   <Textarea
                     id="potluck"
                     value={potluckItem}
                     onChange={(e) => setPotluckItem(e.target.value)}
-                    placeholder="e.g. big pan of enchiladas, lemonade, a fruit platter..."
+                    placeholder={t('bp.potluck.placeholder')}
                     maxLength={500}
                   />
                 </div>
@@ -168,11 +167,9 @@ const BlockParty = () => {
                 <div className="space-y-3">
                   <Label className="text-foreground font-medium flex items-center gap-2">
                     <HandHeart className="h-4 w-4 text-primary" />
-                    🙌 Volunteer sign-ups
+                    {t('bp.volunteer.label')}
                   </Label>
-                  <p className="text-sm text-muted-foreground">
-                    Pick one or more roles — we'll make this happen together! (optional)
-                  </p>
+                  <p className="text-sm text-muted-foreground">{t('bp.volunteer.help')}</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {volunteerRoles.map((role) => {
                       const active = roles.includes(role.label);
@@ -190,7 +187,7 @@ const BlockParty = () => {
                         >
                           <span className="flex items-center gap-2">
                             <span className="text-lg leading-none" aria-hidden="true">{role.emoji}</span>
-                            {role.label}
+                            {t(role.key)}
                           </span>
                           {active && <Check className="h-4 w-4 text-primary shrink-0" />}
                         </button>
@@ -202,13 +199,13 @@ const BlockParty = () => {
                 {/* Questions */}
                 <div className="space-y-2">
                   <Label htmlFor="questions" className="text-foreground font-medium">
-                    🤔 Any questions about the block party? <span className="text-sm text-muted-foreground">(optional)</span>
+                    {t('bp.questions.label')} <span className="text-sm text-muted-foreground">{t('bp.optional')}</span>
                   </Label>
                   <Textarea
                     id="questions"
                     value={questions}
                     onChange={(e) => setQuestions(e.target.value)}
-                    placeholder="Ask away!"
+                    placeholder={t('bp.questions.placeholder')}
                     maxLength={1000}
                   />
                 </div>
@@ -217,26 +214,26 @@ const BlockParty = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-foreground font-medium">
-                      🙋 First name <span className="text-destructive">*</span>
+                      {t('bp.name.label')} <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Your first name"
+                      placeholder={t('bp.name.placeholder')}
                       maxLength={100}
                       required
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="contact" className="text-foreground font-medium">
-                      📬 Email or phone <span className="text-destructive">*</span>
+                      {t('bp.contact.label')} <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="contact"
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
-                      placeholder="you@email.com or phone"
+                      placeholder={t('bp.contact.placeholder')}
                       maxLength={200}
                       required
                     />
@@ -244,7 +241,7 @@ const BlockParty = () => {
                 </div>
 
                 <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? "Submitting..." : "Count me in 🎉"}
+                  {submitting ? t('bp.submitting') : t('bp.submit')}
                 </Button>
               </form>
             </CardContent>
@@ -256,7 +253,7 @@ const BlockParty = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="h-5 w-5 text-primary" />
-              Day-of overview
+              {t('bp.overview.title')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -264,7 +261,7 @@ const BlockParty = () => {
               {schedule.map((item) => (
                 <li key={item.time} className="flex gap-4 text-foreground">
                   <span className="w-20 shrink-0 font-semibold text-primary">{item.time}</span>
-                  <span className="text-muted-foreground">{item.what}</span>
+                  <span className="text-muted-foreground">{t(item.key)}</span>
                 </li>
               ))}
             </ul>
@@ -272,11 +269,11 @@ const BlockParty = () => {
             <div className="space-y-2">
               <p className="font-medium text-foreground flex items-center gap-2">
                 <Map className="h-4 w-4 text-primary" />
-                Street layout
+                {t('bp.layout.title')}
               </p>
               <img
                 src={sitePlan.url}
-                alt="Block party layout on 48th Ave between Lincoln Way and Irving St, showing potluck tables, bounce house, art supplies, pet parade station, music and dance areas, coffee and treats, barricades, and a 14-foot emergency access lane"
+                alt={t('bp.layout.alt')}
                 className="w-full rounded-lg border border-border"
                 loading="lazy"
               />
@@ -291,8 +288,8 @@ const BlockParty = () => {
               <div className="flex items-center gap-3">
                 <span className="text-2xl">🎉</span>
                 <div>
-                  <p className="font-semibold text-foreground">2025 Block Party Retrospective</p>
-                  <p className="text-sm text-muted-foreground">See photos and highlights from last year's party</p>
+                  <p className="font-semibold text-foreground">{t('bp.retro.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('bp.retro.subtitle')}</p>
                 </div>
               </div>
               <ArrowRight className="h-5 w-5 text-muted-foreground" />
