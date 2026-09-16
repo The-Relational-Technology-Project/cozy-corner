@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MainNavigation } from "@/components/MainNavigation";
 import { BulletinBoardFooter } from "@/components/BulletinBoardFooter";
@@ -6,114 +6,89 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { PartyPopper, ArrowRight, ClipboardList } from "lucide-react";
+import { PartyPopper, ArrowRight, UtensilsCrossed, HandHeart, Clock, Map, Check } from "lucide-react";
+import sitePlan from "@/assets/block-party-2026-site-plan.jpg.asset.json";
 
-const timeOptions = [
-  "Saturday afternoon",
-  "Saturday evening",
-  "Sunday afternoon",
-  "Sunday evening",
+const volunteerRoles = [
+  "Barricades setup",
+  "Roaming welcome committee",
+  "Bounce house monitor",
+  "Art station monitor",
+  "Potluck setup and takedown",
+  "Pet parade facilitator",
+  "Band support crew",
+  "Clean-up crew",
 ];
 
-const monthOptions = ["August", "September", "October"];
+const schedule = [
+  { time: "1:30pm", what: "Setup begins" },
+  { time: "2:00pm", what: "Bounce house, games, and neighbor music jam" },
+  { time: "3:00pm", what: "Coffee and treats, pet parade" },
+  { time: "4:00pm", what: "First live band" },
+  { time: "4:30pm", what: "Tables and dishes out" },
+  { time: "5:00pm", what: "Neighbor potluck" },
+  { time: "5:30pm", what: "Second band" },
+  { time: "6:00pm", what: "Hang out" },
+  { time: "6:30pm", what: "Close and cleanup" },
+];
 
 const BlockParty = () => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // Form state
+  const [potluckItem, setPotluckItem] = useState("");
+  const [roles, setRoles] = useState<string[]>([]);
+  const [questions, setQuestions] = useState("");
   const [name, setName] = useState("");
-  const [preferredTimes, setPreferredTimes] = useState<string[]>([]);
-  const [preferredMonths, setPreferredMonths] = useState<string[]>([]);
-  const [unavailableWeekends, setUnavailableWeekends] = useState("");
-  const [participationFactors, setParticipationFactors] = useState("");
-  const [potluckOk, setPotluckOk] = useState<string>("");
-  const [partyIdeas, setPartyIdeas] = useState("");
-  const [wantsCommittee, setWantsCommittee] = useState<string>("");
-  const [committeeContact, setCommitteeContact] = useState("");
+  const [contact, setContact] = useState("");
 
-  // Math CAPTCHA
-  const [captchaAnswer, setCaptchaAnswer] = useState("");
-  const captcha = useMemo(() => {
-    const a = Math.floor(Math.random() * 9) + 1;
-    const b = Math.floor(Math.random() * 9) + 1;
-    return { a, b, answer: a + b };
-  }, []);
-
-  const toggleTime = (time: string) => {
-    setPreferredTimes((prev) =>
-      prev.includes(time) ? prev.filter((t) => t !== time) : [...prev, time]
-    );
-  };
-
-  const toggleMonth = (month: string) => {
-    setPreferredMonths((prev) =>
-      prev.includes(month) ? prev.filter((m) => m !== month) : [...prev, month]
-    );
+  const toggleRole = (role: string) => {
+    setRoles((prev) => (prev.includes(role) ? prev.filter((r) => r !== role) : [...prev, role]));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name.trim()) {
-      toast({ title: "Name is required", variant: "destructive" });
+      toast({ title: "Please add your first name", variant: "destructive" });
       return;
     }
-    if (!potluckOk) {
-      toast({ title: "Please answer the potluck question", variant: "destructive" });
-      return;
-    }
-    if (parseInt(captchaAnswer) !== captcha.answer) {
-      toast({ title: "Math answer is incorrect — please try again!", variant: "destructive" });
-      return;
-    }
-    if (wantsCommittee === "yes" && !committeeContact.trim()) {
-      toast({ title: "Please provide contact info for the committee", variant: "destructive" });
+    if (!contact.trim()) {
+      toast({ title: "Please add an email or phone number", variant: "destructive" });
       return;
     }
 
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("block_party_survey_2026" as any).insert({
+      const { error } = await supabase.from("block_party_2026_signups" as any).insert({
         name: name.trim(),
-        preferred_times: preferredTimes.length > 0 ? preferredTimes : null,
-        preferred_month: preferredMonths.length > 0 ? preferredMonths.join(', ') : null,
-        unavailable_weekends: unavailableWeekends.trim() || null,
-        participation_factors: participationFactors.trim() || null,
-        potluck_ok: potluckOk === "yes",
-        party_ideas: partyIdeas.trim() || null,
-        wants_committee: wantsCommittee === "yes" ? true : wantsCommittee === "no" ? false : null,
-        committee_contact: wantsCommittee === "yes" ? committeeContact.trim() || null : null,
+        contact: contact.trim(),
+        potluck_item: potluckItem.trim() || null,
+        volunteer_roles: roles.length > 0 ? roles : null,
+        questions: questions.trim() || null,
       } as any);
 
       if (error) throw error;
 
-      // Send notification email
       await supabase.functions.invoke("send-form-notification", {
         body: {
-          formType: "block_party_survey",
+          formType: "block_party_2026_signup",
           formData: {
             name: name.trim(),
-            preferred_times: preferredTimes,
-            preferred_months: preferredMonths,
-            unavailable_weekends: unavailableWeekends.trim(),
-            participation_factors: participationFactors.trim(),
-            potluck_ok: potluckOk === "yes",
-            party_ideas: partyIdeas.trim(),
-            wants_committee: wantsCommittee === "yes",
-            committee_contact: committeeContact.trim(),
+            contact: contact.trim(),
+            potluck_item: potluckItem.trim(),
+            volunteer_roles: roles,
+            questions: questions.trim(),
           },
         },
       });
 
       setSubmitted(true);
-      toast({ title: "🎉 Thanks for your input!", description: "Your survey response has been recorded." });
+      toast({ title: "🎉 You're signed up!" });
     } catch (err) {
       console.error(err);
       toast({ title: "Something went wrong", description: "Please try again.", variant: "destructive" });
@@ -133,12 +108,180 @@ const BlockParty = () => {
             <PartyPopper className="h-8 w-8 text-primary" />
             Block Party 2026
           </h1>
-          <p className="text-muted-foreground text-lg px-0 py-[30px]">
-            Let's plan our next block party on 48th Ave! Fill out this quick 2-minute survey so we can find the best date, time, and vibe for everyone.
+          <p className="text-muted-foreground text-lg py-[24px]">
+            We are partying as a block on Saturday, October 17th, 2–6:30pm! We'll close the street but cars can
+            still be parked in their usual spots, and we'll help neighbors come and go safely as needed.
           </p>
         </div>
 
-        {/* Link to 2025 retro */}
+        {/* Sign-up */}
+        {submitted ? (
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-8 text-center space-y-4">
+              <span className="text-5xl">🎉</span>
+              <h2 className="text-2xl font-bold text-foreground">Thank you!</h2>
+              <p className="text-muted-foreground">
+                Stay tuned for the day-of schedule and reach out to our neighbor group chat with any questions.
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSubmitted(false);
+                  setPotluckItem("");
+                  setRoles([]);
+                  setQuestions("");
+                  setName("");
+                  setContact("");
+                }}
+              >
+                Sign up someone else
+              </Button>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <HandHeart className="h-5 w-5 text-primary" />
+                Sign up for October 17th
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Potluck */}
+                <div className="space-y-2">
+                  <Label htmlFor="potluck" className="text-foreground font-medium flex items-center gap-2">
+                    <UtensilsCrossed className="h-4 w-4 text-primary" />
+                    Potluck sign-up
+                  </Label>
+                  <p className="text-sm text-muted-foreground">What dish or drinks can you bring? (optional)</p>
+                  <Textarea
+                    id="potluck"
+                    value={potluckItem}
+                    onChange={(e) => setPotluckItem(e.target.value)}
+                    placeholder="e.g. big pan of enchiladas, lemonade, a fruit platter..."
+                    maxLength={500}
+                  />
+                </div>
+
+                {/* Volunteer roles */}
+                <div className="space-y-3">
+                  <Label className="text-foreground font-medium flex items-center gap-2">
+                    <HandHeart className="h-4 w-4 text-primary" />
+                    Volunteer sign-ups
+                  </Label>
+                  <p className="text-sm text-muted-foreground">
+                    Pick one or more roles — we'll make this happen together! (optional)
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {volunteerRoles.map((role) => {
+                      const active = roles.includes(role);
+                      return (
+                        <button
+                          type="button"
+                          key={role}
+                          onClick={() => toggleRole(role)}
+                          aria-pressed={active}
+                          className={`flex items-center justify-between gap-2 rounded-lg border p-3 text-left text-sm transition-colors ${
+                            active
+                              ? "border-primary bg-primary/10 text-foreground font-medium"
+                              : "border-border bg-card text-foreground hover:border-primary/40"
+                          }`}
+                        >
+                          <span>{role}</span>
+                          {active && <Check className="h-4 w-4 text-primary shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Questions */}
+                <div className="space-y-2">
+                  <Label htmlFor="questions" className="text-foreground font-medium">
+                    Any questions about the block party? <span className="text-sm text-muted-foreground">(optional)</span>
+                  </Label>
+                  <Textarea
+                    id="questions"
+                    value={questions}
+                    onChange={(e) => setQuestions(e.target.value)}
+                    placeholder="Ask away!"
+                    maxLength={1000}
+                  />
+                </div>
+
+                {/* Contact */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-foreground font-medium">
+                      First name <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Your first name"
+                      maxLength={100}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="contact" className="text-foreground font-medium">
+                      Email or phone <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="contact"
+                      value={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                      placeholder="you@email.com or phone"
+                      maxLength={200}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <Button type="submit" disabled={submitting} className="w-full">
+                  {submitting ? "Submitting..." : "Count me in 🎉"}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Overview */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="h-5 w-5 text-primary" />
+              Day-of overview
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <ul className="space-y-2">
+              {schedule.map((item) => (
+                <li key={item.time} className="flex gap-4 text-foreground">
+                  <span className="w-20 shrink-0 font-semibold text-primary">{item.time}</span>
+                  <span className="text-muted-foreground">{item.what}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="space-y-2">
+              <p className="font-medium text-foreground flex items-center gap-2">
+                <Map className="h-4 w-4 text-primary" />
+                Street layout
+              </p>
+              <img
+                src={sitePlan.url}
+                alt="Block party layout on 48th Ave between Lincoln Way and Irving St, showing potluck tables, bounce house, art supplies, pet parade station, music and dance areas, coffee and treats, barricades, and a 14-foot emergency access lane"
+                className="w-full rounded-lg border border-border"
+                loading="lazy"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* 2025 retro */}
         <Link to="/block-party-2025">
           <Card className="border-primary/20 hover:border-primary/40 transition-colors cursor-pointer">
             <CardContent className="flex items-center justify-between p-4">
@@ -153,213 +296,6 @@ const BlockParty = () => {
             </CardContent>
           </Card>
         </Link>
-
-        {/* Survey */}
-        {submitted ? (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-8 text-center space-y-4">
-              <span className="text-5xl">🎉</span>
-              <h2 className="text-2xl font-bold text-foreground">Thank you!</h2>
-              <p className="text-muted-foreground">Your responses have been recorded. We'll use this to plan the best block party ever!</p>
-              <Button variant="outline" onClick={() => {
-                setSubmitted(false);
-                setName("");
-                setPreferredTimes([]);
-                setPreferredMonths([]);
-                setUnavailableWeekends("");
-                setParticipationFactors("");
-                setPotluckOk("");
-                setPartyIdeas("");
-                setWantsCommittee("");
-                setCommitteeContact("");
-                setCaptchaAnswer("");
-              }}>
-                Submit Another Response
-              </Button>
-            </CardContent>
-          </Card>
-        ) : (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <ClipboardList className="h-5 w-5 text-primary" />
-                2026 Block Party Neighbor Survey
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name */}
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-foreground font-medium">
-                    Name <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Your name"
-                    maxLength={100}
-                    required
-                  />
-                </div>
-
-                {/* Time preferences */}
-                <div className="space-y-3">
-                  <Label className="text-foreground font-medium">
-                    What time works for you, generally? <span className="text-muted-foreground text-sm">(optional, select all that apply)</span>
-                  </Label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {timeOptions.map((time) => (
-                      <div key={time} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`time-${time}`}
-                          checked={preferredTimes.includes(time)}
-                          onCheckedChange={() => toggleTime(time)}
-                        />
-                        <Label htmlFor={`time-${time}`} className="text-foreground cursor-pointer">
-                          {time}
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Month */}
-                <div className="space-y-3">
-                  <Label className="text-foreground font-medium">
-                    In which month should we party? <span className="text-muted-foreground text-sm">(optional, select all you like)</span>
-                  </Label>
-                  <div className="flex flex-wrap gap-4">
-                    {monthOptions.map((month) => (
-                      <div key={month} className="flex items-center space-x-2">
-                        <Checkbox
-                          id={`month-${month}`}
-                          checked={preferredMonths.includes(month)}
-                          onCheckedChange={() => toggleMonth(month)}
-                        />
-                        <Label htmlFor={`month-${month}`} className="text-foreground cursor-pointer">{month}</Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Unavailable weekends */}
-                <div className="space-y-2">
-                  <Label htmlFor="unavailable" className="text-foreground font-medium">
-                    Any weekends you know don't work for you? <span className="text-muted-foreground text-sm">(optional)</span>
-                  </Label>
-                  <Textarea
-                    id="unavailable"
-                    value={unavailableWeekends}
-                    onChange={(e) => setUnavailableWeekends(e.target.value)}
-                    placeholder="e.g. Labor Day weekend, Sept 20-21..."
-                    maxLength={500}
-                  />
-                </div>
-
-                {/* Participation factors */}
-                <div className="space-y-2">
-                  <Label htmlFor="factors" className="text-foreground font-medium">
-                    What would make it more likely you could participate? <span className="text-muted-foreground text-sm">(optional)</span>
-                  </Label>
-                  <Textarea
-                    id="factors"
-                    value={participationFactors}
-                    onChange={(e) => setParticipationFactors(e.target.value)}
-                    placeholder="e.g. kid-friendly activities, later start time..."
-                    maxLength={500}
-                  />
-                </div>
-
-                {/* Potluck */}
-                <div className="space-y-3">
-                  <Label className="text-foreground font-medium">
-                    Would you be open to this being a potluck? <span className="text-destructive">*</span>
-                  </Label>
-                  <RadioGroup value={potluckOk} onValueChange={setPotluckOk}>
-                    <div className="flex gap-6">
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="potluck-yes" />
-                        <Label htmlFor="potluck-yes" className="text-foreground cursor-pointer">Yes</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="potluck-no" />
-                        <Label htmlFor="potluck-no" className="text-foreground cursor-pointer">No</Label>
-                      </div>
-                    </div>
-                  </RadioGroup>
-                </div>
-
-                {/* Party ideas */}
-                <div className="space-y-2">
-                  <Label htmlFor="ideas" className="text-foreground font-medium">
-                    Any specific ideas about the party? <span className="text-muted-foreground text-sm">(optional)</span>
-                  </Label>
-                  <Textarea
-                    id="ideas"
-                    value={partyIdeas}
-                    onChange={(e) => setPartyIdeas(e.target.value)}
-                    placeholder="What should we include or not include?"
-                    maxLength={1000}
-                  />
-                </div>
-
-                {/* Committee */}
-                <div className="space-y-3">
-                  <Label className="text-foreground font-medium">
-                    Do you or someone in your household want to serve on the design or organizing committee? <span className="text-muted-foreground text-sm">(optional)</span>
-                  </Label>
-                  <RadioGroup value={wantsCommittee} onValueChange={setWantsCommittee}>
-                    <div className="flex gap-6">
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="committee-yes" />
-                        <Label htmlFor="committee-yes" className="text-foreground cursor-pointer">Yes</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="committee-no" />
-                        <Label htmlFor="committee-no" className="text-foreground cursor-pointer">No</Label>
-                      </div>
-                    </div>
-                  </RadioGroup>
-                  {wantsCommittee === "yes" && (
-                    <div className="space-y-2 pl-4 border-l-2 border-primary/30">
-                      <Label htmlFor="committee-contact" className="text-foreground">
-                        Email or phone so we can get in touch <span className="text-destructive">*</span>
-                      </Label>
-                      <Input
-                        id="committee-contact"
-                        value={committeeContact}
-                        onChange={(e) => setCommitteeContact(e.target.value)}
-                        placeholder="your@email.com or phone number"
-                        maxLength={200}
-                      />
-                    </div>
-                  )}
-                </div>
-
-                {/* CAPTCHA */}
-                <div className="space-y-2 bg-muted/50 p-4 rounded-lg">
-                  <Label htmlFor="captcha" className="text-foreground font-medium">
-                    Quick human check: What is {captcha.a} + {captcha.b}? <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="captcha"
-                    type="number"
-                    value={captchaAnswer}
-                    onChange={(e) => setCaptchaAnswer(e.target.value)}
-                    placeholder="Your answer"
-                    className="w-32"
-                    required
-                  />
-                </div>
-
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? "Submitting..." : "Submit Survey 🎉"}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        )}
       </div>
 
       <BulletinBoardFooter />
