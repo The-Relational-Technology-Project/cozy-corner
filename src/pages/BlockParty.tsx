@@ -13,14 +13,14 @@ import { PartyPopper, ArrowRight, UtensilsCrossed, HandHeart, Clock, Map, Check 
 import sitePlan from "@/assets/block-party-2026-site-plan.jpg.asset.json";
 
 const volunteerRoles = [
-  "Barricades setup",
-  "Roaming welcome committee",
-  "Bounce house monitor",
-  "Art station monitor",
-  "Potluck setup and takedown",
-  "Pet parade facilitator",
-  "Band support crew",
-  "Clean-up crew",
+  { emoji: "🚧", label: "Barricades setup" },
+  { emoji: "👋", label: "Roaming welcome committee" },
+  { emoji: "🏰", label: "Bounce house monitor" },
+  { emoji: "🎨", label: "Art station monitor" },
+  { emoji: "🍽️", label: "Potluck setup and takedown" },
+  { emoji: "🐕", label: "Pet parade facilitator" },
+  { emoji: "🎸", label: "Band support crew" },
+  { emoji: "🧹", label: "Clean-up crew" },
 ];
 
 const schedule = [
