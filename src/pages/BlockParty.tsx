@@ -175,12 +175,12 @@ const BlockParty = () => {
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {volunteerRoles.map((role) => {
-                      const active = roles.includes(role);
+                      const active = roles.includes(role.label);
                       return (
                         <button
                           type="button"
-                          key={role}
-                          onClick={() => toggleRole(role)}
+                          key={role.label}
+                          onClick={() => toggleRole(role.label)}
                           aria-pressed={active}
                           className={`flex items-center justify-between gap-2 rounded-lg border p-3 text-left text-sm transition-colors ${
                             active
@@ -188,7 +188,10 @@ const BlockParty = () => {
                               : "border-border bg-card text-foreground hover:border-primary/40"
                           }`}
                         >
-                          <span>{role}</span>
+                          <span className="flex items-center gap-2">
+                            <span className="text-lg leading-none" aria-hidden="true">{role.emoji}</span>
+                            {role.label}
+                          </span>
                           {active && <Check className="h-4 w-4 text-primary shrink-0" />}
                         </button>
                       );
