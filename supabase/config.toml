@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.send-sms-reminder]
 verify_jwt = false
+
+[functions.send-street-cleaning-reminders]
+verify_jwt = false
