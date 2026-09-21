@@ -73,7 +73,9 @@ const handler = async (req: Request): Promise<Response> => {
       .select("email");
     const unsubscribed = new Set((unsubs ?? []).map((u: { email: string }) => u.email.toLowerCase()));
 
-    const recipients = [...new Set(
+    const testEmail = (body.testEmail as string) || url.searchParams.get("testEmail");
+
+    const recipients = testEmail ? [testEmail.toLowerCase()] : [...new Set(
       (subs ?? [])
         .map((s: { email: string }) => s.email.trim().toLowerCase())
         .filter((e: string) => e && !unsubscribed.has(e))
