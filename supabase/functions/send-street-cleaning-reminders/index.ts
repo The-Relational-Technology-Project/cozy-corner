@@ -89,7 +89,7 @@ const handler = async (req: Request): Promise<Response> => {
     const results = await Promise.allSettled(
       recipients.map((email) =>
         resend.emails.send({
-          from: "Cozy Corner <humans@relationaltechproject.org>",
+          from: "Cozy Corner <josh@relationaltechproject.org>",
           reply_to: "josh@relationaltechproject.org",
           to: [email],
           subject: `🧹 Street cleaning today — ${sideLabel} of 48th Ave`,
