@@ -25,15 +25,15 @@ const volunteerRoles = [
 ];
 
 const schedule = [
-  { time: "1:30pm", key: "bp.schedule.1" },
-  { time: "2:00pm", key: "bp.schedule.2" },
-  { time: "3:00pm", key: "bp.schedule.3" },
-  { time: "4:00pm", key: "bp.schedule.4" },
-  { time: "4:30pm", key: "bp.schedule.5" },
-  { time: "5:00pm", key: "bp.schedule.6" },
-  { time: "5:30pm", key: "bp.schedule.7" },
-  { time: "6:00pm", key: "bp.schedule.8" },
-  { time: "6:30pm", key: "bp.schedule.9" },
+  { time: "12:30pm", key: "bp.schedule.1" },
+  { time: "1:00pm", key: "bp.schedule.2" },
+  { time: "2:00pm", key: "bp.schedule.3" },
+  { time: "3:00pm", key: "bp.schedule.4" },
+  { time: "4:00pm", key: "bp.schedule.5" },
+  { time: "4:30pm", key: "bp.schedule.6" },
+  { time: "5:00pm", key: "bp.schedule.7" },
+  { time: "5:45pm", key: "bp.schedule.8" },
+  { time: "6:15pm", key: "bp.schedule.9" },
 ];
 
 const BlockParty = () => {
@@ -114,6 +114,39 @@ const BlockParty = () => {
             {t('bp.intro')}
           </p>
         </div>
+
+        {/* Overview */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="h-5 w-5 text-primary" />
+              {t('bp.overview.title')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <ul className="space-y-2">
+              {schedule.map((item) => (
+                <li key={item.time} className="flex gap-4 text-foreground">
+                  <span className="w-20 shrink-0 font-semibold text-primary">{item.time}</span>
+                  <span className="text-muted-foreground">{t(item.key)}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="space-y-2">
+              <p className="font-medium text-foreground flex items-center gap-2">
+                <Map className="h-4 w-4 text-primary" />
+                {t('bp.layout.title')}
+              </p>
+              <img
+                src={sitePlan.url}
+                alt={t('bp.layout.alt')}
+                className="w-full rounded-lg border border-border"
+                loading="lazy"
+              />
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Sign-up */}
         {submitted ? (
@@ -247,39 +280,6 @@ const BlockParty = () => {
             </CardContent>
           </Card>
         )}
-
-        {/* Overview */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-primary" />
-              {t('bp.overview.title')}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <ul className="space-y-2">
-              {schedule.map((item) => (
-                <li key={item.time} className="flex gap-4 text-foreground">
-                  <span className="w-20 shrink-0 font-semibold text-primary">{item.time}</span>
-                  <span className="text-muted-foreground">{t(item.key)}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="space-y-2">
-              <p className="font-medium text-foreground flex items-center gap-2">
-                <Map className="h-4 w-4 text-primary" />
-                {t('bp.layout.title')}
-              </p>
-              <img
-                src={sitePlan.url}
-                alt={t('bp.layout.alt')}
-                className="w-full rounded-lg border border-border"
-                loading="lazy"
-              />
-            </div>
-          </CardContent>
-        </Card>
 
         {/* 2025 retro */}
         <Link to="/block-party-2025">
