@@ -1,306 +1,73 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MainNavigation } from "@/components/MainNavigation";
 import { BulletinBoardFooter } from "@/components/BulletinBoardFooter";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
-import { PartyPopper, ArrowRight, UtensilsCrossed, HandHeart, Clock, Map, Check } from "lucide-react";
-import sitePlan from "@/assets/block-party-2026-site-plan.jpg.asset.json";
+import { ArrowRight, PartyPopper } from "lucide-react";
+import aerial2026 from "@/assets/aerial-cozy-corner-2026.jpeg.asset.json";
+import music2026 from "@/assets/music-cozy-corner-2026.jpeg.asset.json";
+import aerial2025 from "@/assets/block-party-aerial.png";
+import music2025 from "@/assets/block-party-music.png";
 
-const volunteerRoles = [
-  { emoji: "🚧", key: "bp.role.barricades", label: "Barricades setup" },
-  { emoji: "👋", key: "bp.role.welcome", label: "Roaming welcome committee" },
-  { emoji: "🏰", key: "bp.role.bounce", label: "Bounce house monitor" },
-  { emoji: "🎨", key: "bp.role.art", label: "Art station monitor" },
-  { emoji: "🍽️", key: "bp.role.potluck", label: "Potluck setup and takedown" },
-  { emoji: "🐕", key: "bp.role.pets", label: "Pet parade facilitator" },
-  { emoji: "🎸", key: "bp.role.band", label: "Band support crew" },
-  { emoji: "🧹", key: "bp.role.cleanup", label: "Clean-up crew" },
-];
-
-const schedule = [
-  { time: "12:30pm", key: "bp.schedule.1" },
-  { time: "1:00pm", key: "bp.schedule.2" },
-  { time: "2:00pm", key: "bp.schedule.3" },
-  { time: "3:00pm", key: "bp.schedule.4" },
-  { time: "4:00pm", key: "bp.schedule.5" },
-  { time: "4:30pm", key: "bp.schedule.6" },
-  { time: "5:00pm", key: "bp.schedule.7" },
-  { time: "5:45pm", key: "bp.schedule.8" },
-  { time: "6:15pm", key: "bp.schedule.9" },
+const highlights = [
+  { emoji: "🎸", key: "music" }, { emoji: "🐕", key: "pets" },
+  { emoji: "🥘", key: "food" }, { emoji: "🏰", key: "bounce" },
+  { emoji: "👋", key: "neighbors" },
 ];
 
 const BlockParty = () => {
-  const { toast } = useToast();
   const { t } = useLanguage();
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const [potluckItem, setPotluckItem] = useState("");
-  const [roles, setRoles] = useState<string[]>([]);
-  const [questions, setQuestions] = useState("");
-  const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
-
-  const toggleRole = (role: string) => {
-    setRoles((prev) => (prev.includes(role) ? prev.filter((r) => r !== role) : [...prev, role]));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!name.trim()) {
-      toast({ title: t('bp.toast.name'), variant: "destructive" });
-      return;
-    }
-    if (!contact.trim()) {
-      toast({ title: t('bp.toast.contact'), variant: "destructive" });
-      return;
-    }
-
-    setSubmitting(true);
-    try {
-      const { error } = await supabase.from("block_party_2026_signups" as any).insert({
-        name: name.trim(),
-        contact: contact.trim(),
-        potluck_item: potluckItem.trim() || null,
-        volunteer_roles: roles.length > 0 ? roles : null,
-        questions: questions.trim() || null,
-      } as any);
-
-      if (error) throw error;
-
-      await supabase.functions.invoke("send-form-notification", {
-        body: {
-          formType: "block_party_2026_signup",
-          formData: {
-            name: name.trim(),
-            contact: contact.trim(),
-            potluck_item: potluckItem.trim(),
-            volunteer_roles: roles,
-            questions: questions.trim(),
-          },
-        },
-      });
-
-      setSubmitted(true);
-      toast({ title: t('bp.toast.success') });
-    } catch (err) {
-      console.error(err);
-      toast({ title: t('bp.toast.error'), description: t('bp.toast.error.desc'), variant: "destructive" });
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <MainNavigation />
-
-      <div className="max-w-3xl mx-auto px-4 pt-16 pb-12 space-y-10">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground flex items-center justify-center gap-3">
-            <PartyPopper className="h-8 w-8 text-primary" />
+      <main className="max-w-5xl mx-auto px-4 py-10 md:py-14 space-y-12 md:space-y-16">
+        <header className="max-w-2xl space-y-5">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground flex items-center gap-3">
+            <PartyPopper className="h-8 w-8 text-primary shrink-0" aria-hidden="true" />
             {t('bp.title')}
           </h1>
-          <p className="text-muted-foreground text-lg py-[24px]">
-            {t('bp.intro')}
-          </p>
-        </div>
+          <p className="text-lg text-muted-foreground leading-relaxed">{t('bp.intro')}</p>
+        </header>
 
-        {/* Overview */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-primary" />
-              {t('bp.overview.title')}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <ul className="space-y-2">
-              {schedule.map((item) => (
-                <li key={item.time} className="flex gap-4 text-foreground">
-                  <span className="w-20 shrink-0 font-semibold text-primary">{item.time}</span>
-                  <span className="text-muted-foreground">{t(item.key)}</span>
-                </li>
-              ))}
-            </ul>
+        <section aria-labelledby="party-2026" className="space-y-6">
+          <div className="space-y-3 max-w-3xl">
+            <h2 id="party-2026" className="text-2xl md:text-3xl font-bold text-foreground">{t('bp.2026.title')}</h2>
+            <p className="text-sm font-medium text-primary"><time dateTime="2026-10-17">{t('bp.2026.date')}</time></p>
+            <p className="text-foreground leading-relaxed">{t('bp.2026.story')}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[{ src: aerial2026.url, alt: 'bp.2026.aerial', caption: 'bp.photo.aerial' }, { src: music2026.url, alt: 'bp.2026.music', caption: 'bp.photo.music' }].map(photo => (
+              <figure key={photo.src} className="space-y-2">
+                <img src={photo.src} alt={t(photo.alt)} width={1024} height={768} className="w-full aspect-[4/3] object-contain rounded-lg bg-muted" />
+                <figcaption className="text-sm text-muted-foreground">{t(photo.caption)}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            {highlights.map(item => <li key={item.key} className="flex items-center gap-2 text-sm text-foreground"><span aria-hidden="true" className="text-xl">{item.emoji}</span>{t(`bp.highlight.${item.key}`)}</li>)}
+          </ul>
+        </section>
 
-            <div className="space-y-2">
-              <p className="font-medium text-foreground flex items-center gap-2">
-                <Map className="h-4 w-4 text-primary" />
-                {t('bp.layout.title')}
-              </p>
-              <img
-                src={sitePlan.url}
-                alt={t('bp.layout.alt')}
-                className="w-full rounded-lg border border-border"
-                loading="lazy"
-              />
-            </div>
-          </CardContent>
-        </Card>
+        <section aria-labelledby="party-2025" className="border-t border-border pt-10 space-y-6">
+          <div className="space-y-3 max-w-3xl">
+            <h2 id="party-2025" className="text-2xl md:text-3xl font-bold text-foreground">{t('bp.2025.title')}</h2>
+            <p className="text-sm font-medium text-primary"><time dateTime="2025-09-27">{t('bp.2025.date')}</time></p>
+            <p className="text-foreground leading-relaxed">{t('bp.2025.story')}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[{ src: aerial2025, alt: 'bp.2025.aerial' }, { src: music2025, alt: 'bp.2025.music' }].map(photo => <img key={photo.src} src={photo.src} alt={t(photo.alt)} loading="lazy" className="w-full aspect-[4/3] object-contain rounded-lg bg-muted" />)}
+          </div>
+          <Button asChild variant="outline"><Link to="/block-party-2025">{t('bp.2025.more')}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></Button>
+        </section>
 
-        {/* Sign-up */}
-        {submitted ? (
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-8 text-center space-y-4">
-              <span className="text-5xl">🎉</span>
-              <h2 className="text-2xl font-bold text-foreground">{t('bp.thanks.title')}</h2>
-              <p className="text-muted-foreground">{t('bp.thanks.message')}</p>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSubmitted(false);
-                  setPotluckItem("");
-                  setRoles([]);
-                  setQuestions("");
-                  setName("");
-                  setContact("");
-                }}
-              >
-                {t('bp.thanks.another')}
-              </Button>
-            </CardContent>
-          </Card>
-        ) : (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <HandHeart className="h-5 w-5 text-primary" />
-                {t('bp.signup.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Potluck */}
-                <div className="space-y-2">
-                  <Label htmlFor="potluck" className="text-foreground font-medium flex items-center gap-2">
-                    <UtensilsCrossed className="h-4 w-4 text-primary" />
-                    {t('bp.potluck.label')}
-                  </Label>
-                  <p className="text-sm text-muted-foreground">{t('bp.potluck.help')}</p>
-                  <Textarea
-                    id="potluck"
-                    value={potluckItem}
-                    onChange={(e) => setPotluckItem(e.target.value)}
-                    placeholder={t('bp.potluck.placeholder')}
-                    maxLength={500}
-                  />
-                </div>
-
-                {/* Volunteer roles */}
-                <div className="space-y-3">
-                  <Label className="text-foreground font-medium flex items-center gap-2">
-                    <HandHeart className="h-4 w-4 text-primary" />
-                    {t('bp.volunteer.label')}
-                  </Label>
-                  <p className="text-sm text-muted-foreground">{t('bp.volunteer.help')}</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {volunteerRoles.map((role) => {
-                      const active = roles.includes(role.label);
-                      return (
-                        <button
-                          type="button"
-                          key={role.label}
-                          onClick={() => toggleRole(role.label)}
-                          aria-pressed={active}
-                          className={`flex items-center justify-between gap-2 rounded-lg border p-3 text-left text-sm transition-colors ${
-                            active
-                              ? "border-primary bg-primary/10 text-foreground font-medium"
-                              : "border-border bg-card text-foreground hover:border-primary/40"
-                          }`}
-                        >
-                          <span className="flex items-center gap-2">
-                            <span className="text-lg leading-none" aria-hidden="true">{role.emoji}</span>
-                            {t(role.key)}
-                          </span>
-                          {active && <Check className="h-4 w-4 text-primary shrink-0" />}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Questions */}
-                <div className="space-y-2">
-                  <Label htmlFor="questions" className="text-foreground font-medium">
-                    {t('bp.questions.label')} <span className="text-sm text-muted-foreground">{t('bp.optional')}</span>
-                  </Label>
-                  <Textarea
-                    id="questions"
-                    value={questions}
-                    onChange={(e) => setQuestions(e.target.value)}
-                    placeholder={t('bp.questions.placeholder')}
-                    maxLength={1000}
-                  />
-                </div>
-
-                {/* Contact */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-foreground font-medium">
-                      {t('bp.name.label')} <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder={t('bp.name.placeholder')}
-                      maxLength={100}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="contact" className="text-foreground font-medium">
-                      {t('bp.contact.label')} <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="contact"
-                      value={contact}
-                      onChange={(e) => setContact(e.target.value)}
-                      placeholder={t('bp.contact.placeholder')}
-                      maxLength={200}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <Button type="submit" disabled={submitting} className="w-full">
-                  {submitting ? t('bp.submitting') : t('bp.submit')}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* 2025 retro */}
-        <Link to="/block-party-2025">
-          <Card className="border-primary/20 hover:border-primary/40 transition-colors cursor-pointer">
-            <CardContent className="flex items-center justify-between p-4">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">🎉</span>
-                <div>
-                  <p className="font-semibold text-foreground">{t('bp.retro.title')}</p>
-                  <p className="text-sm text-muted-foreground">{t('bp.retro.subtitle')}</p>
-                </div>
-              </div>
-              <ArrowRight className="h-5 w-5 text-muted-foreground" />
-            </CardContent>
-          </Card>
-        </Link>
-      </div>
-
+        <section className="border-t border-border pt-10 space-y-4 max-w-2xl">
+          <h2 className="text-2xl font-bold text-foreground">🎉 {t('bp.next.title')}</h2>
+          <p className="text-muted-foreground leading-relaxed">{t('bp.next.body')}</p>
+          <Button asChild className="h-auto min-h-10 whitespace-normal"><Link to="/contact">{t('bp.next.cta')}<ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" /></Link></Button>
+        </section>
+      </main>
       <BulletinBoardFooter />
     </div>
   );
 };
-
 export default BlockParty;
