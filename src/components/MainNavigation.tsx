@@ -33,7 +33,7 @@ export const MainNavigation = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Home button - left side */}
-          <Link to={homeItem.path}>
+          <Link to={homeItem.path} aria-label={homeItem.label} aria-current={isActive(homeItem.path) ? "page" : undefined}>
             <Button
               variant={isActive(homeItem.path) ? "default" : "ghost"}
               size="sm"
@@ -54,7 +54,7 @@ export const MainNavigation = () => {
           <div className="flex items-center gap-1.5 md:gap-3">
             {/* Language selector */}
             <Select value={language} onValueChange={(value) => setLanguage(value as 'en' | 'zh-CN' | 'zh-HK')}>
-              <SelectTrigger className="w-auto h-9 px-2 md:px-3 border-fog/30 bg-card/80 hover:bg-fog-light rounded-xl">
+              <SelectTrigger aria-label="Language / 语言 / 語言" className="w-auto h-9 px-2 md:px-3 border-fog/30 bg-card/80 hover:bg-fog-light rounded-xl">
                 <div className="flex items-center gap-1.5">
                   <Languages className="h-4 w-4 text-foreground hidden sm:block" />
                   <span className="text-sm font-medium text-foreground">
@@ -73,7 +73,7 @@ export const MainNavigation = () => {
               const Icon = isEmoji ? null : item.icon;
               
               return (
-                <Link key={item.path} to={item.path}>
+                <Link key={item.path} to={item.path} aria-label={item.label} aria-current={isActive(item.path) ? "page" : undefined}>
                   <Button
                     variant={isActive(item.path) ? "default" : "ghost"}
                     size="sm"
