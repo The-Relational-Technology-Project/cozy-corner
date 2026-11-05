@@ -8,6 +8,8 @@ import aerial2026 from "@/assets/aerial-cozy-corner-2026.jpeg.asset.json";
 import music2026 from "@/assets/music-cozy-corner-2026.jpeg.asset.json";
 import aerial2025 from "@/assets/block-party-aerial.png";
 import music2025 from "@/assets/block-party-music.png";
+import civicJoyLogo from "@/assets/civic-joy-fund-logo.png";
+import oslLogo from "@/assets/osl-logo.png";
 
 const highlights = [
   { emoji: "🎸", key: "music" }, { emoji: "🐕", key: "pets" },
@@ -58,6 +60,18 @@ const BlockParty = () => {
             {[{ src: aerial2025, alt: 'bp.2025.aerial' }, { src: music2025, alt: 'bp.2025.music' }].map(photo => <img key={photo.src} src={photo.src} alt={t(photo.alt)} loading="lazy" className="w-full aspect-[4/3] object-contain rounded-lg bg-muted" />)}
           </div>
           <Button asChild variant="outline"><Link to="/block-party-2025">{t('bp.2025.more')}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></Button>
+        </section>
+
+        <section aria-labelledby="party-partners" className="border-t border-border pt-10 space-y-6">
+          <h2 id="party-partners" className="text-2xl font-bold text-foreground">{t('bp.archive.partners')}</h2>
+          <div className="flex flex-wrap gap-10">
+            {[{ src: civicJoyLogo, name: 'Civic Joy Fund' }, { src: oslLogo, name: 'Outer Sunset Neighbors' }].map(partner => (
+              <figure key={partner.name} className="space-y-3">
+                <img src={partner.src} alt={partner.name} loading="lazy" className="w-28 h-28 object-contain" />
+                <figcaption className="font-medium text-foreground">{partner.name}</figcaption>
+              </figure>
+            ))}
+          </div>
         </section>
 
         <section className="border-t border-border pt-10 space-y-4 max-w-2xl">
